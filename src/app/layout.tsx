@@ -1,18 +1,24 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Outfit, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
 const outfit = Outfit({
-  variable: "--font-geist-sans",
+  variable: "--font-outfit",
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  weight: ["100", "200", "300", "400", "500"],
+});
+
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
 });
 
 export const metadata: Metadata = {
   title: "BROWNSERIES — Coming Soon",
   description:
-    "BROWNSERIES — A premium clothing brand. Something extraordinary is coming. Stay tuned.",
-  keywords: ["clothing", "fashion", "premium", "brownseries", "coming soon"],
+    "BROWNSERIES — Contemporary fashion rooted in earth tones and timeless design. Coming soon.",
+  keywords: ["clothing", "fashion", "premium", "brownseries", "coming soon", "earth tones"],
 };
 
 export default function RootLayout({
@@ -22,10 +28,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${outfit.variable} antialiased`}>
-        {/* Top Navigation — Brand Only */}
-        <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center py-6 px-8 bg-background/60 backdrop-blur-xl border-b border-border/40">
-          <span className="text-base tracking-[0.35em] font-light text-foreground uppercase">
+      <body className={`${outfit.variable} ${cormorant.variable} antialiased`}>
+        {/* Top Navigation — Brand Name Only */}
+        <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center py-5 px-8 bg-background/70 backdrop-blur-md border-b border-border/30">
+          <span
+            className="font-[family-name:var(--font-outfit)] text-sm tracking-[0.4em] font-extralight text-warm-white uppercase"
+          >
             BROWNSERIES
           </span>
         </nav>

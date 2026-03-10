@@ -1,84 +1,67 @@
+import Image from "next/image";
+
 export default function Home() {
   return (
-    <main className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
-      {/* Background gradient orbs */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-accent/5 blur-[120px] animate-float" />
-        <div
-          className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-accent/8 blur-[100px] animate-float"
-          style={{ animationDelay: "3s" }}
-        />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-accent/3 blur-[150px] animate-pulse-glow"
-        />
-      </div>
-
-      {/* Subtle grid pattern */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(90deg, var(--foreground) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
-
-      {/* Hero Content */}
-      <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
-        {/* Decorative line */}
-        <div className="flex justify-center mb-10 animate-fade-in">
-          <div className="h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent animate-line-expand" />
+    <main className="relative min-h-screen">
+      {/* Full-screen hero section with image */}
+      <section className="relative h-screen flex items-end">
+        {/* Background Image */}
+        <div className="absolute inset-0 animate-slow-zoom">
+          <Image
+            src="/hero.png"
+            alt="BROWNSERIES editorial fashion"
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          {/* Dark overlay gradient from bottom */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0e0c0a] via-[#0e0c0a]/50 to-transparent" />
+          <div className="absolute inset-0 bg-[#0e0c0a]/30" />
         </div>
 
-        {/* Coming Soon */}
-        <p className="text-xs tracking-[0.5em] uppercase text-muted font-light mb-6 animate-fade-in-up delay-200">
-          Coming Soon
-        </p>
+        {/* Hero text overlaid on image */}
+        <div className="relative z-10 w-full px-8 sm:px-12 md:px-20 pb-20 sm:pb-28">
+          <div className="max-w-2xl">
+            {/* Small tag */}
+            <div className="flex items-center gap-4 mb-6 animate-fade-in-up delay-200">
+              <div className="h-px w-10 bg-accent animate-reveal-line delay-300" />
+              <span className="font-[family-name:var(--font-outfit)] text-[10px] sm:text-xs tracking-[0.4em] uppercase text-accent font-light">
+                Coming Soon
+              </span>
+            </div>
 
-        {/* Main Heading */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extralight leading-[1.1] mb-8 animate-fade-in-up delay-400">
-          <span className="block">Something</span>
-          <span className="block mt-2 animate-shimmer font-light">
-            Extraordinary
-          </span>
-        </h1>
+            {/* Main editorial heading */}
+            <h1 className="font-[family-name:var(--font-cormorant)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.1] text-warm-white mb-6 animate-fade-in-up delay-500">
+              Rooted in
+              <br />
+              Earth Tones
+            </h1>
 
-        {/* Subtitle */}
-        <p className="text-sm sm:text-base text-muted font-light leading-relaxed max-w-md mx-auto mb-12 animate-fade-in-up delay-600">
-          We&apos;re crafting a new chapter in contemporary fashion.
-          <br className="hidden sm:block" />
-          Stay tuned for something truly special.
-        </p>
+            {/* Subtext */}
+            <p className="font-[family-name:var(--font-outfit)] text-sm sm:text-base text-foreground/60 font-extralight leading-relaxed max-w-md mb-10 animate-fade-in-up delay-700">
+              Contemporary fashion designed for those who wear intention.
+              Our debut collection is almost here.
+            </p>
 
-        {/* Decorative line bottom */}
-        <div className="flex justify-center mt-2 animate-fade-in delay-800">
-          <div className="h-px w-12 bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
-        </div>
-
-        {/* Optional: Email notify */}
-        <div className="mt-14 animate-fade-in-up delay-1000">
-          <div className="flex flex-col sm:flex-row items-center gap-3 max-w-sm mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="w-full px-5 py-3 bg-surface border border-border rounded-full text-sm text-foreground placeholder:text-muted/60 focus:outline-none focus:border-accent/50 transition-colors duration-300"
-            />
-            <button className="w-full sm:w-auto px-7 py-3 bg-accent/10 border border-accent/30 text-accent text-sm tracking-wider uppercase rounded-full hover:bg-accent/20 hover:border-accent/50 transition-all duration-300 cursor-pointer whitespace-nowrap">
-              Notify Me
-            </button>
+            {/* Email signup */}
+            <div className="animate-fade-in-up delay-900">
+              <div className="flex flex-col sm:flex-row gap-3 max-w-sm">
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  className="flex-1 px-5 py-3 bg-white/5 border border-white/10 text-sm text-warm-white placeholder:text-white/30 focus:outline-none focus:border-accent/50 transition-colors duration-500 font-[family-name:var(--font-outfit)] font-light tracking-wide"
+                />
+                <button className="px-7 py-3 bg-accent text-background text-xs tracking-[0.25em] uppercase font-[family-name:var(--font-outfit)] font-normal hover:bg-accent-light transition-colors duration-500 cursor-pointer whitespace-nowrap">
+                  Notify Me
+                </button>
+              </div>
+              <p className="font-[family-name:var(--font-outfit)] text-[11px] text-muted/50 mt-4 font-light tracking-wide">
+                Be the first to shop the collection.
+              </p>
+            </div>
           </div>
-          <p className="text-[11px] text-muted/50 mt-4 font-light">
-            Be the first to know when we launch.
-          </p>
         </div>
-      </div>
-
-      {/* Corner accents */}
-      <div className="absolute top-24 left-8 w-px h-16 bg-gradient-to-b from-accent/20 to-transparent animate-fade-in delay-800" />
-      <div className="absolute top-24 left-8 h-px w-16 bg-gradient-to-r from-accent/20 to-transparent animate-fade-in delay-800" />
-
-      <div className="absolute bottom-8 right-8 w-px h-16 bg-gradient-to-t from-accent/20 to-transparent animate-fade-in delay-800" />
-      <div className="absolute bottom-8 right-8 h-px w-16 bg-gradient-to-l from-accent/20 to-transparent animate-fade-in delay-800" />
+      </section>
     </main>
   );
 }
