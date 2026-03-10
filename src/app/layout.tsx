@@ -15,10 +15,27 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Brown Series — Coming Soon",
-  description:
-    "Brown Series — Contemporary fashion rooted in earth tones and timeless design. Coming soon.",
-  keywords: ["clothing", "fashion", "premium", "brownseries", "coming soon", "earth tones"],
+  title: "Brown Series",
+  description: "Contemporary fashion rooted in earth tones and timeless design.",
+  keywords: ["clothing", "fashion", "premium", "brownseries", "earth tones"],
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Brown Series",
+  },
+  applicationName: "Brown Series",
+  formatDetection: {
+    telephone: false,
+  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: "#0a0807",
 };
 
 export default function RootLayout({
