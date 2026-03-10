@@ -1,6 +1,18 @@
+"use client";
+
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import { useCartStore } from "@/store/useCartStore";
 
 export default function Navbar() {
+    const { openCart, getTotalItems } = useCartStore();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    const itemCount = mounted ? getTotalItems() : 0;
     return (
         <nav className="sticky top-0 left-0 w-full z-50 bg-background/90 backdrop-blur-xl border-b border-white/5 safe-area-top">
             <div className="flex items-center justify-between px-4 h-14 md:h-16 max-w-7xl mx-auto">
@@ -128,9 +140,16 @@ export default function Navbar() {
                     </div>
 
                     {/* Cart Icon */}
-                    <button className="relative p-2 text-foreground/80 hover:text-warm-white bg-transparent active:bg-white/5 rounded-full transition-colors">
+                    <button
+                        onClick={openCart}
+                        className="relative p-2 text-foreground/80 hover:text-warm-white bg-transparent active:bg-white/5 rounded-full transition-colors"
+                    >
                         <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
-                        <span className="absolute top-1 right-1 bg-accent text-background text-[9px] font-bold w-3.5 h-3.5 flex items-center justify-center rounded-full">0</span>
+                        {itemCount > 0 && (
+                            <span className="absolute top-1 right-1 bg-accent text-background text-[9px] font-bold w-3.5 h-3.5 flex items-center justify-center rounded-full">
+                                {itemCount}
+                            </span>
+                        )}
                     </button>
                 </div>
             </div>

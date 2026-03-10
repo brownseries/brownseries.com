@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
+import CartDrawer from "@/components/cart/CartDrawer";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -56,6 +57,7 @@ export default function RootLayout({
         </nav>
 
         {children}
+        <CartDrawer />
       </body>
     </html>
   );

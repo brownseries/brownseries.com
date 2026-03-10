@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useCartStore } from "@/store/useCartStore";
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -20,6 +21,8 @@ const itemVariants = {
 };
 
 export default function TrendingItems() {
+    const addItem = useCartStore((state) => state.addItem);
+
     return (
         <section className="bg-background pt-10 pb-16 md:pt-20 md:pb-32 overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -45,7 +48,7 @@ export default function TrendingItems() {
                         <Link href="/shop/oversized-linen-coat" className="cursor-pointer group block">
                             <div className="relative aspect-[4/5] overflow-hidden rounded-xl md:rounded-none bg-surface mb-3">
                                 <Image src="/hero.png" alt="Oversized Knit Sweater" fill sizes="(max-width: 768px) 70vw, 25vw" className="object-cover object-top filter brightness-90 md:brightness-100 transition-transform duration-700 md:group-hover:scale-105" />
-                                <div className="absolute top-3 right-3 p-2 bg-background/40 backdrop-blur-md rounded-full text-warm-white hover:bg-accent active:scale-110 transition-all z-10" onClick={(e) => e.preventDefault()}>
+                                <div className="absolute top-2 right-2 p-3 bg-background/40 backdrop-blur-md rounded-full text-warm-white hover:bg-accent active:scale-110 transition-all z-10" onClick={(e) => { e.preventDefault(); addItem({ id: "oversized-linen-coat", name: "Oversized Linen Coat", price: 450, quantity: 1, image: "/hero.png" }); }}>
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
                                 </div>
                             </div>
@@ -61,7 +64,7 @@ export default function TrendingItems() {
                         <Link href="/shop/pleated-wool-trousers" className="cursor-pointer group block">
                             <div className="relative aspect-[4/5] overflow-hidden rounded-xl md:rounded-none bg-surface mb-3">
                                 <Image src="/hero_indian_new_arrivals.png" alt="Linen Button-Down" fill sizes="(max-width: 768px) 70vw, 25vw" className="object-cover filter brightness-90 md:brightness-100 transition-transform duration-700 md:group-hover:scale-105" />
-                                <div className="absolute top-3 right-3 p-2 bg-background/40 backdrop-blur-md rounded-full text-warm-white hover:bg-accent active:scale-110 transition-all z-10" onClick={(e) => e.preventDefault()}>
+                                <div className="absolute top-2 right-2 p-3 bg-background/40 backdrop-blur-md rounded-full text-warm-white hover:bg-accent active:scale-110 transition-all z-10" onClick={(e) => { e.preventDefault(); addItem({ id: "pleated-wool-trousers", name: "Pleated Wool Trousers", price: 280, quantity: 1, image: "/hero_indian_new_arrivals.png" }); }}>
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
                                 </div>
                             </div>
@@ -77,7 +80,7 @@ export default function TrendingItems() {
                         <Link href="/shop/textured-wool-midi-skirt" className="cursor-pointer group block">
                             <div className="relative aspect-[4/5] overflow-hidden rounded-xl md:rounded-none bg-surface mb-3">
                                 <Image src="/trending_hijabi_skirt.png" alt="Textured Midi Skirt" fill sizes="(max-width: 768px) 70vw, 25vw" className="object-cover object-center filter brightness-90 md:brightness-100 transition-transform duration-700 md:group-hover:scale-105" />
-                                <div className="absolute top-3 right-3 p-2 bg-background/40 backdrop-blur-md rounded-full text-warm-white hover:bg-accent active:scale-110 transition-all z-10" onClick={(e) => e.preventDefault()}>
+                                <div className="absolute top-2 right-2 p-3 bg-background/40 backdrop-blur-md rounded-full text-warm-white hover:bg-accent active:scale-110 transition-all z-10" onClick={(e) => { e.preventDefault(); addItem({ id: "textured-wool-midi-skirt", name: "Textured Wool Midi Skirt", price: 240, quantity: 1, image: "/trending_hijabi_skirt.png" }); }}>
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
                                 </div>
                             </div>
@@ -93,7 +96,7 @@ export default function TrendingItems() {
                         <Link href="/shop/classic-leather-tote" className="cursor-pointer group block">
                             <div className="relative aspect-[4/5] overflow-hidden rounded-xl md:rounded-none bg-surface mb-3">
                                 <Image src="/hero-2.png" alt="Classic Leather Tote" fill sizes="(max-width: 768px) 70vw, 25vw" className="object-cover object-[center_30%] filter grayscale-[0.2] transition-transform duration-700 md:group-hover:scale-105" />
-                                <div className="absolute top-3 right-3 p-2 bg-background/40 backdrop-blur-md rounded-full text-warm-white hover:bg-accent active:scale-110 transition-all z-10" onClick={(e) => e.preventDefault()}>
+                                <div className="absolute top-2 right-2 p-3 bg-background/40 backdrop-blur-md rounded-full text-warm-white hover:bg-accent active:scale-110 transition-all z-10" onClick={(e) => { e.preventDefault(); addItem({ id: "classic-leather-tote", name: "Classic Leather Tote", price: 560, quantity: 1, image: "/hero-2.png" }); }}>
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
                                 </div>
                             </div>
