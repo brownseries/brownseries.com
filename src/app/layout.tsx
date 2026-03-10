@@ -34,7 +34,7 @@ export default function RootLayout({
           <span
             className="font-[family-name:var(--font-outfit)] text-sm tracking-[0.4em] font-extralight text-warm-white uppercase"
           >
-            BROWNSERIES
+            BROWN SERIES
           </span>
         </nav>
 
