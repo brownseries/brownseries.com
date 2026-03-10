@@ -39,13 +39,13 @@ export default function ProductDetailPage(props: { params: Promise<{ slug: strin
         <main className="min-h-screen bg-background text-foreground pb-24 md:pb-0 selection:bg-accent/30 selection:text-warm-white">
             <Navbar />
 
-            <div className="w-full max-w-7xl mx-auto md:px-8 mt-20 md:mt-24 md:grid md:grid-cols-2 md:gap-12">
+            <div className="w-full max-w-7xl mx-auto md:px-8 mt-0 md:mt-24 md:grid md:grid-cols-2 md:gap-12">
                 {/* Image Gallery - Native Swipeable on Mobile, Grid on Desktop */}
                 <div className="w-full relative">
                     {/* overflow-hidden wrapper isolates the swipe region so min-w-[100vw] items
                         don't break the outer page layout on mobile */}
                     <div className="overflow-hidden md:overflow-visible">
-                        <div className="flex md:grid md:grid-cols-2 gap-1 md:gap-4 overflow-x-auto hide-scrollbar overscroll-x-contain touch-pan-x snap-x snap-mandatory h-[65vh] md:h-auto md:min-h-[80vh] md:w-full">
+                        <div className="flex md:grid md:grid-cols-2 gap-1 md:gap-4 overflow-x-auto hide-scrollbar overscroll-x-contain snap-x snap-mandatory h-[65vh] md:h-auto md:min-h-[80vh] md:w-full">
                             {images.map((src, index) => (
                                 <div
                                     key={index}
@@ -132,8 +132,8 @@ export default function ProductDetailPage(props: { params: Promise<{ slug: strin
                         </div>
                     </div>
 
-                    {/* Desktop Add to Bag (Hidden on mobile where sticky bottom is used) */}
-                    <button className="hidden md:flex w-full bg-accent hover:bg-accent/90 text-warm-white py-4 items-center justify-center font-[family-name:var(--font-outfit)] text-xs tracking-[0.2em] font-medium transition-colors mb-12">
+                    {/* Add to Bag */}
+                    <button className="flex w-full bg-accent hover:bg-accent/90 text-warm-white py-4 items-center justify-center font-[family-name:var(--font-outfit)] text-xs tracking-[0.2em] font-medium transition-colors mb-12 active:scale-[0.98]">
                         ADD TO BAG - $185
                     </button>
 
@@ -189,12 +189,6 @@ export default function ProductDetailPage(props: { params: Promise<{ slug: strin
                 </div>
             </div>
 
-            {/* Mobile Sticky Add to Bag - Bottom safe area aware */}
-            <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-xl border-t border-white/10 p-4 pb-[calc(1rem+env(safe-area-inset-bottom))]">
-                <button className="w-full bg-accent text-warm-white py-4 active:scale-[0.98] transition-transform rounded-sm flex items-center justify-center font-[family-name:var(--font-outfit)] text-xs tracking-[0.2em] font-medium shadow-[0_0_20px_rgba(0,0,0,0.5)]">
-                    ADD TO BAG - $185
-                </button>
-            </div>
 
         </main>
     );
