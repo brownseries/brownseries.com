@@ -36,28 +36,32 @@ export default function ProductDetailPage(props: { params: Promise<{ slug: strin
     };
 
     return (
-        <main className="min-h-screen bg-background text-foreground pb-24 md:pb-0 overflow-x-hidden selection:bg-accent/30 selection:text-warm-white">
+        <main className="min-h-screen bg-background text-foreground pb-24 md:pb-0 selection:bg-accent/30 selection:text-warm-white">
             <Navbar />
 
             <div className="w-full max-w-7xl mx-auto md:px-8 mt-20 md:mt-24 md:grid md:grid-cols-2 md:gap-12">
                 {/* Image Gallery - Native Swipeable on Mobile, Grid on Desktop */}
                 <div className="w-full relative">
-                    <div className="flex md:grid md:grid-cols-2 gap-1 md:gap-4 overflow-x-auto hide-scrollbar overscroll-x-contain touch-pan-x snap-x snap-mandatory h-[65vh] md:h-auto md:min-h-[80vh] md:w-full">
-                        {images.map((src, index) => (
-                            <div
-                                key={index}
-                                className={`relative w-full min-w-[100vw] md:min-w-0 md:w-full h-full snap-start snap-always ${index === 0 ? "md:col-span-2 md:aspect-[4/5]" : "md:aspect-square"} bg-surface`}
-                            >
-                                <Image
-                                    src={src}
-                                    alt={`${title} - view ${index + 1}`}
-                                    fill
-                                    priority={index === 0}
-                                    className="object-cover object-top"
-                                    sizes="(max-width: 768px) 100vw, 50vw"
-                                />
-                            </div>
-                        ))}
+                    {/* overflow-hidden wrapper isolates the swipe region so min-w-[100vw] items
+                        don't break the outer page layout on mobile */}
+                    <div className="overflow-hidden md:overflow-visible">
+                        <div className="flex md:grid md:grid-cols-2 gap-1 md:gap-4 overflow-x-auto hide-scrollbar overscroll-x-contain touch-pan-x snap-x snap-mandatory h-[65vh] md:h-auto md:min-h-[80vh] md:w-full">
+                            {images.map((src, index) => (
+                                <div
+                                    key={index}
+                                    className={`relative w-full min-w-[100vw] md:min-w-0 md:w-full h-full snap-start snap-always ${index === 0 ? "md:col-span-2 md:aspect-[4/5]" : "md:aspect-square"} bg-surface`}
+                                >
+                                    <Image
+                                        src={src}
+                                        alt={`${title} - view ${index + 1}`}
+                                        fill
+                                        priority={index === 0}
+                                        className="object-cover object-top"
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                    />
+                                </div>
+                            ))}
+                        </div>
                     </div>
                     {/* Mobile pagination dots (aesthetic) */}
                     <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 md:hidden">
