@@ -15,9 +15,9 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "BROWNSERIES — Coming Soon",
+  title: "Brown Series — Coming Soon",
   description:
-    "BROWNSERIES — Contemporary fashion rooted in earth tones and timeless design. Coming soon.",
+    "Brown Series — Contemporary fashion rooted in earth tones and timeless design. Coming soon.",
   keywords: ["clothing", "fashion", "premium", "brownseries", "coming soon", "earth tones"],
 };
 

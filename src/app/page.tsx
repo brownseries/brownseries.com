@@ -9,7 +9,7 @@ export default function Home() {
         <div className="absolute inset-0 animate-slow-zoom">
           <Image
             src="/hero.png"
-            alt="BROWNSERIES editorial fashion"
+            alt="Brown Series editorial fashion"
             fill
             className="object-cover object-center"
             priority
