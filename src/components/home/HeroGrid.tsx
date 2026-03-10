@@ -16,8 +16,8 @@ const containerVariants = {
 
 const cardVariants = {
     hidden: { opacity: 0, scale: 0.95, y: 30 },
-    show: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 25 } }
-};
+    show: { opacity: 1, scale: 1, y: 0, transition: { type: "spring" as const, stiffness: 300, damping: 25 } }
+} as const;
 
 export default function HeroGrid() {
     return (

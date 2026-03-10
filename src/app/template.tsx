@@ -13,7 +13,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
             variants={variants}
             initial="hidden"
             animate="enter"
-            transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            transition={{ type: "spring" as const, stiffness: 260, damping: 20 }}
         >
             {children}
         </motion.main>
