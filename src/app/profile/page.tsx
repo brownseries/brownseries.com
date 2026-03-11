@@ -51,7 +51,7 @@ export default function ProfilePage() {
                     <section>
                         <h3 className="font-[family-name:var(--font-outfit)] text-[12px] uppercase tracking-wider text-foreground/40 mb-2.5 px-3 font-medium">Activity</h3>
                         <div className="bg-surface rounded-2xl overflow-hidden">
-                            <Link href="#orders" className="flex items-center justify-between py-4 px-4 active:bg-white/5 transition-colors w-full">
+                            <Link href="/profile/orders" className="flex items-center justify-between py-4 px-4 active:bg-white/5 transition-colors w-full">
                                 <div className="flex items-center gap-3">
                                     <div className="w-6 flex justify-center items-center flex-shrink-0">
                                         <ShoppingBag size={20} strokeWidth={1.5} className="text-warm-white/80" />

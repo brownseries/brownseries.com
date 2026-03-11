@@ -14,7 +14,7 @@ const LOOK_ITEMS = [
 
 export default function CompleteTheLook() {
     return (
-        <section className="px-4 py-8 border-t border-white/5">
+        <section className="w-full max-w-7xl mx-auto px-4 md:px-8 py-8 border-t border-white/5">
             <div className="mb-4">
                 <h2 className="font-[family-name:var(--font-cormorant)] text-2xl text-warm-white font-medium">
                     Complete the Look
@@ -24,7 +24,7 @@ export default function CompleteTheLook() {
                 </p>
             </div>
 
-            <div className="flex gap-3 overflow-x-auto hide-scrollbar -mx-4 px-4 pb-2">
+            <div className="flex gap-3 overflow-x-auto hide-scrollbar -mx-4 px-4 md:-mx-8 md:px-8 pb-2">
                 {LOOK_ITEMS.map((item, i) => (
                     <motion.div
                         key={item.id}

@@ -131,7 +131,7 @@ export default function ProductDetailPage(props: { params: Promise<{ slug: strin
                                 className="flex items-center gap-1.5 active:scale-105 transition-transform"
                                 aria-label="Save"
                             >
-                                <Bookmark size={16} className={`transition-colors ${saved ? "fill-accent text-accent" : "text-foreground/50"}`} />
+                                <Bookmark size={20} className={`transition-colors ${saved ? "fill-accent text-accent" : "text-foreground/50"}`} />
                                 <span className="font-[family-name:var(--font-outfit)] text-[12px] text-foreground/50">
                                     {saveCount >= 1000 ? `${(saveCount / 1000).toFixed(1)}k` : saveCount}
                                 </span>
@@ -142,7 +142,7 @@ export default function ProductDetailPage(props: { params: Promise<{ slug: strin
                                 className="active:scale-110 transition-transform"
                                 aria-label="Like"
                             >
-                                <Heart size={16} className={`transition-colors ${liked ? "fill-red-400 text-red-400" : "text-foreground/50"}`} />
+                                <Heart size={20} className={`transition-colors ${liked ? "fill-red-400 text-red-400" : "text-foreground/50"}`} />
                             </button>
                         </div>
                     </div>
