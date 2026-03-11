@@ -165,15 +165,22 @@ function FeedCard({ item }: { item: typeof FEED_ITEMS[0] }) {
 }
 
 export default function MasonryFeed() {
-    const left = FEED_ITEMS.filter((_, i) => i % 2 === 0);
-    const right = FEED_ITEMS.filter((_, i) => i % 2 !== 0);
+    const cols2Left = FEED_ITEMS.filter((_, i) => i % 2 === 0);
+    const cols2Right = FEED_ITEMS.filter((_, i) => i % 2 !== 0);
+
+    // For 4-col desktop: route items to ensure alternating aspect ratios per column
+    // Since FEED_ITEMS has 8 items: 0:T, 1:S, 2:S, 3:T, 4:T, 5:S, 6:S, 7:T
+    const col1 = [FEED_ITEMS[0], FEED_ITEMS[5]]; // Tall, Short
+    const col2 = [FEED_ITEMS[1], FEED_ITEMS[4]]; // Short, Tall
+    const col3 = [FEED_ITEMS[2], FEED_ITEMS[7]]; // Short, Tall
+    const col4 = [FEED_ITEMS[3], FEED_ITEMS[6]]; // Tall, Short
 
     return (
-        <section className="px-3 pt-4 pb-4">
+        <section className="px-3 md:px-8 pt-4 md:pt-8 pb-4 max-w-7xl mx-auto">
             {/* Section header */}
-            <div className="flex items-center justify-between mb-4 px-1">
+            <div className="flex items-center justify-between mb-4 md:mb-6 px-1">
                 <div>
-                    <h2 className="font-[family-name:var(--font-cormorant)] text-2xl text-warm-white font-medium">
+                    <h2 className="font-[family-name:var(--font-cormorant)] text-2xl md:text-3xl text-warm-white font-medium">
                         Discover
                     </h2>
                     <p className="font-[family-name:var(--font-outfit)] text-[11px] text-foreground/40 mt-0.5">
@@ -182,45 +189,51 @@ export default function MasonryFeed() {
                 </div>
                 <Link
                     href="/shop"
-                    className="font-[family-name:var(--font-outfit)] text-[11px] text-accent uppercase tracking-widest"
+                    className="font-[family-name:var(--font-outfit)] text-[11px] text-accent uppercase tracking-widest hover:text-warm-white transition-colors"
                 >
                     See all →
                 </Link>
             </div>
 
-            {/* Two-column masonry */}
+            {/* ── Mobile: 2-column ── */}
             <motion.div
-                className="flex gap-3 items-start"
+                className="flex md:hidden gap-3 items-start"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.4 }}
             >
-                {/* Left col */}
                 <div className="flex-1 flex flex-col gap-3">
-                    {left.map((item, i) => (
-                        <motion.div
-                            key={item.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: i * 0.07 }}
-                        >
+                    {cols2Left.map((item, i) => (
+                        <motion.div key={item.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.07 }}>
                             <FeedCard item={item} />
                         </motion.div>
                     ))}
                 </div>
-                {/* Right col — offset for stagger depth */}
                 <div className="flex-1 flex flex-col gap-3 mt-10">
-                    {right.map((item, i) => (
-                        <motion.div
-                            key={item.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: i * 0.07 + 0.05 }}
-                        >
+                    {cols2Right.map((item, i) => (
+                        <motion.div key={item.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.07 + 0.05 }}>
                             <FeedCard item={item} />
                         </motion.div>
                     ))}
                 </div>
+            </motion.div>
+
+            {/* ── Desktop: 4-column ── */}
+            <motion.div
+                className="hidden md:flex gap-4 items-start"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4 }}
+            >
+                {[col1, col2, col3, col4].map((col, colIdx) => (
+                    <div key={colIdx} className="flex-1 flex flex-col gap-4" style={{ marginTop: colIdx % 2 === 1 ? "2.5rem" : 0 }}>
+                        {col.map((item, i) => (
+                            <motion.div key={item.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: (colIdx * 0.05) + i * 0.07 }}>
+                                <FeedCard item={item} />
+                            </motion.div>
+                        ))}
+                    </div>
+                ))}
             </motion.div>
         </section>
     );

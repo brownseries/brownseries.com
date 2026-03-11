@@ -3,9 +3,12 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useCartStore } from "@/store/useCartStore";
+import { Home, Search, Bookmark, Bell, ShoppingBag } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
     const { openCart, getTotalItems } = useCartStore();
+    const pathname = usePathname();
     const [mounted, setMounted] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const [openSection, setOpenSection] = useState<string | null>(null);
@@ -64,73 +67,34 @@ export default function Navbar() {
                         BROWN SERIES
                     </Link>
 
-                    {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center gap-6 lg:gap-8 justify-center flex-1 font-[family-name:var(--font-outfit)] text-[13px] text-foreground/80 font-medium">
-
-                        {/* Shop Dropdown */}
-                        <div className="relative group/nav py-5">
-                            <Link href="/shop" className="hover:text-accent transition-colors flex items-center gap-1 focus:outline-none">
-                                Shop
-                                <svg className="w-3.5 h-3.5 text-foreground/40 group-hover/nav:text-accent transition-transform group-hover/nav:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                            </Link>
-
-                            {/* Dropdown Menu Container */}
-                            <div className="absolute left-1/2 -translate-x-1/2 top-[calc(100%-8px)] pt-2 opacity-0 invisible group-hover/nav:opacity-100 group-hover/nav:visible transition-all duration-300 z-50">
-                                <div className="w-48 bg-surface/95 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl p-2 flex flex-col gap-0.5">
-                                    <Link href="/shop" className="px-4 py-2.5 rounded-xl text-foreground hover:text-warm-white hover:bg-white/5 transition-colors font-medium">All Products</Link>
-                                    <div className="h-[1px] bg-white/5 my-1 mx-2" />
-                                    <Link href="/shop?filter=new" className="px-4 py-2 rounded-xl text-foreground/70 hover:text-warm-white hover:bg-white/5 transition-colors">New Arrivals</Link>
-                                    <Link href="/shop?filter=outerwear" className="px-4 py-2 rounded-xl text-foreground/70 hover:text-warm-white hover:bg-white/5 transition-colors">Outerwear</Link>
-                                    <Link href="/shop?filter=knitwear" className="px-4 py-2 rounded-xl text-foreground/70 hover:text-warm-white hover:bg-white/5 transition-colors">Knitwear</Link>
-                                    <Link href="/shop?filter=bottoms" className="px-4 py-2 rounded-xl text-foreground/70 hover:text-warm-white hover:bg-white/5 transition-colors">Bottoms</Link>
-                                    <Link href="/shop?filter=accessories" className="px-4 py-2 rounded-xl text-foreground/70 hover:text-warm-white hover:bg-white/5 transition-colors">Accessories</Link>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Collections Dropdown */}
-                        <div className="relative group/nav py-5">
-                            <Link href="/shop" className="hover:text-accent transition-colors flex items-center gap-1 focus:outline-none">
-                                Collections
-                                <svg className="w-3.5 h-3.5 text-foreground/40 group-hover/nav:text-accent transition-transform group-hover/nav:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                            </Link>
-
-                            <div className="absolute left-1/2 -translate-x-1/2 top-[calc(100%-8px)] pt-2 opacity-0 invisible group-hover/nav:opacity-100 group-hover/nav:visible transition-all duration-300 z-50">
-                                <div className="w-56 bg-surface/95 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl p-2 flex flex-col gap-0.5">
-                                    <Link href="/shop?collection=eid" className="px-4 py-2 rounded-xl text-foreground/70 hover:text-warm-white hover:bg-white/5 transition-colors flex items-center justify-between group/link">
-                                        <span>Eid Collection</span>
-                                        <span className="text-[9px] bg-accent/20 text-accent px-2 py-0.5 rounded-full opacity-0 group-hover/link:opacity-100 transition-opacity font-bold uppercase tracking-wider">New</span>
-                                    </Link>
-                                    <Link href="/shop?collection=winter" className="px-4 py-2 rounded-xl text-foreground/70 hover:text-warm-white hover:bg-white/5 transition-colors">Winter Collection</Link>
-                                    <Link href="/shop?collection=essentials" className="px-4 py-2 rounded-xl text-foreground/70 hover:text-warm-white hover:bg-white/5 transition-colors">Everyday Essentials</Link>
-                                    <Link href="/shop?collection=premium" className="px-4 py-2 rounded-xl text-foreground/70 hover:text-warm-white hover:bg-white/5 transition-colors">Premium Accessories</Link>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Explore Dropdown */}
-                        <div className="relative group/nav py-5">
-                            <Link href="#explore" className="hover:text-accent transition-colors flex items-center gap-1 focus:outline-none">
-                                Explore
-                                <svg className="w-3.5 h-3.5 text-foreground/40 group-hover/nav:text-accent transition-transform group-hover/nav:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                            </Link>
-
-                            <div className="absolute left-1/2 -translate-x-1/2 top-[calc(100%-8px)] pt-2 opacity-0 invisible group-hover/nav:opacity-100 group-hover/nav:visible transition-all duration-300 z-50">
-                                <div className="w-48 bg-surface/95 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl p-2 flex flex-col gap-0.5">
-                                    <Link href="#about" className="px-4 py-2 rounded-xl text-foreground/70 hover:text-warm-white hover:bg-white/5 transition-colors">About Us</Link>
-                                    <Link href="#journal" className="px-4 py-2 rounded-xl text-foreground/70 hover:text-warm-white hover:bg-white/5 transition-colors">Journal &amp; Blog</Link>
-                                    <Link href="#sustainability" className="px-4 py-2 rounded-xl text-foreground/70 hover:text-warm-white hover:bg-white/5 transition-colors">Sustainability</Link>
-                                    <div className="h-[1px] bg-white/5 my-1 mx-2" />
-                                    <Link href="#contact" className="px-4 py-2 rounded-xl text-foreground/70 hover:text-warm-white hover:bg-white/5 transition-colors">Contact Us</Link>
-                                </div>
-                            </div>
-                        </div>
+                    {/* Desktop Navigation — social style */}
+                    <div className="hidden md:flex items-center gap-6 justify-center flex-1 font-[family-name:var(--font-outfit)] text-[13px] font-medium">
+                        {[
+                            { href: "/home", label: "Home", Icon: Home },
+                            { href: "/search", label: "Explore", Icon: Search },
+                            { href: "/saved", label: "Saved", Icon: Bookmark },
+                            { href: "/activity", label: "Activity", Icon: Bell },
+                            { href: "/shop", label: "Shop", Icon: ShoppingBag },
+                        ].map(({ href, label, Icon }) => {
+                            const isActive = pathname === href;
+                            return (
+                                <Link
+                                    key={href}
+                                    href={href}
+                                    className={`flex items-center gap-1.5 transition-colors ${isActive ? "text-warm-white" : "text-foreground/55 hover:text-warm-white"
+                                        }`}
+                                >
+                                    <Icon size={15} strokeWidth={isActive ? 2 : 1.5} />
+                                    <span>{label}</span>
+                                </Link>
+                            );
+                        })}
                     </div>
 
                     {/* Actions */}
                     <div className="flex items-center gap-1 md:gap-4 flex-shrink-0">
                         {/* Expanded Search Input */}
-                        <div className="relative hidden sm:block w-48 lg:w-64">
+                        {/* <div className="relative hidden sm:block w-48 lg:w-64">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <svg className="w-4 h-4 text-foreground/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                             </div>
@@ -139,7 +103,7 @@ export default function Navbar() {
                                 placeholder="Search..."
                                 className="block w-full pl-9 pr-4 py-2 bg-surface/80 border border-white/5 rounded-full text-[13px] font-[family-name:var(--font-outfit)] text-warm-white placeholder:text-foreground/30 focus:outline-none focus:border-white/20 focus:bg-surface transition-all"
                             />
-                        </div>
+                        </div> */}
 
                         {/* Profile Dropdown */}
                         <div className="relative group hidden sm:block py-5 -my-5">
