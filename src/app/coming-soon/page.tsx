@@ -25,20 +25,20 @@ export default function Home() {
             {/* Small tag */}
             <div className="flex items-center gap-4 mb-6 animate-fade-in-up delay-200">
               <div className="h-px w-10 bg-accent animate-reveal-line delay-300" />
-              <span className="font-[family-name:var(--font-outfit)] text-[10px] sm:text-xs tracking-[0.4em] uppercase text-accent font-light">
+              <span className="text-[10px] sm:text-xs tracking-[0.4em] uppercase text-accent font-light">
                 Coming Soon
               </span>
             </div>
 
             {/* Main editorial heading */}
-            <h1 className="font-[family-name:var(--font-cormorant)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.1] text-warm-white mb-6 animate-fade-in-up delay-500">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.1] text-warm-white mb-6 animate-fade-in-up delay-500">
               Rooted in
               <br />
               Earth Tones
             </h1>
 
             {/* Subtext */}
-            <p className="font-[family-name:var(--font-outfit)] text-sm sm:text-base text-foreground/60 font-extralight leading-relaxed max-w-md mb-10 animate-fade-in-up delay-700">
+            <p className="text-sm sm:text-base text-foreground/60 font-extralight leading-relaxed max-w-md mb-10 animate-fade-in-up delay-700">
               Contemporary fashion designed for those who wear intention.
               Our debut collection is almost here.
             </p>
@@ -49,13 +49,13 @@ export default function Home() {
                 <input
                   type="email"
                   placeholder="Your email"
-                  className="flex-1 px-5 py-3 bg-white/5 border border-white/10 text-sm text-warm-white placeholder:text-white/30 focus:outline-none focus:border-accent/50 transition-colors duration-500 font-[family-name:var(--font-outfit)] font-light tracking-wide"
+                  className="flex-1 px-5 py-3 bg-white/5 border border-white/10 text-sm text-warm-white placeholder:text-white/30 focus:outline-none focus:border-accent/50 transition-colors duration-500 font-light tracking-wide"
                 />
-                <button className="px-7 py-3 bg-accent text-background text-xs tracking-[0.25em] uppercase font-[family-name:var(--font-outfit)] font-normal hover:bg-accent-light transition-colors duration-500 cursor-pointer whitespace-nowrap">
+                <button className="px-7 py-3 bg-accent text-background text-xs tracking-[0.25em] uppercase font-normal hover:bg-accent-light transition-colors duration-500 cursor-pointer whitespace-nowrap">
                   Notify Me
                 </button>
               </div>
-              <p className="font-[family-name:var(--font-outfit)] text-[11px] text-muted/50 mt-4 font-light tracking-wide">
+              <p className="text-[11px] text-muted/50 mt-4 font-light tracking-wide">
                 Be the first to shop the collection.
               </p>
             </div>

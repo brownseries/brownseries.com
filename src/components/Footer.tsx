@@ -14,17 +14,17 @@ export default function Footer() {
 
                 {/* Brand & Copyright */}
                 <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                    <h2 className="font-[family-name:var(--font-outfit)] text-[11px] tracking-[0.3em] uppercase text-accent font-semibold mb-1">
+                    <h2 className="text-[11px] tracking-[0.3em] uppercase text-accent font-semibold mb-1">
                         Brown Series
                     </h2>
-                    <p className="text-[10px] font-[family-name:var(--font-outfit)] text-foreground/40">
+                    <p className="text-[10px] text-foreground/40">
                         © 2026 Brown Series. All rights reserved.
                     </p>
                 </div>
 
                 {/* Minimal Links & Socials */}
                 <div className="flex flex-col items-center md:items-end gap-5">
-                    <div className="flex items-center gap-6 font-[family-name:var(--font-outfit)] text-[11px] text-foreground/50 tracking-wider">
+                    <div className="flex items-center gap-6 text-[11px] text-foreground/50 tracking-wider">
                         <Link href="#" className="hover:text-warm-white transition-colors">Terms</Link>
                         <Link href="#" className="hover:text-warm-white transition-colors">Privacy</Link>
                         <Link href="#" className="hover:text-warm-white transition-colors">Help</Link>

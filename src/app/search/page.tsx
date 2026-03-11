@@ -113,7 +113,7 @@ export default function SearchPage() {
                             onChange={(e) => doSearch(e.target.value)}
                             onFocus={() => setFocused(true)}
                             placeholder="Search"
-                            className="w-full pl-10 pr-9 py-2.5 bg-surface rounded-xl text-[14px] font-[family-name:var(--font-outfit)] text-warm-white placeholder:text-foreground/35 focus:outline-none transition-all"
+                            className="w-full pl-10 pr-9 py-2.5 bg-surface rounded-xl text-[14px] text-warm-white placeholder:text-foreground/35 focus:outline-none transition-all"
                         />
                         {query && (
                             <button
@@ -129,7 +129,7 @@ export default function SearchPage() {
                     {(focused || query) && (
                         <button
                             onMouseDown={() => { setFocused(false); clearSearch(); inputRef.current?.blur(); }}
-                            className="font-[family-name:var(--font-outfit)] text-[14px] text-foreground/60 active:text-warm-white transition-colors flex-shrink-0"
+                            className="text-[14px] text-foreground/60 active:text-warm-white transition-colors flex-shrink-0"
                         >
                             Cancel
                         </button>
@@ -138,12 +138,12 @@ export default function SearchPage() {
 
                 {/* Category chips */}
                 {!focused && (
-                    <div className="max-w-7xl mx-auto flex gap-2 px-4 md:px-8 pb-3 overflow-x-auto hide-scrollbar">
+                    <div className="max-w-7xl mx-auto flex gap-2 px-4 md:px-8 pt-2 pb-3 overflow-x-auto hide-scrollbar">
                         {CATEGORIES.map((cat) => (
                             <button
                                 key={cat}
                                 onClick={() => applyCategory(cat)}
-                                className={`flex-shrink-0 px-3.5 py-1.5 rounded-full text-[12px] font-[family-name:var(--font-outfit)] font-medium transition-all ${activeCategory === cat
+                                className={`flex-shrink-0 px-3.5 py-1.5 rounded-full text-[12px] font-medium transition-all ${activeCategory === cat
                                     ? "bg-warm-white text-background"
                                     : "bg-surface text-foreground/55 active:bg-white/10"
                                     }`}
@@ -164,10 +164,10 @@ export default function SearchPage() {
                         {recent.length > 0 && (
                             <div>
                                 <div className="flex items-center justify-between mb-2">
-                                    <p className="font-[family-name:var(--font-outfit)] text-[11px] uppercase tracking-widest text-foreground/35 flex items-center gap-1.5">
+                                    <p className="text-[11px] uppercase tracking-widest text-foreground/35 flex items-center gap-1.5">
                                         <Clock className="w-3 h-3" /> Recent
                                     </p>
-                                    <button onClick={clearRecent} className="font-[family-name:var(--font-outfit)] text-[11px] text-foreground/35 active:text-foreground/70">
+                                    <button onClick={clearRecent} className="text-[11px] text-foreground/35 active:text-foreground/70">
                                         Clear all
                                     </button>
                                 </div>
@@ -178,14 +178,14 @@ export default function SearchPage() {
                                         className="w-full flex items-center gap-3 py-3 border-b border-white/5 last:border-0 active:bg-white/5 text-left"
                                     >
                                         <Clock className="w-4 h-4 text-foreground/25 flex-shrink-0" />
-                                        <span className="font-[family-name:var(--font-outfit)] text-[14px] text-foreground/75">{term}</span>
+                                        <span className="text-[14px] text-foreground/75">{term}</span>
                                     </button>
                                 ))}
                             </div>
                         )}
 
                         <div>
-                            <p className="font-[family-name:var(--font-outfit)] text-[11px] uppercase tracking-widest text-foreground/35 flex items-center gap-1.5 mb-2">
+                            <p className="text-[11px] uppercase tracking-widest text-foreground/35 flex items-center gap-1.5 mb-2">
                                 <TrendingUp className="w-3 h-3" /> Trending
                             </p>
                             {TRENDING.map((term, i) => (
@@ -194,8 +194,8 @@ export default function SearchPage() {
                                     onMouseDown={() => doSearch(term)}
                                     className="w-full flex items-center gap-4 py-3 border-b border-white/5 last:border-0 active:bg-white/5 text-left"
                                 >
-                                    <span className="font-[family-name:var(--font-outfit)] text-[12px] w-4 text-foreground/25 font-medium">{i + 1}</span>
-                                    <span className="font-[family-name:var(--font-outfit)] text-[14px] text-foreground/75">{term}</span>
+                                    <span className="text-[12px] w-4 text-foreground/25 font-medium">{i + 1}</span>
+                                    <span className="text-[14px] text-foreground/75">{term}</span>
                                 </button>
                             ))}
                         </div>
@@ -205,7 +205,7 @@ export default function SearchPage() {
                 {/* ── Browse by Category (default blank state) ── */}
                 {showBrowse && (
                     <div className="pt-2">
-                        <p className="font-[family-name:var(--font-outfit)] text-[11px] uppercase tracking-widest text-foreground/35 mb-4">
+                        <p className="text-[11px] uppercase tracking-widest text-foreground/35 mb-4">
                             Browse by Category
                         </p>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -223,7 +223,7 @@ export default function SearchPage() {
                                         className="object-cover object-center brightness-75"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                                    <span className="absolute bottom-3 left-3 font-[family-name:var(--font-outfit)] text-[13px] text-white font-semibold tracking-wide">
+                                    <span className="absolute bottom-3 left-3 text-[13px] text-white font-semibold tracking-wide">
                                         {cat.label}
                                     </span>
                                 </button>
@@ -235,7 +235,7 @@ export default function SearchPage() {
                 {/* ── Search results ── */}
                 {showResults && !noResults && (
                     <div className="pt-2">
-                        <p className="font-[family-name:var(--font-outfit)] text-[11px] text-foreground/30 mb-3 uppercase tracking-widest">
+                        <p className="text-[11px] text-foreground/30 mb-3 uppercase tracking-widest">
                             {results.length} item{results.length !== 1 ? "s" : ""}
                         </p>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -246,8 +246,8 @@ export default function SearchPage() {
                                         <Image src={product.image} alt={product.name} fill sizes="50vw"
                                             className="object-cover object-center brightness-90 group-active:brightness-75 transition-all" />
                                     </div>
-                                    <h3 className="font-[family-name:var(--font-outfit)] text-[13px] text-warm-white font-medium truncate px-1">{product.name}</h3>
-                                    <p className="font-[family-name:var(--font-outfit)] text-[12px] text-foreground/50 mt-0.5 px-1">{product.price}</p>
+                                    <h3 className="text-[13px] text-warm-white font-medium truncate px-1">{product.name}</h3>
+                                    <p className="text-[12px] text-foreground/50 mt-0.5 px-1">{product.price}</p>
                                 </Link>
                             ))}
                         </div>
@@ -258,14 +258,14 @@ export default function SearchPage() {
                 {noResults && (
                     <div className="flex-1 flex flex-col items-center justify-center text-center gap-3">
                         <Search className="w-10 h-10 text-foreground/20" strokeWidth={1} />
-                        <p className="font-[family-name:var(--font-cormorant)] text-2xl text-warm-white font-medium">No results</p>
-                        <p className="font-[family-name:var(--font-outfit)] text-[13px] text-foreground/40">
+                        <p className="text-2xl text-warm-white font-medium">No results</p>
+                        <p className="text-[13px] text-foreground/40">
                             Nothing matched &ldquo;{query}&rdquo;
                         </p>
                         <div className="flex flex-wrap gap-2 justify-center mt-3">
                             {TRENDING.map((term) => (
                                 <button key={term} onClick={() => doSearch(term)}
-                                    className="font-[family-name:var(--font-outfit)] text-[12px] px-4 py-2 bg-surface rounded-full text-foreground/55 active:bg-white/10">
+                                    className="text-[12px] px-4 py-2 bg-surface rounded-full text-foreground/55 active:bg-white/10">
                                     {term}
                                 </button>
                             ))}

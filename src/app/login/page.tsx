@@ -31,10 +31,10 @@ export default function LoginPage() {
 
                 {/* Brand Text */}
                 <div className="mb-10 sm:mb-12">
-                    <h2 className="font-[family-name:var(--font-cormorant)] text-4xl sm:text-5xl text-warm-white font-light leading-[1.1] mb-4 animate-fade-in-up delay-200">
+                    <h2 className="text-4xl sm:text-5xl text-warm-white font-light leading-[1.1] mb-4 animate-fade-in-up delay-200">
                         Login to your account
                     </h2>
-                    <p className="font-[family-name:var(--font-outfit)] text-[13px] text-foreground/70 font-light leading-relaxed max-w-[280px] animate-fade-in-up delay-300">
+                    <p className="text-[13px] text-foreground/70 font-light leading-relaxed max-w-[280px] animate-fade-in-up delay-300">
                         Enter your mobile number to sign in or create a new account.
                     </p>
                 </div>
@@ -45,7 +45,7 @@ export default function LoginPage() {
 
                         {/* Country Code Selector (Visual Only) */}
                         <div className="flex items-center gap-1.5 pl-4 pr-3 py-4 border-r border-white/10 text-warm-white select-none cursor-pointer active:bg-white/5 transition-colors">
-                            <span className="font-[family-name:var(--font-outfit)] text-[15px] font-light">+91</span>
+                            <span className="text-[15px] font-light">+91</span>
                             <svg className="w-4 h-4 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" /></svg>
                         </div>
 
@@ -53,19 +53,19 @@ export default function LoginPage() {
                         <input
                             type="tel"
                             placeholder="Mobile Number"
-                            className="px-4 py-4 w-full bg-transparent text-[15px] text-warm-white placeholder:text-muted font-[family-name:var(--font-outfit)] font-light focus:outline-none tracking-wide"
+                            className="px-4 py-4 w-full bg-transparent text-[15px] text-warm-white placeholder:text-muted font-light focus:outline-none tracking-wide"
                             autoFocus
                         />
                     </div>
 
-                    <button className="w-full py-4 bg-warm-white text-background flex items-center justify-center gap-2 rounded-xl active:scale-[0.98] transition-all duration-200 font-[family-name:var(--font-outfit)] text-[13px] font-medium tracking-widest uppercase hover:bg-accent hover:text-warm-white relative overflow-hidden group">
+                    <button className="w-full py-4 bg-warm-white text-background flex items-center justify-center gap-2 rounded-xl active:scale-[0.98] transition-all duration-200 text-[13px] font-medium tracking-widest uppercase hover:bg-accent hover:text-warm-white relative overflow-hidden group">
                         <span className="relative z-10">Continue</span>
                         <svg className="w-4 h-4 relative z-10 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                     </button>
                 </div>
 
                 {/* Legal Disclaimer */}
-                <p className="font-[family-name:var(--font-outfit)] text-[11px] text-muted text-center mt-8 font-light leading-relaxed animate-fade-in-up delay-700">
+                <p className="text-[11px] text-muted text-center mt-8 font-light leading-relaxed animate-fade-in-up delay-700">
                     By continuing, you agree to our <Link href="#" className="underline underline-offset-2 decoration-white/20 hover:text-warm-white transition-colors">Terms of Service</Link> and <Link href="#" className="underline underline-offset-2 decoration-white/20 hover:text-warm-white transition-colors">Privacy Policy</Link>. Standard message and data rates may apply.
                 </p>
 

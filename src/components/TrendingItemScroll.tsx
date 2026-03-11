@@ -6,10 +6,10 @@ export default function TrendingItems() {
         <section className="bg-background pt-10 pb-16 md:pt-20 md:pb-32">
             <div className="max-w-7xl mx-auto px-4 md:px-8">
                 <div className="flex justify-between items-center mb-6 md:mb-10">
-                    <h2 className="font-[family-name:var(--font-cormorant)] text-2xl md:text-3xl text-warm-white font-medium tracking-wide">
+                    <h2 className="text-2xl md:text-3xl text-warm-white font-medium tracking-wide">
                         Trending Items
                     </h2>
-                    <Link href="#all" className="font-[family-name:var(--font-outfit)] text-[12px] md:text-[13px] font-medium text-accent hover:text-warm-white active:opacity-50 transition-colors">
+                    <Link href="#all" className="text-[12px] md:text-[13px] font-medium text-accent hover:text-warm-white active:opacity-50 transition-colors">
                         View all
                     </Link>
                 </div>
@@ -25,8 +25,8 @@ export default function TrendingItems() {
                             </button>
                         </div>
                         <div>
-                            <h3 className="font-[family-name:var(--font-outfit)] text-[14px] text-warm-white font-medium truncate">Oversized Linen Coat</h3>
-                            <p className="font-[family-name:var(--font-outfit)] text-[13px] text-foreground/60 mt-0.5">$450</p>
+                            <h3 className="text-[14px] text-warm-white font-medium truncate">Oversized Linen Coat</h3>
+                            <p className="text-[13px] text-foreground/60 mt-0.5">$450</p>
                         </div>
                     </div>
 
@@ -39,8 +39,8 @@ export default function TrendingItems() {
                             </button>
                         </div>
                         <div>
-                            <h3 className="font-[family-name:var(--font-outfit)] text-[14px] text-warm-white font-medium truncate">Pleated Wool Trousers</h3>
-                            <p className="font-[family-name:var(--font-outfit)] text-[13px] text-foreground/60 mt-0.5">$280</p>
+                            <h3 className="text-[14px] text-warm-white font-medium truncate">Pleated Wool Trousers</h3>
+                            <p className="text-[13px] text-foreground/60 mt-0.5">$280</p>
                         </div>
                     </div>
 
@@ -53,8 +53,8 @@ export default function TrendingItems() {
                             </button>
                         </div>
                         <div>
-                            <h3 className="font-[family-name:var(--font-outfit)] text-[14px] text-warm-white font-medium truncate">Textured Wool Midi Skirt</h3>
-                            <p className="font-[family-name:var(--font-outfit)] text-[13px] text-foreground/60 mt-0.5">$240</p>
+                            <h3 className="text-[14px] text-warm-white font-medium truncate">Textured Wool Midi Skirt</h3>
+                            <p className="text-[13px] text-foreground/60 mt-0.5">$240</p>
                         </div>
                     </div>
 
@@ -67,8 +67,8 @@ export default function TrendingItems() {
                             </button>
                         </div>
                         <div>
-                            <h3 className="font-[family-name:var(--font-outfit)] text-[14px] text-warm-white font-medium truncate">Classic Leather Tote</h3>
-                            <p className="font-[family-name:var(--font-outfit)] text-[13px] text-foreground/60 mt-0.5">$560</p>
+                            <h3 className="text-[14px] text-warm-white font-medium truncate">Classic Leather Tote</h3>
+                            <p className="text-[13px] text-foreground/60 mt-0.5">$560</p>
                         </div>
                     </div>
                 </div>

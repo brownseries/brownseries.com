@@ -36,17 +36,17 @@ export default function ShopPage() {
 
             {/* Page Header */}
             <div className="w-full max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
-                <h1 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl text-warm-white font-medium mb-4">
+                <h1 className="text-4xl md:text-5xl text-warm-white font-medium mb-4">
                     The Collection
                 </h1>
-                <p className="font-[family-name:var(--font-outfit)] text-[14px] text-foreground/60 max-w-xl">
+                <p className="text-[14px] text-foreground/60 max-w-xl">
                     Explore our curated selection of premium aesthetics. Deep earth tones, elegant silhouettes, and quiet luxury.
                 </p>
 
                 {/* Minimal Filters */}
                 <div className="flex gap-4 mt-8 overflow-x-auto hide-scrollbar touch-pan-x">
                     {["All", "New Arrivals", "Outerwear", "Knitwear", "Bottoms", "Accessories"].map((filter, i) => (
-                        <button key={i} className={`font-[family-name:var(--font-outfit)] text-[11px] uppercase tracking-widest whitespace-nowrap px-5 py-2 rounded-full transition-colors ${i === 0 ? "bg-warm-white text-background font-medium" : "bg-surface text-foreground/70 hover:bg-white/10"}`}>
+                        <button key={i} className={`text-[11px] uppercase tracking-widest whitespace-nowrap px-5 py-2 rounded-full transition-colors ${i === 0 ? "bg-warm-white text-background font-medium" : "bg-surface text-foreground/70 hover:bg-white/10"}`}>
                             {filter}
                         </button>
                     ))}
@@ -65,8 +65,8 @@ export default function ShopPage() {
                                 </button>
                             </div>
                             <div className="mt-auto">
-                                <h3 className="font-[family-name:var(--font-outfit)] text-[14px] text-warm-white font-medium truncate">{product.name}</h3>
-                                <p className="font-[family-name:var(--font-outfit)] text-[13px] text-foreground/60 mt-0.5">{product.price}</p>
+                                <h3 className="text-[14px] text-warm-white font-medium truncate">{product.name}</h3>
+                                <p className="text-[13px] text-foreground/60 mt-0.5">{product.price}</p>
                             </div>
                         </div>
                     ))}

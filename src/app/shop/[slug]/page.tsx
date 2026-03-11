@@ -98,7 +98,7 @@ export default function ProductDetailPage(props: { params: Promise<{ slug: strin
                 {/* Product Details Section */}
                 <div className="px-6 py-8 md:py-0 md:pr-0 pb-32 md:pb-16 flex flex-col md:sticky md:top-24 md:h-fit">
                     {/* Breadcrumbs */}
-                    <div className="flex items-center gap-2 text-[10px] md:text-xs font-[family-name:var(--font-outfit)] text-foreground/50 uppercase tracking-widest mb-4">
+                    <div className="flex items-center gap-2 text-[10px] md:text-xs text-foreground/50 uppercase tracking-widest mb-4">
                         <Link href="/shop" className="hover:text-warm-white transition-colors">Shop</Link>
                         <span>/</span>
                         <Link href="#outerwear" className="hover:text-warm-white transition-colors">Outerwear</Link>
@@ -106,14 +106,14 @@ export default function ProductDetailPage(props: { params: Promise<{ slug: strin
                         <span className="text-warm-white truncate">{title}</span>
                     </div>
 
-                    <h1 className="font-[family-name:var(--font-cormorant)] text-3xl md:text-5xl text-warm-white mb-2 leading-tight tracking-wide">
+                    <h1 className="text-2xl md:text-4xl text-warm-white mb-2 leading-tight tracking-wide font-semibold">
                         {title}
                     </h1>
 
                     {/* Mood tags */}
-                    <div className="flex flex-wrap gap-1.5 mb-3">
+                    <div className="flex flex-wrap gap-1.5 mb-3 pt-1">
                         {MOOD_TAGS.map(tag => (
-                            <span key={tag} className="font-[family-name:var(--font-outfit)] text-[10px] text-foreground/50 bg-white/5 border border-white/8 px-2.5 py-1 rounded-full">
+                            <span key={tag} className="text-[10px] text-foreground/50 bg-white/5 border border-white/8 px-2.5 py-1 rounded-full">
                                 {tag}
                             </span>
                         ))}
@@ -121,7 +121,7 @@ export default function ProductDetailPage(props: { params: Promise<{ slug: strin
 
                     {/* Price + save/like row */}
                     <div className="flex items-center justify-between mb-4">
-                        <p className="font-[family-name:var(--font-outfit)] text-lg md:text-xl text-foreground/90 font-light">
+                        <p className="text-lg md:text-xl text-foreground/90 font-light">
                             $185.00
                         </p>
                         <div className="flex items-center gap-3">
@@ -132,7 +132,7 @@ export default function ProductDetailPage(props: { params: Promise<{ slug: strin
                                 aria-label="Save"
                             >
                                 <Bookmark size={20} className={`transition-colors ${saved ? "fill-accent text-accent" : "text-foreground/50"}`} />
-                                <span className="font-[family-name:var(--font-outfit)] text-[12px] text-foreground/50">
+                                <span className="text-[12px] text-foreground/50">
                                     {saveCount >= 1000 ? `${(saveCount / 1000).toFixed(1)}k` : saveCount}
                                 </span>
                             </button>
@@ -147,15 +147,15 @@ export default function ProductDetailPage(props: { params: Promise<{ slug: strin
                         </div>
                     </div>
 
-                    <p className="font-[family-name:var(--font-outfit)] text-sm text-foreground/70 leading-relaxed mb-8">
+                    <p className="text-sm text-foreground/70 leading-relaxed mb-8">
                         An elevated essential designed for timeless wear. Crafted with premium, sustainably sourced materials to provide unmatched comfort and an elegant drape across the silhouette.
                     </p>
 
                     {/* Color Selector */}
                     <div className="mb-8">
                         <div className="flex justify-between items-center mb-3">
-                            <span className="font-[family-name:var(--font-outfit)] text-xs text-warm-white/90 uppercase tracking-widest font-medium">Color</span>
-                            <span className="font-[family-name:var(--font-outfit)] text-xs text-foreground/50">{colors.find(c => c.id === selectedColor)?.name}</span>
+                            <span className="text-xs text-warm-white/90 uppercase tracking-widest font-medium">Color</span>
+                            <span className="text-xs text-foreground/50">{colors.find(c => c.id === selectedColor)?.name}</span>
                         </div>
                         <div className="flex gap-3">
                             {colors.map((color) => (
@@ -174,15 +174,15 @@ export default function ProductDetailPage(props: { params: Promise<{ slug: strin
                     {/* Size Selector */}
                     <div className="mb-10">
                         <div className="flex justify-between items-center mb-3">
-                            <span className="font-[family-name:var(--font-outfit)] text-xs text-warm-white/90 uppercase tracking-widest font-medium">Size</span>
-                            <button className="font-[family-name:var(--font-outfit)] text-[10px] uppercase tracking-widest text-foreground/50 underline underline-offset-4 hover:text-warm-white transition-colors">Size Guide</button>
+                            <span className="text-xs text-warm-white/90 uppercase tracking-widest font-medium">Size</span>
+                            <button className="text-[10px] uppercase tracking-widest text-foreground/50 underline underline-offset-4 hover:text-warm-white transition-colors">Size Guide</button>
                         </div>
                         <div className="grid grid-cols-5 gap-2">
                             {sizes.map((size) => (
                                 <button
                                     key={size}
                                     onClick={() => setSelectedSize(size)}
-                                    className={`py-3.5 flex items-center justify-center font-[family-name:var(--font-outfit)] text-xs tracking-wider transition-colors ${selectedSize === size ? "bg-warm-white text-background font-medium" : "border border-border/50 text-foreground hover:border-warm-white/40"}`}
+                                    className={`py-3.5 flex items-center justify-center text-xs tracking-wider transition-colors ${selectedSize === size ? "bg-warm-white text-background font-medium" : "border border-border/50 text-foreground hover:border-warm-white/40"}`}
                                 >
                                     {size}
                                 </button>
@@ -191,7 +191,7 @@ export default function ProductDetailPage(props: { params: Promise<{ slug: strin
                     </div>
 
                     {/* Add to Bag */}
-                    <button className="flex w-full bg-accent hover:bg-accent/90 text-warm-white py-4 items-center justify-center font-[family-name:var(--font-outfit)] text-xs tracking-[0.2em] font-medium transition-colors mb-12 active:scale-[0.98]">
+                    <button className="flex w-full bg-accent hover:bg-accent/90 text-warm-white py-4 items-center justify-center text-xs tracking-[0.2em] font-medium transition-colors mb-12 active:scale-[0.98]">
                         ADD TO BAG - $185
                     </button>
 
@@ -201,12 +201,12 @@ export default function ProductDetailPage(props: { params: Promise<{ slug: strin
                         <div className="border-b border-border/30">
                             <button
                                 onClick={() => toggleAccordion("details")}
-                                className="w-full py-5 flex items-center justify-between font-[family-name:var(--font-outfit)] text-sm uppercase tracking-widest text-warm-white/90"
+                                className="w-full py-5 flex items-center justify-between text-sm uppercase tracking-widest text-warm-white/90"
                             >
                                 Size & Fit
                                 <svg className={`w-4 h-4 transition-transform duration-300 ${openAccordion === "details" ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" /></svg>
                             </button>
-                            <div className={`overflow-hidden transition-all duration-300 ease-in-out font-[family-name:var(--font-outfit)] text-sm text-foreground/60 ${openAccordion === "details" ? "max-h-40 pb-5 opacity-100" : "max-h-0 opacity-0"}`}>
+                            <div className={`overflow-hidden transition-all duration-300 ease-in-out text-sm text-foreground/60 ${openAccordion === "details" ? "max-h-40 pb-5 opacity-100" : "max-h-0 opacity-0"}`}>
                                 <ul className="list-disc pl-4 space-y-2">
                                     <li>Fits true to size. Take your normal size.</li>
                                     <li>Designed for a relaxed, slightly oversized fit.</li>
@@ -220,12 +220,12 @@ export default function ProductDetailPage(props: { params: Promise<{ slug: strin
                         <div className="border-b border-border/30">
                             <button
                                 onClick={() => toggleAccordion("care")}
-                                className="w-full py-5 flex items-center justify-between font-[family-name:var(--font-outfit)] text-sm uppercase tracking-widest text-warm-white/90"
+                                className="w-full py-5 flex items-center justify-between text-sm uppercase tracking-widest text-warm-white/90"
                             >
                                 Materials & Care
                                 <svg className={`w-4 h-4 transition-transform duration-300 ${openAccordion === "care" ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" /></svg>
                             </button>
-                            <div className={`overflow-hidden transition-all duration-300 ease-in-out font-[family-name:var(--font-outfit)] text-sm text-foreground/60 ${openAccordion === "care" ? "max-h-40 pb-5 opacity-100" : "max-h-0 opacity-0"}`}>
+                            <div className={`overflow-hidden transition-all duration-300 ease-in-out text-sm text-foreground/60 ${openAccordion === "care" ? "max-h-40 pb-5 opacity-100" : "max-h-0 opacity-0"}`}>
                                 <p>100% Organic Cotton. Dry clean only to preserve structure and color. Do not tumble dry. Cool iron inside out.</p>
                             </div>
                         </div>
@@ -234,12 +234,12 @@ export default function ProductDetailPage(props: { params: Promise<{ slug: strin
                         <div className="border-b border-border/30">
                             <button
                                 onClick={() => toggleAccordion("shipping")}
-                                className="w-full py-5 flex items-center justify-between font-[family-name:var(--font-outfit)] text-sm uppercase tracking-widest text-warm-white/90"
+                                className="w-full py-5 flex items-center justify-between text-sm uppercase tracking-widest text-warm-white/90"
                             >
                                 Shipping & Returns
                                 <svg className={`w-4 h-4 transition-transform duration-300 ${openAccordion === "shipping" ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" /></svg>
                             </button>
-                            <div className={`overflow-hidden transition-all duration-300 ease-in-out font-[family-name:var(--font-outfit)] text-sm text-foreground/60 ${openAccordion === "shipping" ? "max-h-40 pb-5 opacity-100" : "max-h-0 opacity-0"}`}>
+                            <div className={`overflow-hidden transition-all duration-300 ease-in-out text-sm text-foreground/60 ${openAccordion === "shipping" ? "max-h-40 pb-5 opacity-100" : "max-h-0 opacity-0"}`}>
                                 <p>Complimentary express global shipping on orders over $200. Returns accepted within 14 days of receipt in original, unworn condition.</p>
                             </div>
                         </div>

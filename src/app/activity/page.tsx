@@ -75,7 +75,7 @@ export default function ActivityPage() {
                 {/* Header */}
                 <div className="flex items-center gap-3 mb-6">
                     <Heart className="w-5 h-5 text-foreground/50" strokeWidth={1.5} />
-                    <h1 className="font-[family-name:var(--font-cormorant)] text-2xl text-warm-white font-medium">
+                    <h1 className="text-xl text-warm-white font-medium">
                         Activity
                     </h1>
                 </div>
@@ -96,10 +96,10 @@ export default function ActivityPage() {
 
                                 {/* Text */}
                                 <div className="flex-1 min-w-0">
-                                    <p className="font-[family-name:var(--font-outfit)] text-[13px] text-foreground/70 leading-relaxed">
+                                    <p className="text-[13px] text-foreground/70 leading-relaxed">
                                         {renderText(item.text)}
                                     </p>
-                                    <span className="font-[family-name:var(--font-outfit)] text-[11px] text-foreground/35 mt-1 block">
+                                    <span className="text-[11px] text-foreground/35 mt-1 block">
                                         {item.time}
                                     </span>
                                 </div>

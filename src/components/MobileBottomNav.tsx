@@ -38,7 +38,7 @@ export default function MobileBottomNav() {
                                 strokeWidth={isActive ? 2 : 1.5}
                                 className="mb-1 transition-all"
                             />
-                            <span className="text-[10px] font-[family-name:var(--font-outfit)] font-medium">
+                            <span className="text-[10px] font-semibold">
                                 {name}
                             </span>
                         </Link>

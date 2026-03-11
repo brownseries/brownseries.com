@@ -24,7 +24,7 @@ export default function ProfilePage() {
                 {/* Page Header & User Card */}
                 <div className="pt-6 pb-2">
                     <div className="flex items-center justify-between mb-4 px-1 pb-2">
-                        <h1 className="font-[family-name:var(--font-cormorant)] text-[2rem] text-warm-white font-medium">
+                        <h1 className="text-2xl text-warm-white font-bold">
                             Profile
                         </h1>
                     </div>
@@ -35,8 +35,8 @@ export default function ProfilePage() {
                             <User size={24} strokeWidth={1.5} className="text-foreground/40" />
                         </div>
                         <div className="flex-grow">
-                            <h2 className="font-[family-name:var(--font-outfit)] text-[17px] text-warm-white font-medium">Guest User</h2>
-                            <p className="font-[family-name:var(--font-outfit)] text-[14px] text-foreground/50 mt-0.5">
+                            <h2 className="text-[17px] text-warm-white font-medium">Guest User</h2>
+                            <p className="text-[14px] text-foreground/50 mt-0.5">
                                 Sign in to sync your saved items
                             </p>
                         </div>
@@ -49,14 +49,14 @@ export default function ProfilePage() {
 
                     {/* Orders & Activity */}
                     <section>
-                        <h3 className="font-[family-name:var(--font-outfit)] text-[12px] uppercase tracking-wider text-foreground/40 mb-2.5 px-3 font-medium">Activity</h3>
+                        <h3 className="text-[12px] uppercase tracking-wider text-foreground/40 mb-2.5 px-3 font-medium">Activity</h3>
                         <div className="bg-surface rounded-2xl overflow-hidden">
                             <Link href="/profile/orders" className="flex items-center justify-between py-4 px-4 active:bg-white/5 transition-colors w-full">
                                 <div className="flex items-center gap-3">
                                     <div className="w-6 flex justify-center items-center flex-shrink-0">
                                         <ShoppingBag size={20} strokeWidth={1.5} className="text-warm-white/80" />
                                     </div>
-                                    <span className="font-[family-name:var(--font-outfit)] text-[15px] text-warm-white mb-0.5">Orders</span>
+                                    <span className="text-[15px] text-warm-white mb-0.5">Orders</span>
                                 </div>
                                 <ChevronRight size={20} strokeWidth={1.5} className="text-foreground/30 flex-shrink-0" />
                             </Link>
@@ -66,7 +66,7 @@ export default function ProfilePage() {
                                     <div className="w-6 flex justify-center items-center flex-shrink-0">
                                         <MapPin size={20} strokeWidth={1.5} className="text-warm-white/80" />
                                     </div>
-                                    <span className="font-[family-name:var(--font-outfit)] text-[15px] text-warm-white mb-0.5">Addresses</span>
+                                    <span className="text-[15px] text-warm-white mb-0.5">Addresses</span>
                                 </div>
                                 <ChevronRight size={20} strokeWidth={1.5} className="text-foreground/30 flex-shrink-0" />
                             </Link>
@@ -75,14 +75,14 @@ export default function ProfilePage() {
 
                     {/* Personal & Perks */}
                     <section>
-                        <h3 className="font-[family-name:var(--font-outfit)] text-[12px] uppercase tracking-wider text-foreground/40 mb-2.5 px-3 font-medium">Personal</h3>
+                        <h3 className="text-[12px] uppercase tracking-wider text-foreground/40 mb-2.5 px-3 font-medium">Personal</h3>
                         <div className="bg-surface rounded-2xl overflow-hidden">
                             <Link href="/saved" className="flex items-center justify-between py-4 px-4 active:bg-white/5 transition-colors w-full">
                                 <div className="flex items-center gap-3">
                                     <div className="w-6 flex justify-center items-center flex-shrink-0">
                                         <Heart size={20} strokeWidth={1.5} className="text-warm-white/80" />
                                     </div>
-                                    <span className="font-[family-name:var(--font-outfit)] text-[15px] text-warm-white mb-0.5">Saved</span>
+                                    <span className="text-[15px] text-warm-white mb-0.5">Saved</span>
                                 </div>
                                 <ChevronRight size={20} strokeWidth={1.5} className="text-foreground/30 flex-shrink-0" />
                             </Link>
@@ -92,7 +92,7 @@ export default function ProfilePage() {
                                     <div className="w-6 flex justify-center items-center flex-shrink-0">
                                         <Ticket size={20} strokeWidth={1.5} className="text-warm-white/80" />
                                     </div>
-                                    <span className="font-[family-name:var(--font-outfit)] text-[15px] text-warm-white mb-0.5">Coupons</span>
+                                    <span className="text-[15px] text-warm-white mb-0.5">Coupons</span>
                                 </div>
                                 <ChevronRight size={20} strokeWidth={1.5} className="text-foreground/30 flex-shrink-0" />
                             </Link>
@@ -101,14 +101,14 @@ export default function ProfilePage() {
 
                     {/* Payments */}
                     <section>
-                        <h3 className="font-[family-name:var(--font-outfit)] text-[12px] uppercase tracking-wider text-foreground/40 mb-2.5 px-3 font-medium">Payments</h3>
+                        <h3 className="text-[12px] uppercase tracking-wider text-foreground/40 mb-2.5 px-3 font-medium">Payments</h3>
                         <div className="bg-surface rounded-2xl overflow-hidden">
                             <Link href="#saved-cards" className="flex items-center justify-between py-4 px-4 active:bg-white/5 transition-colors w-full">
                                 <div className="flex items-center gap-3">
                                     <div className="w-6 flex justify-center items-center flex-shrink-0">
                                         <CreditCard size={20} strokeWidth={1.5} className="text-warm-white/80" />
                                     </div>
-                                    <span className="font-[family-name:var(--font-outfit)] text-[15px] text-warm-white mb-0.5">Saved Cards</span>
+                                    <span className="text-[15px] text-warm-white mb-0.5">Saved Cards</span>
                                 </div>
                                 <ChevronRight size={20} strokeWidth={1.5} className="text-foreground/30 flex-shrink-0" />
                             </Link>
@@ -118,7 +118,7 @@ export default function ProfilePage() {
                                     <div className="w-6 flex justify-center items-center flex-shrink-0">
                                         <Smartphone size={20} strokeWidth={1.5} className="text-warm-white/80" />
                                     </div>
-                                    <span className="font-[family-name:var(--font-outfit)] text-[15px] text-warm-white mb-0.5">Saved UPI</span>
+                                    <span className="text-[15px] text-warm-white mb-0.5">Saved UPI</span>
                                 </div>
                                 <ChevronRight size={20} strokeWidth={1.5} className="text-foreground/30 flex-shrink-0" />
                             </Link>
@@ -127,14 +127,14 @@ export default function ProfilePage() {
 
                     {/* Support & Legal */}
                     <section>
-                        <h3 className="font-[family-name:var(--font-outfit)] text-[12px] uppercase tracking-wider text-foreground/40 mb-2.5 px-3 font-medium">Support</h3>
+                        <h3 className="text-[12px] uppercase tracking-wider text-foreground/40 mb-2.5 px-3 font-medium">Support</h3>
                         <div className="bg-surface rounded-2xl overflow-hidden">
                             <Link href="#contact" className="flex items-center justify-between py-4 px-4 active:bg-white/5 transition-colors w-full">
                                 <div className="flex items-center gap-3">
                                     <div className="w-6 flex justify-center items-center flex-shrink-0">
                                         <MessageCircle size={20} strokeWidth={1.5} className="text-warm-white/80" />
                                     </div>
-                                    <span className="font-[family-name:var(--font-outfit)] text-[15px] text-warm-white mb-0.5">Contact Us</span>
+                                    <span className="text-[15px] text-warm-white mb-0.5">Contact Us</span>
                                 </div>
                                 <ChevronRight size={20} strokeWidth={1.5} className="text-foreground/30 flex-shrink-0" />
                             </Link>
@@ -143,7 +143,7 @@ export default function ProfilePage() {
 
                     {/* Logout Button */}
                     <div className="pt-3">
-                        <button className="w-full font-[family-name:var(--font-outfit)] text-[15px] font-medium text-red-500 bg-surface/80 active:bg-surface border border-white/5 py-4 rounded-2xl transition-colors">
+                        <button className="w-full text-[15px] font-medium text-red-500 bg-surface/80 active:bg-surface border border-white/5 py-4 rounded-2xl transition-colors">
                             Log Out
                         </button>
                     </div>

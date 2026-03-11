@@ -147,15 +147,15 @@ function FeedCard({ item }: { item: typeof FEED_ITEMS[0] }) {
                 {/* Tags */}
                 <div className="flex flex-wrap gap-1 mb-1">
                     {item.tags.map(tag => (
-                        <span key={tag} className="font-[family-name:var(--font-outfit)] text-[9px] text-foreground/40 bg-white/5 px-1.5 py-0.5 rounded-full">
+                        <span key={tag} className="text-[9px] text-foreground/40 bg-white/5 px-1.5 py-0.5 rounded-full">
                             {tag}
                         </span>
                     ))}
                 </div>
-                <h3 className="font-[family-name:var(--font-outfit)] text-[12px] font-semibold text-warm-white leading-snug">
+                <h3 className="text-[12px] font-semibold text-warm-white leading-snug">
                     {item.title}
                 </h3>
-                <span className="font-[family-name:var(--font-outfit)] text-[10px] text-foreground/40 flex items-center gap-1 mt-0.5">
+                <span className="text-[10px] text-foreground/40 flex items-center gap-1 mt-0.5">
                     <Bookmark size={9} className="inline" />
                     {localSaves >= 1000 ? `${(localSaves / 1000).toFixed(1)}k` : localSaves} saves
                 </span>
@@ -180,16 +180,16 @@ export default function MasonryFeed() {
             {/* Section header */}
             <div className="flex items-center justify-between mb-4 md:mb-6 px-1">
                 <div>
-                    <h2 className="font-[family-name:var(--font-cormorant)] text-2xl md:text-3xl text-warm-white font-medium">
+                    <h2 className="text-2xl md:text-2xl text-warm-white font-bold">
                         Discover
                     </h2>
-                    <p className="font-[family-name:var(--font-outfit)] text-[11px] text-foreground/40 mt-0.5">
+                    <p className="text-[11px] text-foreground/40 mt-0.5">
                         Curated looks &amp; collections
                     </p>
                 </div>
                 <Link
                     href="/shop"
-                    className="font-[family-name:var(--font-outfit)] text-[11px] text-accent uppercase tracking-widest hover:text-warm-white transition-colors"
+                    className="text-[11px] text-accent uppercase tracking-widest hover:text-warm-white transition-colors"
                 >
                     See all →
                 </Link>

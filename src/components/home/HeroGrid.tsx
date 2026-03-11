@@ -41,14 +41,14 @@ export default function HeroGrid() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent md:to-transparent/5" />
                     <div className="absolute bottom-0 left-0 w-full p-6 md:p-10 z-10 w-full flex flex-col justify-end">
-                        <span className="font-[family-name:var(--font-outfit)] text-[11px] md:text-[12px] text-accent mb-1 font-medium tracking-wider uppercase">
+                        <span className="text-[11px] md:text-[12px] text-accent mb-1 font-medium tracking-wider uppercase">
                             Everyday Essentials
                         </span>
-                        <h2 className="font-[family-name:var(--font-cormorant)] text-3xl md:text-4xl text-warm-white mb-4 font-light tracking-wide leading-tight">
+                        <h2 className="text-3xl md:text-4xl text-warm-white mb-4 font-light tracking-wide leading-tight">
                             Classic style
                         </h2>
                         <div>
-                            <Link href="/shop/classic-style" className="inline-block font-[family-name:var(--font-outfit)] text-[10px] md:text-[11px] tracking-widest px-6 py-2.5 md:px-8 md:py-3 bg-warm-white text-background active:bg-accent rounded-full md:rounded-none md:bg-transparent md:border md:border-warm-white/40 md:text-warm-white hover:bg-warm-white hover:text-background transition-colors duration-200">
+                            <Link href="/shop/classic-style" className="inline-block text-[10px] md:text-[11px] tracking-widest px-6 py-2.5 md:px-8 md:py-3 bg-warm-white text-background active:bg-accent rounded-full md:rounded-none md:bg-transparent md:border md:border-warm-white/40 md:text-warm-white hover:bg-warm-white hover:text-background transition-colors duration-200">
                                 SHOP NOW
                             </Link>
                         </div>
@@ -67,15 +67,15 @@ export default function HeroGrid() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent md:to-transparent/5" />
                     <div className="absolute bottom-0 left-0 w-full p-6 md:p-10 z-10 w-full flex flex-col justify-end">
-                        <span className="font-[family-name:var(--font-outfit)] text-[11px] md:text-[12px] text-accent mb-1 font-medium tracking-wider uppercase">
+                        <span className="text-[11px] md:text-[12px] text-accent mb-1 font-medium tracking-wider uppercase">
                             Winter Collection
                         </span>
-                        <h2 className="font-[family-name:var(--font-cormorant)] text-3xl md:text-4xl text-warm-white mb-4 font-light tracking-wide leading-tight">
+                        <h2 className="text-3xl md:text-4xl text-warm-white mb-4 font-light tracking-wide leading-tight">
                             Cozy looks
                             <br className="md:hidden" /> for any season
                         </h2>
                         <div>
-                            <Link href="/shop/cozy-looks" className="inline-block font-[family-name:var(--font-outfit)] text-[10px] md:text-[11px] tracking-widest px-6 py-2.5 md:px-8 md:py-3 bg-warm-white text-background active:bg-accent rounded-full md:rounded-none md:bg-transparent md:border md:border-warm-white/40 md:text-warm-white hover:bg-warm-white hover:text-background transition-colors duration-200">
+                            <Link href="/shop/cozy-looks" className="inline-block text-[10px] md:text-[11px] tracking-widest px-6 py-2.5 md:px-8 md:py-3 bg-warm-white text-background active:bg-accent rounded-full md:rounded-none md:bg-transparent md:border md:border-warm-white/40 md:text-warm-white hover:bg-warm-white hover:text-background transition-colors duration-200">
                                 DISCOVER MORE
                             </Link>
                         </div>
@@ -94,14 +94,14 @@ export default function HeroGrid() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent md:to-transparent/5" />
                     <div className="absolute bottom-0 left-0 w-full p-6 md:p-10 z-10 w-full flex flex-col justify-end">
-                        <span className="font-[family-name:var(--font-outfit)] text-[11px] md:text-[12px] text-accent mb-1 font-medium tracking-wider uppercase">
+                        <span className="text-[11px] md:text-[12px] text-accent mb-1 font-medium tracking-wider uppercase">
                             Premium Accessories
                         </span>
-                        <h2 className="font-[family-name:var(--font-cormorant)] text-3xl md:text-4xl text-warm-white mb-4 font-light tracking-wide leading-tight">
+                        <h2 className="text-3xl md:text-4xl text-warm-white mb-4 font-light tracking-wide leading-tight">
                             Timeless accessory
                         </h2>
                         <div>
-                            <Link href="/shop/timeless-accessory" className="inline-block font-[family-name:var(--font-outfit)] text-[10px] md:text-[11px] tracking-widest px-6 py-2.5 md:px-8 md:py-3 bg-warm-white text-background active:bg-accent rounded-full md:rounded-none md:bg-transparent md:border md:border-warm-white/40 md:text-warm-white hover:bg-warm-white hover:text-background transition-colors duration-200">
+                            <Link href="/shop/timeless-accessory" className="inline-block text-[10px] md:text-[11px] tracking-widest px-6 py-2.5 md:px-8 md:py-3 bg-warm-white text-background active:bg-accent rounded-full md:rounded-none md:bg-transparent md:border md:border-warm-white/40 md:text-warm-white hover:bg-warm-white hover:text-background transition-colors duration-200">
                                 SHOP NOW
                             </Link>
                         </div>
@@ -120,14 +120,14 @@ export default function HeroGrid() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent md:to-transparent/5" />
                     <div className="absolute bottom-0 left-0 w-full p-6 md:p-10 z-10 flex flex-col justify-end">
-                        <span className="font-[family-name:var(--font-outfit)] text-[11px] md:text-[12px] text-accent mb-1 font-medium tracking-wider uppercase">
+                        <span className="text-[11px] md:text-[12px] text-accent mb-1 font-medium tracking-wider uppercase">
                             Festive Season
                         </span>
-                        <h2 className="font-[family-name:var(--font-cormorant)] text-3xl md:text-4xl text-warm-white mb-4 font-light tracking-wide leading-tight">
+                        <h2 className="text-3xl md:text-4xl text-warm-white mb-4 font-light tracking-wide leading-tight">
                             Eid Collections
                         </h2>
                         <div>
-                            <Link href="/shop/eid-collections" className="inline-block font-[family-name:var(--font-outfit)] text-[10px] md:text-[11px] tracking-widest px-6 py-2.5 md:px-8 md:py-3 bg-warm-white text-background active:bg-accent rounded-full md:rounded-none md:bg-transparent md:border md:border-warm-white/40 md:text-warm-white hover:bg-warm-white hover:text-background transition-colors duration-200">
+                            <Link href="/shop/eid-collections" className="inline-block text-[10px] md:text-[11px] tracking-widest px-6 py-2.5 md:px-8 md:py-3 bg-warm-white text-background active:bg-accent rounded-full md:rounded-none md:bg-transparent md:border md:border-warm-white/40 md:text-warm-white hover:bg-warm-white hover:text-background transition-colors duration-200">
                                 VIEW COLLECTION
                             </Link>
                         </div>

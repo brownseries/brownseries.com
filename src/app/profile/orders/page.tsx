@@ -106,7 +106,7 @@ const getStatusBadge = (status: string) => {
 export default function OrdersPage() {
     const [activeTab, setActiveTab] = useState("All");
 
-    const filteredOrders = mockOrders.filter(order => 
+    const filteredOrders = mockOrders.filter(order =>
         activeTab === "All" || order.status.toLowerCase() === activeTab.toLowerCase()
     );
 
@@ -117,7 +117,7 @@ export default function OrdersPage() {
             <div className="w-full max-w-4xl mx-auto px-4 md:px-8 flex flex-col flex-1 pb-24 md:pt-24 pt-6">
 
                 {/* Header Sequence */}
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -133,10 +133,10 @@ export default function OrdersPage() {
                     </div>
 
                     <div className="flex flex-col gap-1">
-                        <h1 className="font-[family-name:var(--font-cormorant)] text-4xl md:text-5xl text-warm-white font-medium tracking-wide">
+                        <h1 className="text-4xl md:text-5xl text-warm-white font-medium tracking-wide">
                             Your Orders
                         </h1>
-                        <p className="font-[family-name:var(--font-outfit)] text-sm text-foreground/50">
+                        <p className="text-sm text-foreground/50">
                             Track, return, or buy items again.
                         </p>
                     </div>
@@ -147,9 +147,8 @@ export default function OrdersPage() {
                             <button
                                 key={tab}
                                 onClick={() => setActiveTab(tab)}
-                                className={`relative pb-4 font-[family-name:var(--font-outfit)] text-sm whitespace-nowrap transition-colors ${
-                                    activeTab === tab ? "text-warm-white font-medium" : "text-foreground/50 hover:text-foreground/80"
-                                }`}
+                                className={`relative pb-4 text-sm whitespace-nowrap transition-colors ${activeTab === tab ? "text-warm-white font-medium" : "text-foreground/50 hover:text-foreground/80"
+                                    }`}
                             >
                                 {tab}
                                 {activeTab === tab && (
@@ -168,7 +167,7 @@ export default function OrdersPage() {
                 <div className="mt-8 flex flex-col gap-6">
                     <AnimatePresence mode="popLayout">
                         {filteredOrders.length === 0 ? (
-                            <motion.div 
+                            <motion.div
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.95 }}
@@ -177,13 +176,13 @@ export default function OrdersPage() {
                                 <div className="w-16 h-16 rounded-full bg-surface flex items-center justify-center mb-6 shadow-xl">
                                     <Package size={24} strokeWidth={1.5} className="text-warm-white/40" />
                                 </div>
-                                <h2 className="font-[family-name:var(--font-outfit)] text-[18px] text-warm-white font-medium mb-2">No {activeTab.toLowerCase()} orders</h2>
-                                <p className="font-[family-name:var(--font-outfit)] text-[15px] text-foreground/50 max-w-[260px] leading-relaxed">
+                                <h2 className="text-[18px] text-warm-white font-medium mb-2">No {activeTab.toLowerCase()} orders</h2>
+                                <p className="text-[15px] text-foreground/50 max-w-[260px] leading-relaxed">
                                     When you place an order, it will show up here.
                                 </p>
-                                <Link 
-                                    href="/shop" 
-                                    className="mt-8 bg-warm-white hover:bg-warm-white/90 text-background px-8 py-3.5 rounded-full font-[family-name:var(--font-outfit)] text-xs font-medium uppercase tracking-widest transition-transform active:scale-95"
+                                <Link
+                                    href="/shop"
+                                    className="mt-8 bg-warm-white hover:bg-warm-white/90 text-background px-8 py-3.5 rounded-full text-xs font-medium uppercase tracking-widest transition-transform active:scale-95"
                                 >
                                     Explore Collection
                                 </Link>
@@ -191,7 +190,7 @@ export default function OrdersPage() {
                         ) : (
                             filteredOrders.map((order, index) => {
                                 const badge = getStatusBadge(order.status);
-                                
+
                                 return (
                                     <motion.div
                                         layout
@@ -201,37 +200,37 @@ export default function OrdersPage() {
                                         transition={{ duration: 0.5, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
                                         key={order.id}
                                     >
-                                        <Link 
-                                            href={`/profile/orders/${order.id}`} 
+                                        <Link
+                                            href={`/profile/orders/${order.id}`}
                                             className="block bg-surface/40 hover:bg-surface/60 border border-white/5 rounded-[24px] p-5 md:p-6 overflow-hidden transition-all group"
                                         >
                                             {/* Order Header */}
                                             <div className="flex justify-between items-start mb-6">
                                                 <div>
-                                                    <p className="font-[family-name:var(--font-outfit)] text-[11px] uppercase tracking-widest text-foreground/40 mb-1.5">
+                                                    <p className="text-[11px] uppercase tracking-widest text-foreground/40 mb-1.5">
                                                         Order {order.id}
                                                     </p>
-                                                    <p className="font-[family-name:var(--font-outfit)] text-[16px] text-warm-white font-light">
+                                                    <p className="text-[16px] text-warm-white font-light">
                                                         {order.date}
                                                     </p>
                                                 </div>
                                                 <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full ${badge.bg} backdrop-blur-md`}>
                                                     {badge.icon}
-                                                    <span className={`font-[family-name:var(--font-outfit)] text-[11px] font-medium uppercase tracking-wide ${badge.text}`}>
+                                                    <span className={`text-[11px] font-medium uppercase tracking-wide ${badge.text}`}>
                                                         {badge.label}
                                                     </span>
                                                 </div>
                                             </div>
-                                            
+
                                             {/* Order Items Gallery */}
                                             <div className="flex gap-3 overflow-x-auto hide-scrollbar pb-2 overscroll-x-contain">
                                                 {order.items.map((item, idx) => (
-                                                    <div 
-                                                        key={idx} 
+                                                    <div
+                                                        key={idx}
                                                         className="relative w-24 h-32 md:w-32 md:h-40 rounded-xl overflow-hidden bg-white/5 flex-shrink-0"
                                                     >
-                                                        <Image 
-                                                            src={item.image} 
+                                                        <Image
+                                                            src={item.image}
                                                             alt={item.name}
                                                             fill
                                                             className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -240,14 +239,14 @@ export default function OrdersPage() {
                                                     </div>
                                                 ))}
                                             </div>
-                                            
+
                                             {/* Order Footer */}
                                             <div className="flex justify-between items-center mt-6 pt-5 border-t border-white/5">
                                                 <div className="flex flex-col">
-                                                    <span className="font-[family-name:var(--font-outfit)] text-[12px] text-foreground/50 mb-0.5">
+                                                    <span className="text-[12px] text-foreground/50 mb-0.5">
                                                         {order.items.length} {order.items.length === 1 ? 'Item' : 'Items'}
                                                     </span>
-                                                    <span className="font-[family-name:var(--font-outfit)] text-[16px] text-warm-white font-medium">
+                                                    <span className="text-[16px] text-warm-white font-medium">
                                                         {order.total}
                                                     </span>
                                                 </div>

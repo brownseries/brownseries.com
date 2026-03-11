@@ -16,10 +16,10 @@ export default function CompleteTheLook() {
     return (
         <section className="w-full max-w-7xl mx-auto px-4 md:px-8 py-8 border-t border-white/5">
             <div className="mb-4">
-                <h2 className="font-[family-name:var(--font-cormorant)] text-2xl text-warm-white font-medium">
+                <h2 className="text-2xl text-warm-white font-bold">
                     Complete the Look
                 </h2>
-                <p className="font-[family-name:var(--font-outfit)] text-[12px] text-foreground/40 mt-0.5">
+                <p className="text-[12px] text-foreground/40 mt-0.5">
                     Styled to go together
                 </p>
             </div>
@@ -50,10 +50,10 @@ export default function CompleteTheLook() {
                                     <ShoppingBag size={13} />
                                 </button>
                             </div>
-                            <p className="font-[family-name:var(--font-outfit)] text-[12px] text-warm-white font-medium truncate">
+                            <p className="text-[12px] text-warm-white font-medium truncate">
                                 {item.name}
                             </p>
-                            <p className="font-[family-name:var(--font-outfit)] text-[11px] text-foreground/50 mt-0.5">
+                            <p className="text-[11px] text-foreground/50 mt-0.5">
                                 {item.price}
                             </p>
                         </Link>

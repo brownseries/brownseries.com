@@ -63,12 +63,12 @@ export default function Navbar() {
                     </button>
 
                     {/* Logo (Centered on mobile, left on desktop) */}
-                    <Link href="/" className="font-[family-name:var(--font-outfit)] text-lg md:text-xl font-bold tracking-widest uppercase text-warm-white flex-1 md:flex-none text-center md:text-left">
+                    <Link href="/" className="text-lg md:text-xl font-bold tracking-widest uppercase text-warm-white flex-1 md:flex-none text-center md:text-left">
                         BROWN SERIES
                     </Link>
 
                     {/* Desktop Navigation — social style */}
-                    <div className="hidden md:flex items-center gap-6 justify-center flex-1 font-[family-name:var(--font-outfit)] text-[13px] font-medium">
+                    <div className="hidden md:flex items-center gap-6 justify-center flex-1 text-[13px] font-semibold">
                         {[
                             { href: "/", label: "Home", Icon: Home },
                             { href: "/search", label: "Find", Icon: Search },
@@ -101,7 +101,7 @@ export default function Navbar() {
                             <input
                                 type="text"
                                 placeholder="Search..."
-                                className="block w-full pl-9 pr-4 py-2 bg-surface/80 border border-white/5 rounded-full text-[13px] font-[family-name:var(--font-outfit)] text-warm-white placeholder:text-foreground/30 focus:outline-none focus:border-white/20 focus:bg-surface transition-all"
+                                className="block w-full pl-9 pr-4 py-2 bg-surface/80 border border-white/5 rounded-full text-[13px] text-warm-white placeholder:text-foreground/30 focus:outline-none focus:border-white/20 focus:bg-surface transition-all"
                             />
                         </div> */}
 
@@ -116,27 +116,27 @@ export default function Navbar() {
                                 <div className="w-56 bg-surface/95 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl overflow-hidden flex flex-col py-2">
                                     {/* User header */}
                                     <div className="px-4 py-3 border-b border-white/5 mb-2">
-                                        <p className="font-[family-name:var(--font-outfit)] text-[14px] text-warm-white font-medium">Guest User</p>
-                                        <Link href="/login" className="font-[family-name:var(--font-outfit)] text-[12px] text-accent hover:text-warm-white transition-colors mt-0.5 inline-block">Sign In</Link>
+                                        <p className="text-[14px] text-warm-white font-medium">Guest User</p>
+                                        <Link href="/login" className="text-[12px] text-accent hover:text-warm-white transition-colors mt-0.5 inline-block">Sign In</Link>
                                     </div>
 
-                                    <Link href="/profile#orders" className="px-4 py-2 font-[family-name:var(--font-outfit)] text-[14px] text-foreground/80 hover:text-warm-white hover:bg-white/5 transition-colors">Orders</Link>
-                                    <Link href="/profile#addresses" className="px-4 py-2 font-[family-name:var(--font-outfit)] text-[14px] text-foreground/80 hover:text-warm-white hover:bg-white/5 transition-colors">Addresses</Link>
-                                    <Link href="/saved" className="px-4 py-2 font-[family-name:var(--font-outfit)] text-[14px] text-foreground/80 hover:text-warm-white hover:bg-white/5 transition-colors">Saved Items</Link>
-                                    <Link href="/profile#coupons" className="px-4 py-2 font-[family-name:var(--font-outfit)] text-[14px] text-foreground/80 hover:text-warm-white hover:bg-white/5 transition-colors">Coupons</Link>
+                                    <Link href="/profile#orders" className="px-4 py-2 text-[14px] text-foreground/80 hover:text-warm-white hover:bg-white/5 transition-colors">Orders</Link>
+                                    <Link href="/profile#addresses" className="px-4 py-2 text-[14px] text-foreground/80 hover:text-warm-white hover:bg-white/5 transition-colors">Addresses</Link>
+                                    <Link href="/saved" className="px-4 py-2 text-[14px] text-foreground/80 hover:text-warm-white hover:bg-white/5 transition-colors">Saved Items</Link>
+                                    <Link href="/profile#coupons" className="px-4 py-2 text-[14px] text-foreground/80 hover:text-warm-white hover:bg-white/5 transition-colors">Coupons</Link>
 
                                     <div className="h-[1px] bg-white/5 my-2" />
 
-                                    <Link href="/profile#saved-cards" className="px-4 py-2 font-[family-name:var(--font-outfit)] text-[14px] text-foreground/80 hover:text-warm-white hover:bg-white/5 transition-colors">Saved Cards</Link>
-                                    <Link href="/profile#saved-upi" className="px-4 py-2 font-[family-name:var(--font-outfit)] text-[14px] text-foreground/80 hover:text-warm-white hover:bg-white/5 transition-colors">Saved UPI</Link>
+                                    <Link href="/profile#saved-cards" className="px-4 py-2 text-[14px] text-foreground/80 hover:text-warm-white hover:bg-white/5 transition-colors">Saved Cards</Link>
+                                    <Link href="/profile#saved-upi" className="px-4 py-2 text-[14px] text-foreground/80 hover:text-warm-white hover:bg-white/5 transition-colors">Saved UPI</Link>
 
                                     <div className="h-[1px] bg-white/5 my-2" />
 
-                                    <Link href="/profile#contact" className="px-4 py-2 font-[family-name:var(--font-outfit)] text-[14px] text-foreground/80 hover:text-warm-white hover:bg-white/5 transition-colors">Contact Us</Link>
+                                    <Link href="/profile#contact" className="px-4 py-2 text-[14px] text-foreground/80 hover:text-warm-white hover:bg-white/5 transition-colors">Contact Us</Link>
 
                                     <div className="h-[1px] bg-white/5 my-2" />
 
-                                    <button className="w-full text-left px-4 py-2 font-[family-name:var(--font-outfit)] text-[14px] text-red-400 hover:text-red-300 hover:bg-white/5 transition-colors">Log Out</button>
+                                    <button className="w-full text-left px-4 py-2 text-[14px] text-red-400 hover:text-red-300 hover:bg-white/5 transition-colors">Log Out</button>
                                 </div>
                             </div>
                         </div>
@@ -176,7 +176,7 @@ export default function Navbar() {
             >
                 {/* Drawer Header */}
                 <div className="flex items-center justify-between px-5 h-14 border-b border-white/5 flex-shrink-0">
-                    <span className="font-[family-name:var(--font-outfit)] text-sm font-bold tracking-widest uppercase text-warm-white">Menu</span>
+                    <span className="text-sm font-bold tracking-widest uppercase text-warm-white">Menu</span>
                     <button
                         onClick={closeMenu}
                         className="p-2 -mr-2 text-foreground/60 hover:text-warm-white active:bg-white/5 rounded-full transition-colors"
