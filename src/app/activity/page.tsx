@@ -71,10 +71,10 @@ export default function ActivityPage() {
         <main className="min-h-screen bg-background pb-24">
             <Navbar />
 
-            <div className="w-full max-w-7xl mx-auto px-4 md:px-8 pt-6">
+            <div className="w-full max-w-2xl mx-auto px-4 md:px-8 pt-6">
                 {/* Header */}
                 <div className="flex items-center gap-3 mb-6">
-                    <Bell className="w-5 h-5 text-foreground/50" strokeWidth={1.5} />
+                    <Heart className="w-5 h-5 text-foreground/50" strokeWidth={1.5} />
                     <h1 className="font-[family-name:var(--font-cormorant)] text-2xl text-warm-white font-medium">
                         Activity
                     </h1>

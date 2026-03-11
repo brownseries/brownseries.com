@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useCartStore } from "@/store/useCartStore";
-import { Home, Search, Bookmark, Bell, ShoppingBag } from "lucide-react";
+import { Home, Search, Bookmark, ShoppingBag, Heart } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
@@ -73,7 +73,7 @@ export default function Navbar() {
                             { href: "/", label: "Home", Icon: Home },
                             { href: "/search", label: "Find", Icon: Search },
                             { href: "/saved", label: "Saved", Icon: Bookmark },
-                            { href: "/activity", label: "Activity", Icon: Bell },
+                            { href: "/activity", label: "Activity", Icon: Heart },
                             { href: "/shop", label: "Shop", Icon: ShoppingBag },
                         ].map(({ href, label, Icon }) => {
                             const isActive = pathname === href;
