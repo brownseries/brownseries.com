@@ -47,15 +47,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${outfit.variable} ${cormorant.variable} antialiased`}>
-        {/* Top Navigation — Brand Name Only */}
-        <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center py-5 px-8 bg-background/70 backdrop-blur-md border-b border-border/30">
-          <span
-            className="font-[family-name:var(--font-outfit)] text-sm tracking-[0.4em] font-extralight text-warm-white uppercase"
-          >
-            BROWN SERIES
-          </span>
-        </nav>
-
         {children}
         <CartDrawer />
       </body>
