@@ -6,7 +6,7 @@ import { Home, Search, Bell, User, Bookmark } from "lucide-react";
 
 const NAV_ITEMS = [
     { name: "Home", path: "/", Icon: Home },
-    { name: "Explore", path: "/search", Icon: Search },
+    { name: "Find", path: "/search", Icon: Search },
     { name: "Saved", path: "/saved", Icon: Bookmark },
     { name: "Activity", path: "/activity", Icon: Bell },
     { name: "Profile", path: "/profile", Icon: User },

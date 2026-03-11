@@ -72,25 +72,6 @@ export default function ShopPage() {
                     ))}
                 </div>
             </div>
-
-            {/* Premium Dark Theme Footer */}
-            <footer className="bg-[#0a0807] border-t border-white/5 pt-16 pb-24 md:pb-16 text-warm-white mt-8">
-                <div className="max-w-7xl mx-auto px-6 md:px-8">
-                    <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
-                        {/* Brand & Newsletter */}
-                        <div className="md:col-span-5 flex flex-col items-center md:items-start text-center md:text-left">
-                            <h2 className="font-[family-name:var(--font-outfit)] text-sm tracking-[0.4em] uppercase text-accent font-medium mb-6">
-                                Brown Series
-                            </h2>
-                            <p className="font-[family-name:var(--font-outfit)] text-[13px] text-foreground/60 mb-8 max-w-sm leading-relaxed">
-                                Join the collective. Subscribe for early access to new collections, exclusive events, and styling inspiration.
-                            </p>
-                        </div>
-                        {/* More links can be extracted to a shared Footer component later, keeping minimal here for brevity */}
-                    </div>
-                </div>
-            </footer>
-
             {/* Mobile Bottom Navigation Bar (iOS App Style) */}
             <MobileBottomNav />
         </main>
