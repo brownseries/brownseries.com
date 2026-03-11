@@ -48,7 +48,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="fixed top-0 left-0 w-full z-50 bg-background/90 backdrop-blur-xl border-b border-white/5 safe-area-top">
+            <nav className="hidden md:block fixed top-0 left-0 w-full z-50 bg-background/90 backdrop-blur-xl border-b border-white/5 safe-area-top">
                 <div className="flex items-center justify-between px-4 h-14 md:h-16 max-w-7xl mx-auto">
                     {/* Menu / Leading Icon - Mobile */}
                     <button
@@ -193,7 +193,7 @@ export default function Navbar() {
                 </div>
             </nav>
             {/* Spacer so page content isn't hidden under the fixed nav */}
-            <div className="h-14 md:h-16" aria-hidden="true" />
+            <div className="hidden md:block h-16" aria-hidden="true" />
 
             {/* ─── Mobile Drawer Overlay ─── */}
             {/* Backdrop */}

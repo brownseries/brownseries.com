@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import Footer from "@/components/Footer";
@@ -10,6 +11,9 @@ const variants = {
 };
 
 export default function Template({ children }: { children: React.ReactNode }) {
+    const pathname = usePathname();
+    const hideFooter = pathname === "/search";
+
     return (
         <>
             <motion.main
@@ -20,7 +24,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
             >
                 {children}
             </motion.main>
-            <Footer />
+            {!hideFooter && <Footer />}
             <MobileBottomNav />
         </>
     );

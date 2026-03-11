@@ -4,6 +4,9 @@ import React, { useState, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import CompleteTheLook from "@/components/CompleteTheLook";
+import { useCartStore } from "@/store/useCartStore";
+import { Bookmark, Heart, ShoppingCart } from "lucide-react";
 
 export default function ProductDetailPage(props: { params: Promise<{ slug: string }> }) {
     const params = use(props.params);
@@ -12,6 +15,13 @@ export default function ProductDetailPage(props: { params: Promise<{ slug: strin
     const [selectedColor, setSelectedColor] = useState("espresso");
     const [selectedSize, setSelectedSize] = useState("M");
     const [openAccordion, setOpenAccordion] = useState<string | null>("details");
+    const [saved, setSaved] = useState(false);
+    const [saveCount, setSaveCount] = useState(1247);
+    const [liked, setLiked] = useState(false);
+    const { openCart, getTotalItems } = useCartStore();
+    const cartCount = getTotalItems();
+
+    const MOOD_TAGS = ["#QuietLuxury", "#EarthTone", "#Modest", "#Outerwear"];
 
     // Format the slug for display purposes
     const title = slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
@@ -38,6 +48,20 @@ export default function ProductDetailPage(props: { params: Promise<{ slug: strin
     return (
         <main className="min-h-screen bg-background text-foreground pb-24 md:pb-0 selection:bg-accent/30 selection:text-warm-white">
             <Navbar />
+
+            {/* Floating cart button — replaces nav tab cart on product pages */}
+            <button
+                onClick={openCart}
+                className="md:hidden fixed bottom-20 right-4 z-40 w-12 h-12 rounded-full bg-surface border border-white/10 shadow-xl flex items-center justify-center active:scale-95 transition-transform"
+                aria-label="View cart"
+            >
+                <ShoppingCart size={18} className="text-warm-white" strokeWidth={1.5} />
+                {cartCount > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-accent text-background text-[9px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
+                        {cartCount}
+                    </span>
+                )}
+            </button>
 
             <div className="w-full max-w-7xl mx-auto md:px-8 mt-0 md:mt-24 md:grid md:grid-cols-2 md:gap-12">
                 {/* Image Gallery - Native Swipeable on Mobile, Grid on Desktop */}
@@ -85,9 +109,43 @@ export default function ProductDetailPage(props: { params: Promise<{ slug: strin
                     <h1 className="font-[family-name:var(--font-cormorant)] text-3xl md:text-5xl text-warm-white mb-2 leading-tight tracking-wide">
                         {title}
                     </h1>
-                    <p className="font-[family-name:var(--font-outfit)] text-lg md:text-xl text-foreground/90 font-light mb-6">
-                        $185.00
-                    </p>
+
+                    {/* Mood tags */}
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                        {MOOD_TAGS.map(tag => (
+                            <span key={tag} className="font-[family-name:var(--font-outfit)] text-[10px] text-foreground/50 bg-white/5 border border-white/8 px-2.5 py-1 rounded-full">
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+
+                    {/* Price + save/like row */}
+                    <div className="flex items-center justify-between mb-4">
+                        <p className="font-[family-name:var(--font-outfit)] text-lg md:text-xl text-foreground/90 font-light">
+                            $185.00
+                        </p>
+                        <div className="flex items-center gap-3">
+                            {/* Save count */}
+                            <button
+                                onClick={() => { setSaved(s => !s); setSaveCount(n => saved ? n - 1 : n + 1); }}
+                                className="flex items-center gap-1.5 active:scale-105 transition-transform"
+                                aria-label="Save"
+                            >
+                                <Bookmark size={16} className={`transition-colors ${saved ? "fill-accent text-accent" : "text-foreground/50"}`} />
+                                <span className="font-[family-name:var(--font-outfit)] text-[12px] text-foreground/50">
+                                    {saveCount >= 1000 ? `${(saveCount / 1000).toFixed(1)}k` : saveCount}
+                                </span>
+                            </button>
+                            {/* Like */}
+                            <button
+                                onClick={() => setLiked(l => !l)}
+                                className="active:scale-110 transition-transform"
+                                aria-label="Like"
+                            >
+                                <Heart size={16} className={`transition-colors ${liked ? "fill-red-400 text-red-400" : "text-foreground/50"}`} />
+                            </button>
+                        </div>
+                    </div>
 
                     <p className="font-[family-name:var(--font-outfit)] text-sm text-foreground/70 leading-relaxed mb-8">
                         An elevated essential designed for timeless wear. Crafted with premium, sustainably sourced materials to provide unmatched comfort and an elegant drape across the silhouette.
@@ -189,6 +247,8 @@ export default function ProductDetailPage(props: { params: Promise<{ slug: strin
                 </div>
             </div>
 
+            {/* Complete the Look */}
+            <CompleteTheLook />
 
         </main>
     );
