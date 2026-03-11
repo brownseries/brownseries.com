@@ -20,7 +20,7 @@ export default function LoginPage() {
             {/* Top Navigation Bar / Back button */}
             <nav className="relative z-50 w-full shrink-0">
                 <div className="flex items-center px-4 h-14 md:h-16 max-w-7xl mx-auto w-full">
-                    <Link href="/home" className="p-2 -ml-2 text-foreground/80 hover:text-warm-white bg-transparent active:bg-white/5 rounded-full transition-colors">
+                    <Link href="/" className="p-2 -ml-2 text-foreground/80 hover:text-warm-white bg-transparent active:bg-white/5 rounded-full transition-colors">
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" /></svg>
                     </Link>
                 </div>

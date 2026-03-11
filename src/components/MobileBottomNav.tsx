@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Search, Bookmark, Bell, User } from "lucide-react";
+import { Home, Search, Bell, User, Bookmark } from "lucide-react";
 
 const NAV_ITEMS = [
-    { name: "Home", path: "/home", Icon: Home },
+    { name: "Home", path: "/", Icon: Home },
     { name: "Explore", path: "/search", Icon: Search },
     { name: "Saved", path: "/saved", Icon: Bookmark },
     { name: "Activity", path: "/activity", Icon: Bell },
@@ -15,13 +15,16 @@ const NAV_ITEMS = [
 export default function MobileBottomNav() {
     const pathname = usePathname();
 
+    const isBlackBg = pathname === "/" || pathname === "/login";
+
     return (
-        <nav className="md:hidden fixed bottom-0 left-0 w-full bg-background/90 backdrop-blur-xl border-t border-white/5 pb-safe z-50">
-            <div className="flex justify-around items-center h-16 px-1">
+        <nav className={`md:hidden fixed bottom-0 left-0 right-0 z-50 border-t pb-safe
+            ${isBlackBg ? "bg-background/90" : "bg-surface/90"}
+            backdrop-blur-xl border-white/5 transition-colors duration-300`}>
+            <div className="flex items-center justify-around h-16 px-2">
                 {NAV_ITEMS.map(({ name, path, Icon }) => {
-                    const isActive =
-                        pathname === path ||
-                        (pathname === "/" && path === "/home");
+                    const isActive = pathname === path ||
+                        (pathname === "/" && path === "/");
 
                     return (
                         <Link

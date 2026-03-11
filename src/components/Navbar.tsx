@@ -63,14 +63,14 @@ export default function Navbar() {
                     </button>
 
                     {/* Logo (Centered on mobile, left on desktop) */}
-                    <Link href="/home" className="font-[family-name:var(--font-outfit)] text-lg md:text-xl font-bold tracking-widest uppercase text-warm-white flex-1 md:flex-none text-center md:text-left">
+                    <Link href="/" className="font-[family-name:var(--font-outfit)] text-lg md:text-xl font-bold tracking-widest uppercase text-warm-white flex-1 md:flex-none text-center md:text-left">
                         BROWN SERIES
                     </Link>
 
                     {/* Desktop Navigation — social style */}
                     <div className="hidden md:flex items-center gap-6 justify-center flex-1 font-[family-name:var(--font-outfit)] text-[13px] font-medium">
                         {[
-                            { href: "/home", label: "Home", Icon: Home },
+                            { href: "/", label: "Home", Icon: Home },
                             { href: "/search", label: "Explore", Icon: Search },
                             { href: "/saved", label: "Saved", Icon: Bookmark },
                             { href: "/activity", label: "Activity", Icon: Bell },
