@@ -71,7 +71,7 @@ export default function Navbar() {
                     <div className="hidden md:flex items-center gap-6 justify-center flex-1 font-[family-name:var(--font-outfit)] text-[13px] font-medium">
                         {[
                             { href: "/", label: "Home", Icon: Home },
-                            { href: "/search", label: "Explore", Icon: Search },
+                            { href: "/search", label: "Find", Icon: Search },
                             { href: "/saved", label: "Saved", Icon: Bookmark },
                             { href: "/activity", label: "Activity", Icon: Bell },
                             { href: "/shop", label: "Shop", Icon: ShoppingBag },
