@@ -1,6 +1,13 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const HIDDEN_ON = ["/profile", "/login"];
 
 export default function Footer() {
+    const pathname = usePathname();
+    if (HIDDEN_ON.includes(pathname)) return null;
     return (
         <footer className="bg-[#0a0807] border-t border-white/5 pt-12 pb-24 md:pb-16 text-warm-white">
             <div className="max-w-7xl mx-auto px-6 md:px-8">

@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function LoginPage() {
     return (
-        <main className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-accent/30 selection:text-warm-white flex flex-col relative">
+        <main className="h-screen overflow-hidden bg-background text-foreground selection:bg-accent/30 selection:text-warm-white flex flex-col relative">
             {/* Background Image with heavy overlay for aesthetic native feel */}
             <div className="absolute inset-0 z-0 opacity-40 mix-blend-luminosity">
                 <Image
@@ -18,7 +18,7 @@ export default function LoginPage() {
             </div>
 
             {/* Top Navigation Bar / Back button */}
-            <nav className="relative z-50 w-full pt-safe">
+            <nav className="relative z-50 w-full shrink-0">
                 <div className="flex items-center px-4 h-14 md:h-16 max-w-7xl mx-auto w-full">
                     <Link href="/home" className="p-2 -ml-2 text-foreground/80 hover:text-warm-white bg-transparent active:bg-white/5 rounded-full transition-colors">
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" /></svg>
@@ -26,12 +26,11 @@ export default function LoginPage() {
                 </div>
             </nav>
 
-            {/* Main Content Area */}
-            <div className="relative z-10 flex-1 flex flex-col justify-end sm:justify-center px-6 pb-12 sm:pb-24 max-w-md mx-auto w-full mt-10">
+            {/* Main Content Area — fills remaining height, content anchored to bottom on mobile */}
+            <div className="relative z-10 flex-1 flex flex-col justify-center px-6 pb-0 max-w-md mx-auto w-full">
 
                 {/* Brand Text */}
                 <div className="mb-10 sm:mb-12">
-
                     <h2 className="font-[family-name:var(--font-cormorant)] text-4xl sm:text-5xl text-warm-white font-light leading-[1.1] mb-4 animate-fade-in-up delay-200">
                         Login to your account
                     </h2>
