@@ -11,6 +11,7 @@ import {
     CreditCard,
     Smartphone,
     MessageCircle,
+    ShoppingCart,
 } from "lucide-react";
 
 export default function ProfilePage() {
@@ -35,9 +36,9 @@ export default function ProfilePage() {
                             <User size={24} strokeWidth={1.5} className="text-foreground/40" />
                         </div>
                         <div className="flex-grow">
-                            <h2 className="text-[17px] text-warm-white font-medium">Guest User</h2>
+                            <h2 className="text-[17px] text-warm-white font-medium">Adam John</h2>
                             <p className="text-[14px] text-foreground/50 mt-0.5">
-                                Sign in to sync your saved items
+                                +91 9876543210
                             </p>
                         </div>
                         <ChevronRight size={20} strokeWidth={1.5} className="text-foreground/30 flex-shrink-0 group-active:text-warm-white transition-colors" />
@@ -49,8 +50,17 @@ export default function ProfilePage() {
 
                     {/* Orders & Activity */}
                     <section>
-                        <h3 className="text-[12px] uppercase tracking-wider text-foreground/40 mb-2.5 px-3 font-medium">Activity</h3>
+                        <h3 className="text-[12px] uppercase tracking-wider text-foreground/40 mb-2.5 px-3 font-bold">Activity</h3>
                         <div className="bg-surface rounded-2xl overflow-hidden">
+                            <Link href="/profile/orders" className="flex items-center justify-between py-4 px-4 active:bg-white/5 transition-colors w-full">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-6 flex justify-center items-center flex-shrink-0">
+                                        <ShoppingCart size={20} strokeWidth={1.5} className="text-warm-white/80" />
+                                    </div>
+                                    <span className="text-[15px] text-warm-white mb-0.5">Cart</span>
+                                </div>
+                                <ChevronRight size={20} strokeWidth={1.5} className="text-foreground/30 flex-shrink-0" />
+                            </Link>
                             <Link href="/profile/orders" className="flex items-center justify-between py-4 px-4 active:bg-white/5 transition-colors w-full">
                                 <div className="flex items-center gap-3">
                                     <div className="w-6 flex justify-center items-center flex-shrink-0">
@@ -75,7 +85,7 @@ export default function ProfilePage() {
 
                     {/* Personal & Perks */}
                     <section>
-                        <h3 className="text-[12px] uppercase tracking-wider text-foreground/40 mb-2.5 px-3 font-medium">Personal</h3>
+                        <h3 className="text-[12px] uppercase tracking-wider text-foreground/40 mb-2.5 px-3 font-bold">Personal</h3>
                         <div className="bg-surface rounded-2xl overflow-hidden">
                             <Link href="/saved" className="flex items-center justify-between py-4 px-4 active:bg-white/5 transition-colors w-full">
                                 <div className="flex items-center gap-3">
@@ -101,7 +111,7 @@ export default function ProfilePage() {
 
                     {/* Payments */}
                     <section>
-                        <h3 className="text-[12px] uppercase tracking-wider text-foreground/40 mb-2.5 px-3 font-medium">Payments</h3>
+                        <h3 className="text-[12px] uppercase tracking-wider text-foreground/40 mb-2.5 px-3 font-bold">Payments</h3>
                         <div className="bg-surface rounded-2xl overflow-hidden">
                             <Link href="#saved-cards" className="flex items-center justify-between py-4 px-4 active:bg-white/5 transition-colors w-full">
                                 <div className="flex items-center gap-3">

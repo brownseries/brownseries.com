@@ -31,7 +31,7 @@ export default function LoginPage() {
 
                 {/* Brand Text */}
                 <div className="mb-10 sm:mb-12">
-                    <h2 className="text-4xl sm:text-5xl text-warm-white font-light leading-[1.1] mb-4 animate-fade-in-up delay-200">
+                    <h2 className="text-3xl sm:text-4xl text-warm-white font-medium leading-[1.1] mb-4 animate-fade-in-up delay-200">
                         Login to your account
                     </h2>
                     <p className="text-[13px] text-foreground/70 font-light leading-relaxed max-w-[280px] animate-fade-in-up delay-300">

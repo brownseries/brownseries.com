@@ -75,7 +75,7 @@ export default function ActivityPage() {
                 {/* Header */}
                 <div className="flex items-center gap-3 mb-6">
                     <Heart className="w-5 h-5 text-foreground/50" strokeWidth={1.5} />
-                    <h1 className="text-xl text-warm-white font-medium">
+                    <h1 className="text-xl text-warm-white font-bold">
                         Activity
                     </h1>
                 </div>
@@ -87,7 +87,7 @@ export default function ActivityPage() {
                         return (
                             <div
                                 key={item.id}
-                                className="flex items-start gap-4 px-4 py-4 rounded-2xl hover:bg-white/3 active:bg-white/5 transition-colors"
+                                className="flex items-start gap-4 py-2 rounded-2xl hover:bg-white/3 active:bg-white/5 transition-colors"
                             >
                                 {/* Icon bubble */}
                                 <div className={`w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center ${item.bg}`}>

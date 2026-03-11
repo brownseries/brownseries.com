@@ -23,7 +23,7 @@ export default function SavedPage() {
 
                 {/* Page Header */}
                 <div className="py-8 md:py-12 border-b border-white/5">
-                    <h1 className="text-xl md:text-xl text-warm-white font-bold mb-4">
+                    <h1 className="text-xl md:text-2xl text-warm-white font-bold mb-4">
                         Saved Items
                     </h1>
                     <p className="text-[14px] text-foreground/60 max-w-xl">

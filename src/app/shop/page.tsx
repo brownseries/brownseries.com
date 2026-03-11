@@ -36,7 +36,7 @@ export default function ShopPage() {
 
             {/* Page Header */}
             <div className="w-full max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
-                <h1 className="text-4xl md:text-5xl text-warm-white font-medium mb-4">
+                <h1 className="text-xl md:text-2xl text-warm-white font-bold mb-4">
                     The Collection
                 </h1>
                 <p className="text-[14px] text-foreground/60 max-w-xl">
