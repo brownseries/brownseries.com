@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, ShoppingBag, Heart, User } from "lucide-react";
+import { Home, Search, ShoppingBag, Heart, User } from "lucide-react";
 
 export default function MobileBottomNav() {
     const pathname = usePathname();
@@ -12,6 +12,11 @@ export default function MobileBottomNav() {
             name: "Home",
             path: "/home",
             Icon: Home,
+        },
+        {
+            name: "Search",
+            path: "/search",
+            Icon: Search,
         },
         {
             name: "Shop",
@@ -40,17 +45,17 @@ export default function MobileBottomNav() {
                         <Link
                             key={item.name}
                             href={item.path}
-                            className={`flex flex-col items-center justify-center w-full h-full active:opacity-50 transition-colors ${isActive ? "text-warm-white" : "text-foreground/60"
-                                }`}
+                            className={`flex flex-col items-center justify-center w-full h-full active:opacity-50 transition-colors ${isActive ? "text-warm-white" : "text-foreground/50"}`}
                         >
                             <item.Icon
                                 size={22}
-                                strokeWidth={1.5}
-                                className={`mb-1 transition-all ${isActive ? "fill-current" : ""}`}
+                                strokeWidth={isActive ? 2 : 1.5}
+                                className="mb-1 transition-all"
                             />
                             <span className="text-[10px] font-[family-name:var(--font-outfit)] font-medium">
                                 {item.name}
                             </span>
+
                         </Link>
                     )
                 })}
