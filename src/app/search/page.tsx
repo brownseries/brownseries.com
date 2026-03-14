@@ -21,13 +21,28 @@ const CATEGORIES = ["All", "New", "Outerwear", "Knitwear", "Bottoms", "Accessori
 const TRENDING = ["Eid Collection", "Linen Coat", "Knitwear", "Accessories", "Winter Wear"];
 
 const BROWSE_CATEGORIES = [
-    { label: "New Arrivals", tag: "new", image: "/hero_indian_new_arrivals.png" },
-    { label: "Outerwear", tag: "outerwear", image: "/hero.png" },
-    { label: "Accessories", tag: "accessories", image: "/hero_indian_accessories.png" },
-    { label: "Bottoms", tag: "bottoms", image: "/trending_hijabi_skirt.png" },
-    { label: "Eid Collection", tag: "eid", image: "/hero_eid_collection.png" },
-    { label: "Essentials", tag: "essentials", image: "/hero_indian_essentials.png" },
+    { label: "New Arrivals", tag: "new", image: "/hero_indian_new_arrivals.png", color: "bg-[#7A5A40]" },
+    { label: "Outerwear", tag: "outerwear", image: "/hero.png", color: "bg-[#4A3728]" },
+    { label: "Accessories", tag: "accessories", image: "/hero_indian_accessories.png", color: "bg-[#9B6B43]" },
+    { label: "Bottoms", tag: "bottoms", image: "/trending_hijabi_skirt.png", color: "bg-[#5D4037]" },
+    { label: "Eid Collection", tag: "eid", image: "/hero_eid_collection.png", color: "bg-[#8D6E63]" },
+    { label: "Essentials", tag: "essentials", image: "/hero_indian_essentials.png", color: "bg-[#3E2723]" },
 ];
+
+const FEATURED_COLLECTIONS = [
+    { id: "eid-glow", title: "Eid Glow '26", items: 24, image: "/hero_eid_collection.png", color: "from-[#9B6B43] to-[#D2B48C]" },
+    { id: "monochrome", title: "The Monochrome Edit", items: 18, image: "/hero.png", color: "from-[#2C2C2C] to-[#4A4A4A]" },
+    { id: "linen-luxury", title: "Linen Luxury", items: 12, image: "/hero_indian_essentials.png", color: "from-[#D2B48C] to-[#E5D3B3]" },
+];
+
+const SPOTLIGHT = {
+    name: "Zahra Ahmed",
+    role: "Senior Curator",
+    image: "/hero_indian_winter.png",
+    quote: "Modesty is not about hiding, it's about revealing your dignity.",
+    lookCount: 42
+};
+
 const RECENT_KEY = "bs_recent_searches";
 
 function getRecent(): string[] {
@@ -202,33 +217,156 @@ export default function SearchPage() {
                     </div>
                 )}
 
-                {/* ── Browse by Category (default blank state) ── */}
+                {/* ── Browse & Discovery (default blank state) ── */}
                 {showBrowse && (
-                    <div className="pt-2">
-                        <p className="text-[11px] uppercase tracking-widest text-foreground/35 mb-4">
-                            Browse by Category
-                        </p>
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                            {BROWSE_CATEGORIES.map((cat) => (
-                                <button
-                                    key={cat.label}
-                                    onClick={() => applyCategory(cat.tag)}
-                                    className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-surface active:scale-[0.97] transition-transform text-left"
-                                >
-                                    <Image
-                                        src={cat.image}
-                                        alt={cat.label}
-                                        fill
-                                        sizes="50vw"
-                                        className="object-cover object-center brightness-75"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                                    <span className="absolute bottom-3 left-3 text-[13px] text-white font-semibold tracking-wide">
-                                        {cat.label}
-                                    </span>
+                    <div className="pt-2 flex flex-col gap-10">
+                        {/* Featured High-Impact Section */}
+                        <section>
+                            <p className="text-[11px] uppercase tracking-widest text-foreground/35 mb-4">
+                                Featured Collections
+                            </p>
+                            <div className="flex gap-4 overflow-x-auto hide-scrollbar snap-x">
+                                {FEATURED_COLLECTIONS.map((col) => (
+                                    <button
+                                        key={col.id}
+                                        className="relative flex-shrink-0 w-[280px] aspect-[16/10] overflow-hidden rounded-[32px] bg-surface snap-center active:scale-[0.98] transition-all"
+                                    >
+                                        <Image
+                                            src={col.image}
+                                            alt={col.title}
+                                            fill
+                                            className="object-cover object-center brightness-[0.85]"
+                                        />
+                                        <div className={`absolute inset-0 bg-gradient-to-t ${col.color} opacity-40 mix-blend-multiply`} />
+                                        <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                                            <span className="text-[10px] uppercase tracking-[0.2em] text-white/70 font-bold mb-1">
+                                                {col.items} Items
+                                            </span>
+                                            <h3 className="text-xl text-white font-bold leading-tight">
+                                                {col.title}
+                                            </h3>
+                                        </div>
+                                    </button>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* Horizontal Categories */}
+                        <section>
+                            <div className="flex items-center justify-between mb-4">
+                                <p className="text-[11px] uppercase tracking-widest text-foreground/35">
+                                    Browse by Category
+                                </p>
+                            </div>
+                            <div className="flex gap-3 overflow-x-auto hide-scrollbar">
+                                {BROWSE_CATEGORIES.map((cat) => (
+                                    <button
+                                        key={cat.label}
+                                        onClick={() => applyCategory(cat.tag)}
+                                        className="flex-shrink-0 group flex flex-col items-center gap-3"
+                                    >
+                                        <div className={`relative w-24 h-24 rounded-full overflow-hidden ${cat.color} active:scale-95 transition-all`}>
+                                            <Image
+                                                src={cat.image}
+                                                alt={cat.label}
+                                                fill
+                                                sizes="100px"
+                                                className="object-cover object-center brightness-90 group-hover:scale-110 transition-transform duration-500"
+                                            />
+                                        </div>
+                                        <span className="text-[12px] text-foreground/60 font-medium tracking-tight">
+                                            {cat.label}
+                                        </span>
+                                    </button>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* Designer Spotlight / Curator Box */}
+                        <section className="bg-surface/40 rounded-[40px] p-8 relative overflow-hidden group">
+                            <div className="relative z-10 flex flex-col items-center text-center">
+                                <div className="w-20 h-20 rounded-full border-2 border-accent/20 p-1 mb-4">
+                                    <div className="w-full h-full rounded-full overflow-hidden relative">
+                                        <Image 
+                                            src={SPOTLIGHT.image} 
+                                            alt={SPOTLIGHT.name} 
+                                            fill 
+                                            className="object-cover"
+                                        />
+                                    </div>
+                                </div>
+                                <span className="text-[10px] uppercase tracking-widest text-accent font-bold mb-2">
+                                    Curator Spotlight
+                                </span>
+                                <h3 className="text-2xl font-[family-name:var(--font-cormorant)] text-warm-white italic font-bold mb-3">
+                                    &ldquo;{SPOTLIGHT.quote}&rdquo;
+                                </h3>
+                                <div className="flex flex-col items-center">
+                                    <span className="text-sm text-foreground/80 font-medium">{SPOTLIGHT.name}</span>
+                                    <span className="text-[11px] text-foreground/40">{SPOTLIGHT.role} • {SPOTLIGHT.lookCount} Looks</span>
+                                </div>
+                                <button className="mt-6 px-8 py-2.5 bg-warm-white text-background rounded-full text-xs font-bold active:scale-95 transition-all">
+                                    Visit Profile
                                 </button>
-                            ))}
-                        </div>
+                            </div>
+                            {/* Decorative Background Blob */}
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent/10 blur-[100px] rounded-full group-hover:bg-accent/20 transition-all duration-700" />
+                        </section>
+
+                        {/* Shop the Look / Editorial Card */}
+                        <section>
+                            <div className="flex items-center justify-between mb-4">
+                                <p className="text-[11px] uppercase tracking-widest text-foreground/35">
+                                    Shop the Look
+                                </p>
+                                <span className="text-[10px] text-accent font-bold uppercase tracking-widest">Seasonal Edit</span>
+                            </div>
+                            <div className="relative aspect-[4/5] rounded-[40px] overflow-hidden group">
+                                <Image 
+                                    src="/hero_indian_winter.png" 
+                                    alt="Winter Shop the Look" 
+                                    fill 
+                                    className="object-cover brightness-90 group-hover:scale-105 transition-transform duration-1000"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                                <div className="absolute bottom-8 left-8 right-8">
+                                    <h4 className="text-2xl font-[family-name:var(--font-cormorant)] text-white italic font-bold mb-4">
+                                        Winter Minimalism
+                                    </h4>
+                                    <div className="flex gap-2">
+                                        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-2 flex items-center gap-3 border border-white/10">
+                                            <div className="w-10 h-10 rounded-lg overflow-hidden relative">
+                                                <Image src="/hero_indian_winter.png" alt="item" fill className="object-cover" />
+                                            </div>
+                                            <div className="pr-4">
+                                                <p className="text-[10px] text-white/60">Knit Sweater</p>
+                                                <p className="text-xs text-white font-bold">₹320</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* Trending Drops Section (Grid) */}
+                        <section>
+                            <p className="text-[11px] uppercase tracking-widest text-foreground/35 mb-4">
+                                Discover More
+                            </p>
+                            <div className="grid grid-cols-2 gap-4">
+                                {ALL_PRODUCTS.slice(4, 8).map((product) => (
+                                    <Link key={product.id} href={`/shop/${product.id}`}
+                                        className="group flex flex-col active:scale-[0.98] transition-transform">
+                                        <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-surface mb-3">
+                                            <Image src={product.image} alt={product.name} fill sizes="50vw"
+                                                className="object-cover object-center brightness-90 group-hover:scale-110 transition-all duration-700" />
+                                        </div>
+                                        <h3 className="text-sm text-warm-white font-medium truncate mb-0.5">{product.name}</h3>
+                                        <p className="text-xs text-foreground/40 font-bold">{product.price}</p>
+                                    </Link>
+                                ))}
+                            </div>
+                        </section>
                     </div>
                 )}
 
