@@ -8,8 +8,8 @@ export default function SavedCollections() {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Create New Board */}
-            <button className="flex items-center gap-6 p-6 rounded-[40px] bg-surface/30 border-2 border-dashed border-white/5 hover:border-accent/40 transition-all group">
-                <div className="w-24 h-24 rounded-[24px] bg-white/5 flex items-center justify-center group-hover:bg-accent transition-colors">
+            <button className="flex items-center gap-4 md:gap-6 p-4 md:p-6 rounded-3xl md:rounded-[40px] bg-surface/30 border-2 border-dashed border-white/5 hover:border-accent/40 transition-all group">
+                <div className="w-20 md:w-24 h-20 md:h-24 rounded-2xl md:rounded-[24px] bg-white/5 flex items-center justify-center group-hover:bg-accent transition-colors">
                     <Plus className="w-8 h-8 text-warm-white" strokeWidth={1.5} />
                 </div>
                 <div className="flex flex-col text-left">
@@ -20,8 +20,8 @@ export default function SavedCollections() {
 
             {/* Personal Boards */}
             {PERSONAL_BOARDS.map((board) => (
-                <button key={board.id} className="flex items-center gap-6 p-6 rounded-[40px] bg-surface/30 border border-white/5 hover:border-white/10 transition-all group overflow-hidden relative">
-                    <div className="flex-shrink-0 w-24 h-24 rounded-[24px] overflow-hidden bg-surface relative grid grid-cols-2 gap-0.5">
+                <button key={board.id} className="flex items-center gap-4 md:gap-6 p-4 md:p-6 rounded-3xl md:rounded-[40px] bg-surface/30 border border-white/5 hover:border-white/10 transition-all group overflow-hidden relative">
+                    <div className="flex-shrink-0 w-20 md:w-24 h-20 md:h-24 rounded-2xl md:rounded-[24px] overflow-hidden bg-surface relative grid grid-cols-2 gap-0.5">
                         <div className="relative h-full">
                             <Image src={board.images[0]} alt="b1" fill className="object-cover" />
                         </div>

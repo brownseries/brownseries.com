@@ -16,8 +16,8 @@ interface SavedGridItemProps {
 
 export default function SavedGridItem({ product }: SavedGridItemProps) {
     return (
-        <div className="group relative flex flex-col bg-surface/30 rounded-[32px] overflow-hidden border border-white/5 hover:border-white/10 transition-all p-3">
-            <Link href={`/shop/${product.id}`} className="relative aspect-[4/5] overflow-hidden rounded-[24px] mb-4">
+        <div className="group relative flex flex-col bg-surface/30 rounded-3xl overflow-hidden border border-white/5 hover:border-white/10 transition-all p-3">
+            <Link href={`/shop/${product.id}`} className="relative aspect-[4/5] overflow-hidden rounded-2xl mb-4">
                 <Image 
                     src={product.image} 
                     alt={product.name} 
@@ -46,11 +46,11 @@ export default function SavedGridItem({ product }: SavedGridItemProps) {
                     <div className="h-px flex-1 bg-white/5" />
                 </div>
 
-                <div className="grid grid-cols-2 gap-2 mt-4">
-                    <button className="py-2.5 rounded-2xl bg-warm-white text-background text-[10px] font-bold uppercase tracking-widest active:scale-95 transition-all">
+                <div className="flex flex-col gap-2 mt-4">
+                    <button className="w-full py-2.5 rounded-xl bg-warm-white text-background text-[10px] font-bold uppercase tracking-widest active:scale-95 transition-all">
                         Move to Bag
                     </button>
-                    <button className="py-2.5 rounded-2xl bg-white/5 border border-white/10 text-foreground/60 text-[10px] font-bold uppercase tracking-widest hover:text-warm-white active:scale-95 transition-all">
+                    <button className="w-full py-2.5 rounded-xl bg-white/5 border border-white/10 text-foreground/60 text-[10px] font-bold uppercase tracking-widest hover:text-warm-white active:scale-95 transition-all">
                         Remove
                     </button>
                 </div>

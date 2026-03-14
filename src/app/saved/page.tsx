@@ -19,7 +19,7 @@ export default function SavedPage() {
 
             <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
                 {/* Page Header */}
-                <div className="pt-12 pb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div className="pt-8 md:pt-12 pb-8 md:pb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
                     <div className="flex flex-col gap-2">
                         <div className="flex items-center gap-2 mb-1">
                             <span className="text-[10px] uppercase tracking-[0.3em] text-accent font-bold">Your Curated Space</span>
@@ -37,14 +37,14 @@ export default function SavedPage() {
                 </div>
 
                 {/* Tabs */}
-                <div className="flex items-center gap-8 border-b border-white/5 mb-10 overflow-x-auto hide-scrollbar">
+                <div className="flex items-center gap-8 border-b border-white/5 mb-6 md:mb-10 overflow-x-auto hide-scrollbar">
                     <button
                         onClick={() => setActiveTab("items")}
                         className={`pb-4 text-[13px] font-bold uppercase tracking-[0.15em] transition-all relative flex items-center gap-2 ${activeTab === "items" ? "text-warm-white" : "text-foreground/30 hover:text-foreground/60"
                             }`}
                     >
                         <Grid className="w-4 h-4" />
-                        All Items ({SAVED_ITEMS.length})
+                        All ({SAVED_ITEMS.length})
                         {activeTab === "items" && <motion.div layoutId="tab-underline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent" />}
                     </button>
                     <button
