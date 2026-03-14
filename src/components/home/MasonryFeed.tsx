@@ -165,15 +165,17 @@ function FeedCard({ item }: { item: typeof FEED_ITEMS[0] }) {
 }
 
 export default function MasonryFeed() {
-    const cols2Left = FEED_ITEMS.filter((_, i) => i % 2 === 0);
-    const cols2Right = FEED_ITEMS.filter((_, i) => i % 2 !== 0);
+    // Utility to distribute items into columns for the masonry effect
+    const distributeItems = (items: typeof FEED_ITEMS, numCols: number) => {
+        const columns: (typeof FEED_ITEMS)[] = Array.from({ length: numCols }, () => []);
+        items.forEach((item, index) => {
+            columns[index % numCols].push(item);
+        });
+        return columns;
+    };
 
-    // For 4-col desktop: route items to ensure alternating aspect ratios per column
-    // Since FEED_ITEMS has 8 items: 0:T, 1:S, 2:S, 3:T, 4:T, 5:S, 6:S, 7:T
-    const col1 = [FEED_ITEMS[0], FEED_ITEMS[5]]; // Tall, Short
-    const col2 = [FEED_ITEMS[1], FEED_ITEMS[4]]; // Short, Tall
-    const col3 = [FEED_ITEMS[2], FEED_ITEMS[7]]; // Short, Tall
-    const col4 = [FEED_ITEMS[3], FEED_ITEMS[6]]; // Tall, Short
+    const mobileCols = distributeItems(FEED_ITEMS, 2);
+    const desktopCols = distributeItems(FEED_ITEMS, 4);
 
     return (
         <section className="px-3 md:px-8 pt-4 md:pt-8 pb-4 max-w-7xl mx-auto">
@@ -202,20 +204,15 @@ export default function MasonryFeed() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.4 }}
             >
-                <div className="flex-1 flex flex-col gap-3">
-                    {cols2Left.map((item, i) => (
-                        <motion.div key={item.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.07 }}>
-                            <FeedCard item={item} />
-                        </motion.div>
-                    ))}
-                </div>
-                <div className="flex-1 flex flex-col gap-3 mt-10">
-                    {cols2Right.map((item, i) => (
-                        <motion.div key={item.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.07 + 0.05 }}>
-                            <FeedCard item={item} />
-                        </motion.div>
-                    ))}
-                </div>
+                {mobileCols.map((col, colIdx) => (
+                    <div key={colIdx} className="flex-1 flex flex-col gap-3" style={{ marginTop: colIdx % 2 === 1 ? "2.5rem" : 0 }}>
+                        {col.map((item, i) => (
+                            <motion.div key={item.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: (colIdx * 0.05) + i * 0.07 }}>
+                                <FeedCard item={item} />
+                            </motion.div>
+                        ))}
+                    </div>
+                ))}
             </motion.div>
 
             {/* ── Desktop: 4-column ── */}
@@ -225,7 +222,7 @@ export default function MasonryFeed() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.4 }}
             >
-                {[col1, col2, col3, col4].map((col, colIdx) => (
+                {desktopCols.map((col, colIdx) => (
                     <div key={colIdx} className="flex-1 flex flex-col gap-4" style={{ marginTop: colIdx % 2 === 1 ? "2.5rem" : 0 }}>
                         {col.map((item, i) => (
                             <motion.div key={item.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: (colIdx * 0.05) + i * 0.07 }}>
