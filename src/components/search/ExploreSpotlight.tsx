@@ -9,10 +9,10 @@ export default function ExploreSpotlight() {
             <div className="relative z-10 flex flex-col items-center text-center">
                 <div className="w-20 h-20 rounded-full border-2 border-accent/20 p-1 mb-4">
                     <div className="w-full h-full rounded-full overflow-hidden relative">
-                        <Image 
-                            src={SPOTLIGHT.image} 
-                            alt={SPOTLIGHT.name} 
-                            fill 
+                        <Image
+                            src={SPOTLIGHT.image}
+                            alt={SPOTLIGHT.name}
+                            fill
                             className="object-cover"
                         />
                     </div>
@@ -20,7 +20,7 @@ export default function ExploreSpotlight() {
                 <span className="text-[10px] uppercase tracking-widest text-accent font-bold mb-2">
                     Curator Spotlight
                 </span>
-                <h3 className="text-2xl font-[family-name:var(--font-cormorant)] text-warm-white font-bold mb-3">
+                <h3 className="text-2xl  text-warm-white font-bold mb-3">
                     &ldquo;{SPOTLIGHT.quote}&rdquo;
                 </h3>
                 <div className="flex flex-col items-center">

@@ -133,7 +133,7 @@ export default function SearchPage() {
 
                         {/* Discover More / Trending Drops */}
                         <section className="border-t border-white/5 pt-10">
-                            <h2 className="text-[20px] font-[family-name:var(--font-cormorant)] text-warm-white font-bold mb-6">
+                            <h2 className="text-[20px]  text-warm-white font-bold mb-6">
                                 Discover More
                             </h2>
                             <div className="grid grid-cols-2 gap-4">

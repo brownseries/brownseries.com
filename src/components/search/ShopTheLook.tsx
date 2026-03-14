@@ -19,29 +19,29 @@ export default function ShopTheLook({ activeHotspot, setActiveHotspot }: ShopThe
                 <span className="text-[10px] text-accent font-bold uppercase tracking-widest">Seasonal Edit</span>
             </div>
             <div className="relative aspect-[4/5] rounded-[40px] overflow-hidden group shadow-2xl">
-                <Image 
-                    src="/hero_indian_winter.png" 
-                    alt="Winter Shop the Look" 
-                    fill 
+                <Image
+                    src="/hero_indian_winter.png"
+                    alt="Winter Shop the Look"
+                    fill
                     className="object-cover brightness-90 group-hover:scale-105 transition-transform duration-1000"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                
+
                 {/* Hotspots */}
                 <div className="absolute inset-0">
                     {/* Item 1 Hotspot: Knit Sweater */}
                     <div className="absolute top-[40%] left-[50%]">
-                        <button 
+                        <button
                             onClick={(e) => { e.stopPropagation(); setActiveHotspot(activeHotspot === 1 ? null : 1); }}
                             className="relative w-12 h-12 flex items-center justify-center -translate-x-1/2 -translate-y-1/2"
                         >
                             <span className="absolute inset-0 rounded-full bg-white/40 animate-ping" />
                             <span className="relative w-3.5 h-3.5 rounded-full bg-white shadow-[0_0_15px_rgba(0,0,0,0.3)] border-2 border-accent" />
                         </button>
-                        
+
                         <AnimatePresence>
                             {activeHotspot === 1 && (
-                                <motion.div 
+                                <motion.div
                                     initial={{ opacity: 0, scale: 0.9, y: 15 }}
                                     animate={{ opacity: 1, scale: 1, y: 0 }}
                                     exit={{ opacity: 0, scale: 0.9, y: 15 }}
@@ -62,17 +62,17 @@ export default function ShopTheLook({ activeHotspot, setActiveHotspot }: ShopThe
 
                     {/* Item 2 Hotspot: Winter Coat */}
                     <div className="absolute top-[60%] left-[30%]">
-                        <button 
+                        <button
                             onClick={(e) => { e.stopPropagation(); setActiveHotspot(activeHotspot === 2 ? null : 2); }}
                             className="relative w-12 h-12 flex items-center justify-center -translate-x-1/2 -translate-y-1/2"
                         >
                             <span className="absolute inset-0 rounded-full bg-white/40 animate-ping animate-delay-300" />
                             <span className="relative w-3.5 h-3.5 rounded-full bg-white shadow-[0_0_15px_rgba(0,0,0,0.3)] border-2 border-accent" />
                         </button>
-                        
+
                         <AnimatePresence>
                             {activeHotspot === 2 && (
-                                <motion.div 
+                                <motion.div
                                     initial={{ opacity: 0, scale: 0.9, y: 15 }}
                                     animate={{ opacity: 1, scale: 1, y: 0 }}
                                     exit={{ opacity: 0, scale: 0.9, y: 15 }}
@@ -93,10 +93,10 @@ export default function ShopTheLook({ activeHotspot, setActiveHotspot }: ShopThe
                 </div>
 
                 <div className="absolute bottom-8 left-8 right-8">
-                    <h4 className="text-2xl font-[family-name:var(--font-cormorant)] text-white font-bold mb-4">
+                    <h4 className="text-2xl  text-white font-bold mb-4">
                         Winter Minimalism
                     </h4>
-                    <button 
+                    <button
                         className="bg-white/10 backdrop-blur-md rounded-2xl px-6 py-3 border border-white/10 text-white text-xs font-bold uppercase tracking-widest active:scale-95 transition-transform"
                         onClick={() => setActiveHotspot(activeHotspot ? null : 1)}
                     >

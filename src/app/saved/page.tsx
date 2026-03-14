@@ -1,74 +1,107 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import MobileBottomNav from "@/components/MobileBottomNav";
+import { SAVED_ITEMS } from "@/app/search/constants";
+import SavedGridItem from "@/components/saved/SavedGridItem";
+import SavedCollections from "@/components/saved/SavedCollections";
+import { motion, AnimatePresence } from "framer-motion";
+import { Grid, Layout, Share2 } from "lucide-react";
 
 export default function SavedPage() {
-    const savedItems = [
-        {
-            id: 1, name: "Everyday Essentials", price: "₹180", image: "/hero_indian_essentials.png"
-        },
-        {
-            id: 4, name: "Modern Silhouettes", price: "₹450", image: "/hero_indian_new_arrivals.png"
-        },
-        { id: 8, name: "Classic Leather Tote", price: "₹560", image: "/hero-2.png" },
-    ];
+    const [activeTab, setActiveTab] = useState<"items" | "boards">("items");
 
     return (
-        <main className="min-h-screen bg-background pb-safe md:pb-8 flex flex-col">
+        <main className="min-h-screen bg-background pb-32 flex flex-col">
             <Navbar />
 
-            {/* Single outer wrapper */}
             <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
-
                 {/* Page Header */}
-                <div className="py-8 md:py-12 border-b border-white/5">
-                    <h1 className="text-xl md:text-2xl text-warm-white font-bold mb-4">
-                        Saved Items
-                    </h1>
-                    <p className="text-[14px] text-foreground/60 max-w-xl">
-                        Your personal collection. Items you've curated for your future wardrobe.
-                    </p>
+                <div className="pt-12 pb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-2 mb-1">
+                            <span className="text-[10px] uppercase tracking-[0.3em] text-accent font-bold">Your Curated Space</span>
+                            <div className="h-px w-8 bg-accent/30" />
+                        </div>
+                        <h1 className="text-xl md:text-2xl text-warm-white font-bold">
+                            Curated Collections
+                        </h1>
+                    </div>
+
+                    <button className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white/5 border border-white/10 text-[11px] text-warm-white font-bold uppercase tracking-widest hover:bg-white/10 transition-all self-start md:self-auto">
+                        <Share2 className="w-4 h-4" />
+                        Share Closet
+                    </button>
                 </div>
 
-                {/* Saved Grid */}
-                <div className="flex-grow py-12">
-                    {savedItems.length > 0 ? (
-                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
-                            {savedItems.map((product) => (
-                                <div key={product.id} className="cursor-pointer group active:scale-[0.98] transition-transform flex flex-col">
-                                    <div className="relative aspect-[4/5] overflow-hidden rounded-xl md:rounded-none bg-surface mb-3">
-                                        <Image src={product.image} alt={product.name} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover object-center filter brightness-90 md:brightness-100 md:group-hover:scale-105 transition-transform duration-700" />
-                                        <button className="absolute top-3 right-3 p-2 bg-background/40 backdrop-blur-md rounded-full text-warm-white active:bg-accent active:scale-110 transition-all z-10">
-                                            {/* Filled Heart Icon for Saved */}
-                                            <svg className="w-4 h-4 fill-warm-white text-warm-white" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                                        </button>
-                                    </div>
-                                    <div>
-                                        <h3 className="text-[14px] text-warm-white font-medium truncate">{product.name}</h3>
-                                        <p className="text-[13px] text-foreground/60 mt-0.5">{product.price}</p>
-                                    </div>
-                                    <button className="mt-4 text-[11px] font-medium tracking-widest uppercase text-background bg-warm-white py-2.5 rounded-none md:hover:bg-accent transition-colors">
-                                        MOVE TO CART
-                                    </button>
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-                        <div className="flex flex-col items-center justify-center py-20 text-center">
-                            <svg className="w-12 h-12 text-foreground/20 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                            <h2 className="text-2xl text-warm-white font-medium mb-2">Your wishlist is empty</h2>
-                            <p className="text-[13px] text-foreground/60 mb-8 max-w-sm">Tap the heart icon on any item to save it for later.</p>
-                            <Link href="/shop" className="text-[11px] font-medium tracking-widest uppercase border border-warm-white/40 text-warm-white px-8 py-3 hover:bg-warm-white hover:text-background transition-colors">
-                                EXPLORE SHOP
+                {/* Tabs */}
+                <div className="flex items-center gap-8 border-b border-white/5 mb-10 overflow-x-auto hide-scrollbar">
+                    <button
+                        onClick={() => setActiveTab("items")}
+                        className={`pb-4 text-[13px] font-bold uppercase tracking-[0.15em] transition-all relative flex items-center gap-2 ${activeTab === "items" ? "text-warm-white" : "text-foreground/30 hover:text-foreground/60"
+                            }`}
+                    >
+                        <Grid className="w-4 h-4" />
+                        All Items ({SAVED_ITEMS.length})
+                        {activeTab === "items" && <motion.div layoutId="tab-underline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent" />}
+                    </button>
+                    <button
+                        onClick={() => setActiveTab("boards")}
+                        className={`pb-4 text-[13px] font-bold uppercase tracking-[0.15em] transition-all relative flex items-center gap-2 ${activeTab === "boards" ? "text-warm-white" : "text-foreground/30 hover:text-foreground/60"
+                            }`}
+                    >
+                        <Layout className="w-4 h-4" />
+                        Personal Boards (2)
+                        {activeTab === "boards" && <motion.div layoutId="tab-underline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent" />}
+                    </button>
+                </div>
+
+                {/* Content */}
+                <div className="min-h-[400px]">
+                    <AnimatePresence mode="wait">
+                        {activeTab === "items" ? (
+                            <motion.div
+                                key="items"
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8"
+                            >
+                                {SAVED_ITEMS.map((product) => (
+                                    <SavedGridItem key={product.id} product={product} />
+                                ))}
+                            </motion.div>
+                        ) : (
+                            <motion.div
+                                key="boards"
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                            >
+                                <SavedCollections />
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+
+                    {SAVED_ITEMS.length === 0 && activeTab === "items" && (
+                        <div className="flex flex-col items-center justify-center py-20 text-center gap-6">
+                            <div className="w-20 h-20 rounded-full bg-surface flex items-center justify-center">
+                                <Grid className="w-8 h-8 text-foreground/20" />
+                            </div>
+                            <div className="flex flex-col gap-2">
+                                <h2 className="text-2xl text-warm-white font-medium">Your wishlist is empty</h2>
+                                <p className="text-[13px] text-foreground/60 max-w-xs mx-auto">Tap the heart icon on any item in the shop to save it here.</p>
+                            </div>
+                            <Link href="/shop" className="px-8 py-4 bg-warm-white text-background rounded-2xl text-[11px] font-bold uppercase tracking-widest hover:bg-accent transition-colors">
+                                Explore Shop
                             </Link>
                         </div>
                     )}
                 </div>
+            </div>
 
-            </div>{/* end outer wrapper */}
-
-            {/* Mobile Bottom Navigation Bar (iOS App Style) */}
             <MobileBottomNav />
         </main>
     );

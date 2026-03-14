@@ -37,13 +37,13 @@ export default function ExploreStyleQuiz() {
     return (
         <section>
             {/* Entry Card */}
-            <button 
+            <button
                 onClick={() => setIsOpen(true)}
                 className="w-full relative aspect-[16/6] md:aspect-[16/4] rounded-[32px] overflow-hidden group shadow-lg"
             >
                 <div className="absolute inset-0 bg-gradient-to-r from-[#2C2C2C] to-[#4A3728] group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 opacity-40 bg-[url('/hero_indian_accessories.png')] bg-cover bg-center mix-blend-overlay" />
-                
+
                 <div className="absolute inset-0 p-6 md:p-8 flex items-center justify-between">
                     <div className="flex flex-col text-left">
                         <div className="flex items-center gap-2 mb-2">
@@ -62,7 +62,7 @@ export default function ExploreStyleQuiz() {
             {/* Quiz Overlay */}
             <AnimatePresence>
                 {isOpen && (
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -75,13 +75,12 @@ export default function ExploreStyleQuiz() {
                             </button>
                             <div className="flex gap-1.5">
                                 {STYLE_QUIZ_QUESTIONS.map((_, i) => (
-                                    <div 
-                                        key={i} 
-                                        className={`h-1 rounded-full transition-all duration-500 ${
-                                            isFinished ? "w-4 bg-accent" :
-                                            step === i ? "w-8 bg-accent" : 
-                                            step > i ? "w-4 bg-accent/40" : "w-4 bg-white/10"
-                                        }`} 
+                                    <div
+                                        key={i}
+                                        className={`h-1 rounded-full transition-all duration-500 ${isFinished ? "w-4 bg-accent" :
+                                                step === i ? "w-8 bg-accent" :
+                                                    step > i ? "w-4 bg-accent/40" : "w-4 bg-white/10"
+                                            }`}
                                     />
                                 ))}
                             </div>
@@ -107,7 +106,7 @@ export default function ExploreStyleQuiz() {
                                             )}
                                             <span className="text-[10px] uppercase tracking-widest text-accent font-bold">Step {step + 1} of {STYLE_QUIZ_QUESTIONS.length}</span>
                                         </div>
-                                        <h2 className="text-3xl font-[family-name:var(--font-cormorant)] text-warm-white font-bold leading-tight">
+                                        <h2 className="text-3xl  text-warm-white font-bold leading-tight">
                                             {STYLE_QUIZ_QUESTIONS[step].question}
                                         </h2>
                                     </div>
@@ -142,7 +141,7 @@ export default function ExploreStyleQuiz() {
                                         <div className="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center mb-2">
                                             <CheckCircle2 className="w-10 h-10 text-accent" />
                                         </div>
-                                        <h2 className="text-3xl font-[family-name:var(--font-cormorant)] text-warm-white font-bold">
+                                        <h2 className="text-3xl  text-warm-white font-bold">
                                             Your Signature Edit
                                         </h2>
                                         <p className="text-[14px] text-foreground/45 max-w-xs">
@@ -164,13 +163,13 @@ export default function ExploreStyleQuiz() {
                                         ))}
                                     </div>
 
-                                    <button 
+                                    <button
                                         onClick={resetQuiz}
                                         className="w-full py-4 rounded-2xl bg-accent text-white font-bold uppercase tracking-widest text-[11px] hover:shadow-xl hover:shadow-accent/20 transition-all active:scale-[0.98]"
                                     >
                                         Add Selection to Bag
                                     </button>
-                                    <button 
+                                    <button
                                         onClick={resetQuiz}
                                         className="text-[11px] text-foreground/40 font-bold uppercase tracking-widest py-2 hover:text-foreground"
                                     >

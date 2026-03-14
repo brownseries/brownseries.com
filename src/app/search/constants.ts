@@ -91,3 +91,26 @@ export const STYLE_QUIZ_QUESTIONS = [
         ]
     }
 ];
+
+export const SAVED_ITEMS = [
+    { id: 1, name: "Everyday Essentials", price: "₹180", image: "/hero_indian_essentials.png", tag: "essentials" },
+    { id: 4, name: "Modern Silhouettes", price: "₹450", image: "/hero_indian_new_arrivals.png", tag: "new" },
+    { id: 8, name: "Classic Leather Tote", price: "₹560", image: "/hero-2.png", tag: "accessories" },
+    { id: 2, name: "Winter Collection", price: "₹320", image: "/hero_indian_winter.png", tag: "winter" },
+    { id: 6, name: "Textured Midi Skirt", price: "₹240", image: "/trending_hijabi_skirt.png", tag: "bottoms" },
+];
+
+export const PERSONAL_BOARDS = [
+    {
+        id: "p-board-1",
+        title: "Summer in Kerala",
+        items: 5,
+        images: ["/hero_indian_essentials.png", "/hero_indian_accessories.png", "/hero.png"]
+    },
+    {
+        id: "p-board-2",
+        title: "Wedding Guest",
+        items: 3,
+        images: ["/hero_eid_collection.png", "/hero_indian_new_arrivals.png", "/hero-2.png"]
+    }
+];
