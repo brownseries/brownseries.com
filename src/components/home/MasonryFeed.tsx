@@ -352,11 +352,11 @@ export default function MasonryFeed({
   if (loading) {
     return (
       <section className="px-2 md:px-8 pt-4 pb-4 max-w-7xl mx-auto">
-        <div className="flex md:hidden gap-2.5 items-start">
+        <div className="flex md:hidden gap-2 items-start">
           {[0, 1].map((col) => (
             <div
               key={col}
-              className="flex-1 flex flex-col gap-2.5"
+              className="flex-1 flex flex-col gap-2"
               style={{ marginTop: col % 2 === 1 ? "2.5rem" : 0 }}
             >
               {[0, 1, 2, 3].map((i) => (
@@ -392,7 +392,7 @@ export default function MasonryFeed({
 
       {/* Mobile: 2-column */}
       <motion.div
-        className="flex md:hidden gap-2.5 items-start"
+        className="flex md:hidden gap-2 items-start"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
@@ -401,7 +401,7 @@ export default function MasonryFeed({
         {mobileCols.map((col, colIdx) => (
           <div
             key={colIdx}
-            className="flex-1 flex flex-col gap-2.5"
+            className="flex-1 flex flex-col gap-2"
             style={{ marginTop: colIdx % 2 === 1 ? "2.5rem" : 0 }}
           >
             {col.map((item, i) => (
