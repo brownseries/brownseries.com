@@ -7,7 +7,7 @@ import Navbar from "@/components/Navbar";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import { BUSINESS_ACCOUNTS } from "@/data/accounts";
 import { ALL_PRODUCTS } from "@/app/search/constants";
-import { FEED_ITEMS } from "@/components/home/MasonryFeed";
+import { FEED_ITEMS } from "@/data/feed";
 import { BadgeCheck, MapPin, Star, Grid, ShoppingBag } from "lucide-react";
 import { motion } from "framer-motion";
 

@@ -44,7 +44,7 @@ export const BUSINESS_ACCOUNTS: UserProfile[] = [
   {
     id: "modest-layering",
     username: "modest_layering",
-    displayName: "Noor Textiles",
+    displayName: "Agnes",
     avatar: "🧶",
     accountType: "business",
     bio: "Handcrafted knitwear & layering pieces. Slow fashion, warm textures.",

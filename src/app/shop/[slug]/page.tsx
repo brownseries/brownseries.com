@@ -8,6 +8,7 @@ import CompleteTheLook from "@/components/CompleteTheLook";
 import { useCartStore } from "@/store/useCartStore";
 import { Bookmark, Heart, ShoppingCart, BadgeCheck, Star } from "lucide-react";
 import { ALL_PRODUCTS } from "@/app/search/constants";
+import { FEED_ITEMS } from "@/data/feed";
 import { BUSINESS_ACCOUNTS } from "@/data/accounts";
 
 export default function ProductDetailPage(props: {
@@ -25,26 +26,38 @@ export default function ProductDetailPage(props: {
   const { openCart, getTotalItems } = useCartStore();
   const cartCount = getTotalItems();
 
-  const MOOD_TAGS = ["#QuietLuxury", "#EarthTone", "#Modest", "#Outerwear"];
-
-  // Format the slug for display purposes
-  const title = slug
-    .replace(/-/g, " ")
-    .replace(/\b\w/g, (c) => c.toUpperCase());
-
-  // Find the product and its account
+  // Find the product from ALL_PRODUCTS or FEED_ITEMS
   const product = ALL_PRODUCTS.find(
     (p) =>
       p.id === Number(slug) ||
       p.name.toLowerCase().replace(/\s+/g, "-") === slug,
   );
-  const productAccount = product?.account;
+  const feedItem = FEED_ITEMS.find(
+    (f) =>
+      f.id === Number(slug) ||
+      f.title.toLowerCase().replace(/\s+/g, "-") === slug,
+  );
+  const productAccount = feedItem?.account ?? product?.account;
   const fullAccount = productAccount
     ? BUSINESS_ACCOUNTS.find((a) => a.id === productAccount.id)
     : null;
 
-  // Mock product images
-  const images = ["/hero.png", "/hero-2.png", "/hero_indian_essentials.png"];
+  // Use the feed item image first (since user clicked from feed), fall back to product
+  const primaryImage = feedItem?.image ?? product?.image ?? "/hero.png";
+  const images = [primaryImage];
+
+  // Format the slug for display purposes
+  const title =
+    feedItem?.title ??
+    product?.name ??
+    slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+
+  const MOOD_TAGS = feedItem?.tags ?? [
+    "#QuietLuxury",
+    "#EarthTone",
+    "#Modest",
+    "#Outerwear",
+  ];
 
   const colors = [
     { id: "espresso", hex: "#1a1512", name: "Deep Espresso" },

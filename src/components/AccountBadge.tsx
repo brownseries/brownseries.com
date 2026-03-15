@@ -25,7 +25,7 @@ export default function AccountBadge({
   return (
     <Link
       href={`/u/${account.username}`}
-      className={`flex items-center gap-1.5 group/account ${className}`}
+      className={`flex items-center gap-1.5 min-w-0 group/account ${className}`}
       onClick={(e) => e.stopPropagation()}
     >
       {showAvatar && (

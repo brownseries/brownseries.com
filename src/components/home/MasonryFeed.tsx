@@ -2,133 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState, useCallback, useRef } from "react";
 import { Heart, Bookmark, Users } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import AccountBadgeComponent from "@/components/AccountBadge";
-import { ACCOUNTS } from "@/data/accounts";
-import type { AccountBadge } from "@/types";
-
-interface FeedItemData {
-  id: number;
-  image: string;
-  title: string;
-  subtitle: string;
-  saves: number;
-  likes: number;
-  tags: string[];
-  href: string;
-  aspect: "tall" | "short";
-  hot: boolean;
-  account: AccountBadge;
-}
-
-export const FEED_ITEMS: FeedItemData[] = [
-  {
-    id: 1,
-    image: "/hero_eid_collection.png",
-    title: "Eid Collection",
-    subtitle: "Festive lookbook",
-    saves: 2140,
-    likes: 3420,
-    tags: ["#EidLooks", "#FestiveFashion"],
-    href: "/shop/eid-collections",
-    aspect: "tall",
-    hot: true,
-    account: ACCOUNTS.zahra,
-  },
-  {
-    id: 2,
-    image: "/hero_indian_winter.png",
-    title: "Winter Knits",
-    subtitle: "Cold-weather essentials",
-    saves: 983,
-    likes: 1540,
-    tags: ["#WinterKnits", "#QuietLuxury"],
-    href: "/shop/cozy-looks",
-    aspect: "short",
-    hot: false,
-    account: ACCOUNTS.noor,
-  },
-  {
-    id: 3,
-    image: "/hero.png",
-    title: "Classic Style",
-    subtitle: "Everyday staples",
-    saves: 1562,
-    likes: 2780,
-    tags: ["#EarthTone", "#Modest"],
-    href: "/shop/classic-style",
-    aspect: "short",
-    hot: false,
-    account: ACCOUNTS.brownSeries,
-  },
-  {
-    id: 4,
-    image: "/hero_indian_accessories.png",
-    title: "Premium Accessories",
-    subtitle: "Finishing touches",
-    saves: 741,
-    likes: 1120,
-    tags: ["#Accessories", "#LayeredLooks"],
-    href: "/shop/timeless-accessory",
-    aspect: "tall",
-    hot: true,
-    account: ACCOUNTS.sara,
-  },
-  {
-    id: 5,
-    image: "/hero_indian_essentials.png",
-    title: "Everyday Essentials",
-    subtitle: "Capsule wardrobe",
-    saves: 1893,
-    likes: 3100,
-    tags: ["#Essentials", "#EarthTone"],
-    href: "/shop/classic-style",
-    aspect: "tall",
-    hot: false,
-    account: ACCOUNTS.brownSeries,
-  },
-  {
-    id: 6,
-    image: "/trending_hijabi_skirt.png",
-    title: "Textured Midi Skirt",
-    subtitle: "Statement bottoms",
-    saves: 612,
-    likes: 890,
-    tags: ["#Bottoms", "#Modest"],
-    href: "/shop/1",
-    aspect: "short",
-    hot: false,
-    account: ACCOUNTS.earth,
-  },
-  {
-    id: 7,
-    image: "/hero-2.png",
-    title: "Leather Tote",
-    subtitle: "Carry everything",
-    saves: 447,
-    likes: 670,
-    tags: ["#Bags", "#Accessories"],
-    href: "/shop/2",
-    aspect: "short",
-    hot: false,
-    account: ACCOUNTS.sara,
-  },
-  {
-    id: 8,
-    image: "/hero_indian_new_arrivals.png",
-    title: "Modern Silhouettes",
-    subtitle: "New season drop",
-    saves: 2304,
-    likes: 4150,
-    tags: ["#NewIn", "#QuietLuxury"],
-    href: "/shop/4",
-    aspect: "tall",
-    hot: true,
-    account: ACCOUNTS.zahra,
-  },
-];
+import { FEED_ITEMS } from "@/data/feed";
+import type { FeedItem } from "@/types";
 
 function FeedCardSkeleton({ tall }: { tall: boolean }) {
   return (
@@ -147,28 +27,38 @@ function FeedCardSkeleton({ tall }: { tall: boolean }) {
   );
 }
 
-function FeedCard({ item }: { item: FeedItemData }) {
+function FeedCard({ item }: { item: FeedItem }) {
+  const router = useRouter();
   const [saved, setSaved] = useState(false);
   const [liked, setLiked] = useState(false);
   const [localLikes, setLocalLikes] = useState(item.likes);
   const [showHeartBurst, setShowHeartBurst] = useState(false);
-  const lastTapRef = useRef(0);
+  const tapTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handleDoubleTap = useCallback(
-    (e: React.MouseEvent | React.TouchEvent) => {
-      const now = Date.now();
-      if (now - lastTapRef.current < 300) {
-        e.preventDefault();
+  const handleTap = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (tapTimerRef.current) {
+        // Second tap came in — double tap = like
+        clearTimeout(tapTimerRef.current);
+        tapTimerRef.current = null;
         if (!liked) {
           setLiked(true);
           setLocalLikes((n) => n + 1);
           setShowHeartBurst(true);
           setTimeout(() => setShowHeartBurst(false), 900);
         }
+      } else {
+        // First tap — wait to see if double tap follows
+        tapTimerRef.current = setTimeout(() => {
+          tapTimerRef.current = null;
+          router.push(item.href);
+        }, 250);
       }
-      lastTapRef.current = now;
     },
-    [liked],
+    [liked, item.href, router],
   );
 
   const handleSave = (e: React.MouseEvent) => {
@@ -187,10 +77,9 @@ function FeedCard({ item }: { item: FeedItemData }) {
   };
 
   return (
-    <Link
-      href={item.href}
-      className="block group active:scale-[0.98] transition-transform"
-      onClick={handleDoubleTap}
+    <div
+      className="block group active:scale-[0.98] transition-transform cursor-pointer"
+      onClick={handleTap}
     >
       <div
         className={`relative w-full overflow-hidden rounded-2xl bg-surface ${item.aspect === "tall" ? "aspect-[3/4]" : "aspect-square"}`}
@@ -218,48 +107,55 @@ function FeedCard({ item }: { item: FeedItemData }) {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* Hashtags on hover */}
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-3 pt-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10">
+          <div className="flex flex-wrap gap-1.5">
+            {item.tags.map((tag) => (
+              <span key={tag} className="text-[10px] text-white/90 font-medium">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Content below image */}
-      <div className="pt-2 px-0.5">
-        {/* Account attribution */}
-        <AccountBadgeComponent account={item.account} size="sm" />
+      <div className="pt-2 px-0.5 overflow-hidden">
+        {/* Account + actions row */}
+        <div className="flex items-center justify-between gap-1">
+          <div className="min-w-0 flex-1 overflow-hidden">
+            <AccountBadgeComponent account={item.account} size="sm" />
+          </div>
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <button
+              onClick={handleLike}
+              className="p-1 -m-1 active:scale-110 transition-transform"
+              aria-label="Like"
+            >
+              <Heart
+                size={18}
+                className={`transition-colors ${liked ? "fill-red-400 text-red-400" : "text-foreground/40"}`}
+              />
+            </button>
+            <button
+              onClick={handleSave}
+              className="p-1 -m-1 active:scale-110 transition-transform"
+              aria-label="Save"
+            >
+              <Bookmark
+                size={18}
+                className={`transition-colors ${saved ? "fill-accent text-accent" : "text-foreground/40"}`}
+              />
+            </button>
+          </div>
+        </div>
 
-        <h3 className="text-[12px] font-semibold text-warm-white leading-snug mt-1">
+        <h3 className="text-[12px] font-semibold text-warm-white leading-snug mt-1 truncate">
           {item.title}
         </h3>
-
-        <div className="flex items-center gap-3 mt-1.5">
-          <button
-            onClick={handleLike}
-            className="flex items-center gap-1 active:scale-110 transition-transform"
-            aria-label="Like"
-          >
-            <Heart
-              size={18}
-              className={`transition-colors ${liked ? "fill-red-400 text-red-400" : "text-foreground/40"}`}
-            />
-            <span
-              className={`text-[11px] ${liked ? "text-red-400" : "text-foreground/40"}`}
-            >
-              {localLikes >= 1000
-                ? `${(localLikes / 1000).toFixed(1)}k`
-                : localLikes}
-            </span>
-          </button>
-          <button
-            onClick={handleSave}
-            className="flex items-center gap-1 active:scale-110 transition-transform"
-            aria-label="Save"
-          >
-            <Bookmark
-              size={18}
-              className={`transition-colors ${saved ? "fill-accent text-accent" : "text-foreground/40"}`}
-            />
-          </button>
-        </div>
       </div>
-    </Link>
+    </div>
   );
 }
 
@@ -283,8 +179,8 @@ export default function MasonryFeed({
 
   const items = filteredItems.length > 0 ? filteredItems : FEED_ITEMS;
 
-  const distributeItems = (sourceItems: FeedItemData[], numCols: number) => {
-    const columns: FeedItemData[][] = Array.from({ length: numCols }, () => []);
+  const distributeItems = (sourceItems: FeedItem[], numCols: number) => {
+    const columns: FeedItem[][] = Array.from({ length: numCols }, () => []);
     sourceItems.forEach((item, index) => {
       columns[index % numCols].push(item);
     });
