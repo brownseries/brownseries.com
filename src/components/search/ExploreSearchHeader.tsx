@@ -1,7 +1,18 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Search, X } from "lucide-react";
 import { CATEGORIES } from "@/app/search/constants";
+import { motion, AnimatePresence } from "framer-motion";
+
+const PLACEHOLDERS = [
+    "'modest outfits'",
+    "'men'",
+    "'women'",
+    "'eid'",
+    "'onam'",
+    "'abayas'",
+];
 
 interface ExploreSearchHeaderProps {
     query: string;
@@ -27,6 +38,18 @@ export default function ExploreSearchHeader({
     inputRef,
     doSearch
 }: ExploreSearchHeaderProps) {
+    const [placeholderIndex, setPlaceholderIndex] = useState(0);
+
+    useEffect(() => {
+        if (focused || query) return;
+
+        const interval = setInterval(() => {
+            setPlaceholderIndex((prev) => (prev + 1) % PLACEHOLDERS.length);
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, [focused, query]);
+
     return (
         <div className="sticky top-0 z-40 bg-background/95 backdrop-blur-xl">
             <div className="max-w-7xl mx-auto px-4 md:px-8 pt-4 pb-2 flex items-center gap-3">
@@ -38,9 +61,28 @@ export default function ExploreSearchHeader({
                         value={query}
                         onChange={(e) => doSearch(e.target.value)}
                         onFocus={() => setFocused(true)}
-                        placeholder="Search"
-                        className="w-full pl-10 pr-9 py-2.5 bg-surface rounded-xl text-[14px] text-warm-white placeholder:text-foreground/35 focus:outline-none transition-all"
+                        placeholder={focused ? "Search" : ""}
+                        className="w-full pl-10 pr-9 py-2.5 bg-surface rounded-xl text-[14px] text-warm-white placeholder:text-foreground/35 focus:outline-none transition-all duration-500 ease-in-out"
                     />
+                    {!focused && !query && (
+                        <div className="absolute left-10 right-9 top-0 bottom-0 flex items-center pointer-events-none overflow-hidden overflow-y-hidden text-[14px] text-foreground/35 gap-1">
+                            <span>Search for</span>
+                            <div className="relative flex-1 h-full flex items-center">
+                                <AnimatePresence mode="wait">
+                                    <motion.span
+                                        key={placeholderIndex}
+                                        initial={{ y: 20, opacity: 0 }}
+                                        animate={{ y: 0, opacity: 1 }}
+                                        exit={{ y: -20, opacity: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="absolute"
+                                    >
+                                        {PLACEHOLDERS[placeholderIndex]}
+                                    </motion.span>
+                                </AnimatePresence>
+                            </div>
+                        </div>
+                    )}
                     {query && (
                         <button
                             onClick={onClear}
@@ -61,7 +103,7 @@ export default function ExploreSearchHeader({
                 )}
             </div>
 
-            {!focused && (
+            {/* {!focused && (
                 <div className="max-w-7xl mx-auto flex gap-2 px-4 md:px-8 pt-2 pb-3 overflow-x-auto hide-scrollbar">
                     {CATEGORIES.map((cat) => (
                         <button
@@ -76,7 +118,7 @@ export default function ExploreSearchHeader({
                         </button>
                     ))}
                 </div>
-            )}
+            )} */}
         </div>
     );
 }

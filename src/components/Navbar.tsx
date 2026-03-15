@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useCartStore } from "@/store/useCartStore";
-import { Home, Search, Bookmark, ShoppingBag, Heart } from "lucide-react";
+import { Home, Search, Bookmark, ShoppingBag, Heart, Shell, User2 } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
@@ -63,8 +63,8 @@ export default function Navbar() {
                     </button>
 
                     {/* Logo (Centered on mobile, left on desktop) */}
-                    <Link href="/" className="text-lg md:text-xl font-bold tracking-widest uppercase text-warm-white flex-1 md:flex-none text-center md:text-left">
-                        BROWN SERIES
+                    <Link href="/" className="text-lg md:text-xl font-bold tracking-widest uppercase text-warm-white flex-1 md:flex-none flex items-center justify-center md:justify-start gap-2">
+                        <Shell className="w-6 h-6" /> Brown Series
                     </Link>
 
                     {/* Desktop Navigation — social style */}
@@ -107,38 +107,15 @@ export default function Navbar() {
 
                         {/* Profile Dropdown */}
                         <div className="relative group hidden sm:block py-5 -my-5">
-                            <div className="p-2 text-foreground/80 hover:text-warm-white bg-transparent hover:bg-white/5 rounded-full transition-colors flex items-center">
-                                <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
-                            </div>
+                            <Link href="/profile" className="p-2 text-foreground/80 hover:text-warm-white bg-transparent hover:bg-white/5 rounded-full transition-colors flex items-center">
+                                <div className="w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center font-bold text-sm">
+                                    {"Guest User".charAt(0).toUpperCase()}
+                                </div>
+
+                            </Link>
 
                             {/* Dropdown Menu Container */}
-                            <div className="absolute right-0 top-[calc(100%-8px)] pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                                <div className="w-56 bg-surface/95 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl overflow-hidden flex flex-col py-2">
-                                    {/* User header */}
-                                    <div className="px-4 py-3 border-b border-white/5 mb-2">
-                                        <p className="text-[14px] text-warm-white font-medium">Guest User</p>
-                                        <Link href="/login" className="text-[12px] text-accent hover:text-warm-white transition-colors mt-0.5 inline-block">Sign In</Link>
-                                    </div>
 
-                                    <Link href="/profile#orders" className="px-4 py-2 text-[14px] text-foreground/80 hover:text-warm-white hover:bg-white/5 transition-colors">Orders</Link>
-                                    <Link href="/profile#addresses" className="px-4 py-2 text-[14px] text-foreground/80 hover:text-warm-white hover:bg-white/5 transition-colors">Addresses</Link>
-                                    <Link href="/saved" className="px-4 py-2 text-[14px] text-foreground/80 hover:text-warm-white hover:bg-white/5 transition-colors">Saved Items</Link>
-                                    <Link href="/profile#coupons" className="px-4 py-2 text-[14px] text-foreground/80 hover:text-warm-white hover:bg-white/5 transition-colors">Coupons</Link>
-
-                                    <div className="h-[1px] bg-white/5 my-2" />
-
-                                    <Link href="/profile#saved-cards" className="px-4 py-2 text-[14px] text-foreground/80 hover:text-warm-white hover:bg-white/5 transition-colors">Saved Cards</Link>
-                                    <Link href="/profile#saved-upi" className="px-4 py-2 text-[14px] text-foreground/80 hover:text-warm-white hover:bg-white/5 transition-colors">Saved UPI</Link>
-
-                                    <div className="h-[1px] bg-white/5 my-2" />
-
-                                    <Link href="/profile#contact" className="px-4 py-2 text-[14px] text-foreground/80 hover:text-warm-white hover:bg-white/5 transition-colors">Contact Us</Link>
-
-                                    <div className="h-[1px] bg-white/5 my-2" />
-
-                                    <button className="w-full text-left px-4 py-2 text-[14px] text-red-400 hover:text-red-300 hover:bg-white/5 transition-colors">Log Out</button>
-                                </div>
-                            </div>
                         </div>
 
                         {/* Cart Icon */}
@@ -277,7 +254,9 @@ export default function Navbar() {
                     {/* Quick links */}
                     <div className="px-5 pt-4 flex flex-col gap-0.5">
                         <Link href="/profile" onClick={closeMenu} className="py-3 text-[14px] text-foreground/60 hover:text-warm-white active:bg-white/5 transition-colors flex items-center gap-3">
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                            <div className="w-5 h-5 rounded-full bg-accent/20 text-accent flex items-center justify-center font-bold text-[10px]">
+                                {"Guest User".charAt(0).toUpperCase()}
+                            </div>
                             My Account
                         </Link>
                         <Link href="/login" onClick={closeMenu} className="py-3 text-[14px] text-accent hover:text-warm-white active:bg-white/5 transition-colors flex items-center gap-3">

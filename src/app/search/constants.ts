@@ -124,6 +124,105 @@ export const BROWSE_CATEGORIES = [
   },
 ];
 
+export const HIERARCHICAL_CATEGORIES = [
+  {
+    category: "Men",
+    subcategories: [
+      { label: "Shirts", tag: "shirts" },
+      { label: "Trousers", tag: "trousers" },
+      { label: "Outerwear", tag: "outerwear" },
+      { label: "Accessories", tag: "accessories" },
+    ]
+  },
+  {
+    category: "Women",
+    subcategories: [
+      { label: "Dresses", tag: "dresses" },
+      { label: "Tops", tag: "tops" },
+      { label: "Bottoms", tag: "bottoms" },
+      { label: "Accessories", tag: "accessories" },
+      { label: "Modest Wear", tag: "modest" },
+    ]
+  },
+  {
+    category: "Kids",
+    subcategories: [
+      { label: "Boys", tag: "boys" },
+      { label: "Girls", tag: "girls" },
+      { label: "Baby", tag: "baby" },
+      { label: "Accessories", tag: "accessories" },
+    ]
+  },
+  {
+    category: "Accessories",
+    subcategories: [
+      { label: "Bags", tag: "bags" },
+      { label: "Jewelry", tag: "jewelry" },
+      { label: "Watches", tag: "watches" },
+      { label: "Sunglasses", tag: "sunglasses" },
+    ]
+  }
+];
+
+export const GRID_CATEGORIES = [
+  {
+    title: "Men",
+    subtitle: "Classic & contemporary",
+    iconName: "Mars",
+    color: "bg-orange-500/10 text-orange-500",
+    tag: "men",
+  },
+  {
+    title: "Women",
+    subtitle: "Modest & elegant",
+    iconName: "Flower2",
+    color: "bg-green-500/10 text-green-500",
+    tag: "women",
+  },
+  {
+    title: "Kids",
+    subtitle: "Playful & comfy",
+    iconName: "Smile",
+    color: "bg-blue-500/10 text-blue-500",
+    tag: "kids",
+  },
+  {
+    title: "Accessories",
+    subtitle: "Finishing touches",
+    iconName: "Watch",
+    color: "bg-purple-500/10 text-purple-500",
+    tag: "accessories",
+  },
+  {
+    title: "Outerwear",
+    subtitle: "Layer up warmly",
+    iconName: "Cloud",
+    color: "bg-cyan-500/10 text-cyan-500",
+    tag: "outerwear",
+  },
+  {
+    title: "Eid Collection",
+    subtitle: "Festive wear",
+    iconName: "Moon",
+    color: "bg-yellow-500/10 text-yellow-500",
+    tag: "eid",
+  },
+  {
+    title: "New Arrivals",
+    subtitle: "Just dropped",
+    iconName: "Zap",
+    color: "bg-pink-500/10 text-pink-500",
+    tag: "new",
+  },
+  {
+    title: "Essentials",
+    subtitle: "Everyday basics",
+    iconName: "Box",
+    color: "bg-neutral-500/10 text-neutral-500",
+    tag: "essentials",
+  },
+];
+
 export const FEATURED_COLLECTIONS = [
   {
     id: "eid-glow",

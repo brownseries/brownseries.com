@@ -10,13 +10,14 @@ import { ALL_PRODUCTS, TRENDING } from "./constants";
 import ExploreSearchHeader from "@/components/search/ExploreSearchHeader";
 import ExploreSuggestions from "@/components/search/ExploreSuggestions";
 import ExploreFeaturedCollections from "@/components/search/ExploreFeaturedCollections";
-import ExploreCategoryList from "@/components/search/ExploreCategoryList";
+import ExploreCategoryCards from "@/components/search/ExploreCategoryCards";
 import ExploreMoodBoards from "@/components/search/ExploreMoodBoards";
 import ExploreSpotlight from "@/components/search/ExploreSpotlight";
 import ShopTheLook from "@/components/search/ShopTheLook";
 import ExploreStyleQuiz from "@/components/search/ExploreStyleQuiz";
 import ExploreSearchResults from "@/components/search/ExploreSearchResults";
 import HotNowIndicator from "@/components/search/HotNowIndicator";
+import InstagramExploreGrid from "@/components/search/InstagramExploreGrid";
 
 const RECENT_KEY = "bs_recent_searches";
 
@@ -121,42 +122,9 @@ export default function SearchPage() {
                 {/* Discovery sections */}
                 {showBrowse && (
                     <div className="pt-6 flex flex-col gap-14">
-                        <ExploreMoodBoards />
-                        <ExploreFeaturedCollections />
-                        <ExploreCategoryList onSelectCategory={applyCategory} />
-                        <ExploreSpotlight />
+                        <ExploreCategoryCards onSelectCategory={applyCategory} />
                         <ExploreStyleQuiz />
-                        <ShopTheLook
-                            activeHotspot={activeHotspot}
-                            setActiveHotspot={setActiveHotspot}
-                        />
-
-                        {/* Discover More / Trending Drops */}
-                        <section className="border-t border-white/5 pt-10">
-                            <h2 className="text-[20px]  text-warm-white font-bold mb-6">
-                                Discover More
-                            </h2>
-                            <div className="grid grid-cols-2 gap-4">
-                                {ALL_PRODUCTS.slice(4, 8).map((product) => (
-                                    <Link key={product.id} href={`/shop/${product.id}`}
-                                        className="group flex flex-col active:scale-[0.98] transition-transform">
-                                        <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-surface mb-3">
-                                            <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                            <Image
-                                                src={product.image}
-                                                alt={product.name}
-                                                fill
-                                                sizes="(max-width: 768px) 50vw, 33vw"
-                                                className="object-cover object-center brightness-90 group-hover:scale-110 transition-all duration-700"
-                                            />
-                                            <HotNowIndicator productId={product.id} className="absolute bottom-3 left-3 z-10 scale-90 origin-bottom-left" />
-                                        </div>
-                                        <h3 className="text-sm text-warm-white font-medium truncate mb-0.5">{product.name}</h3>
-                                        <p className="text-xs text-foreground/40 font-bold">{product.price}</p>
-                                    </Link>
-                                ))}
-                            </div>
-                        </section>
+                        <InstagramExploreGrid products={ALL_PRODUCTS} />
                     </div>
                 )}
 
