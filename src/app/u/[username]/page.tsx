@@ -112,10 +112,10 @@ export default function BusinessProfilePage(props: {
 
           {/* Action buttons */}
           <div className="flex items-center gap-3 mt-6 w-full max-w-xs">
-            <button className="flex-1 py-2.5 bg-accent text-background text-[12px] font-bold uppercase tracking-widest rounded-xl active:scale-95 transition-transform">
+            <button className="flex-1 py-2.5 bg-accent text-background text-[12px] font-bold uppercase tracking-widest rounded-xl active:scale-95 cursor-pointer transition-transform">
               Follow
             </button>
-            <button className="flex-1 py-2.5 bg-white/5 border border-white/10 text-warm-white text-[12px] font-bold uppercase tracking-widest rounded-xl active:scale-95 transition-transform">
+            <button className="flex-1 py-2.5 bg-white/5 border border-white/10 text-warm-white text-[12px] font-bold uppercase tracking-widest rounded-xl active:scale-95 cursor-pointer transition-transform">
               Message
             </button>
           </div>
@@ -127,7 +127,7 @@ export default function BusinessProfilePage(props: {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`pb-3 text-[13px] font-bold uppercase tracking-[0.15em] transition-all relative flex items-center gap-2 ${activeTab === tab ? "text-warm-white" : "text-foreground/30 hover:text-foreground/60"}`}
+              className={`pb-3 text-[13px] font-bold uppercase tracking-[0.15em] cursor-pointer transition-all relative flex items-center gap-2 ${activeTab === tab ? "text-warm-white" : "text-foreground/30 hover:text-foreground/60"}`}
             >
               {tab === "pins" ? <Grid size={15} /> : <ShoppingBag size={15} />}
               {tab === "pins"

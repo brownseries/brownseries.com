@@ -130,17 +130,22 @@ function FeedCard({ item }: { item: FeedItem }) {
           <div className="flex items-center gap-2 flex-shrink-0">
             <button
               onClick={handleLike}
-              className="p-1 -m-1 active:scale-110 transition-transform"
+              className="flex items-center gap-1.5 p-1 -m-1 active:scale-110 cursor-pointer transition-transform group/like"
               aria-label="Like"
             >
               <Heart
                 size={20}
-                className={`transition-colors ${liked ? "fill-red-400 text-red-400" : "text-foreground/40"}`}
+                className={`transition-colors ${liked ? "fill-red-400 text-red-400" : "text-foreground/40 group-hover/like:text-foreground/60"}`}
               />
+              <span className={`hidden md:inline text-[11px] font-bold transition-colors ${liked ? "text-red-400" : "text-foreground/40 group-hover/like:text-foreground/60"}`}>
+                {localLikes >= 1000
+                  ? (localLikes / 1000).toFixed(1) + "k"
+                  : localLikes}
+              </span>
             </button>
             <button
               onClick={handleSave}
-              className="p-1 -m-1 active:scale-110 transition-transform"
+              className="p-1 -m-1 active:scale-110 cursor-pointer transition-transform"
               aria-label="Save"
             >
               <Bookmark
