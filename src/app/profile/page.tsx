@@ -129,16 +129,14 @@ export default function ProfilePage() {
             { id: "posts" as const, icon: Grid, label: "Posts" },
             { id: "saved" as const, icon: Bookmark, label: "Saved" },
             { id: "liked" as const, icon: Heart, label: "Liked" },
-            { id: "settings" as const, icon: Settings, label: "Settings" },
           ].map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`pb-3 text-[13px] font-bold uppercase tracking-[0.15em] transition-all relative flex items-center gap-2 ${
-                activeTab === tab.id
+              className={`pb-3 text-[13px] font-bold uppercase tracking-[0.15em] transition-all relative flex items-center gap-2 ${activeTab === tab.id
                   ? "text-warm-white"
                   : "text-foreground/30 hover:text-foreground/60"
-              }`}
+                }`}
             >
               <tab.icon size={15} />
               {tab.label}

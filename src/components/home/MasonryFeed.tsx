@@ -134,7 +134,7 @@ function FeedCard({ item }: { item: FeedItem }) {
               aria-label="Like"
             >
               <Heart
-                size={18}
+                size={20}
                 className={`transition-colors ${liked ? "fill-red-400 text-red-400" : "text-foreground/40"}`}
               />
             </button>
@@ -144,7 +144,7 @@ function FeedCard({ item }: { item: FeedItem }) {
               aria-label="Save"
             >
               <Bookmark
-                size={18}
+                size={20}
                 className={`transition-colors ${saved ? "fill-accent text-accent" : "text-foreground/40"}`}
               />
             </button>
@@ -232,7 +232,7 @@ export default function MasonryFeed({
 
       {/* Mobile: 2-column */}
       <motion.div
-        className="flex md:hidden gap-2 items-start"
+        className="flex md:hidden gap-2 items-start overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
@@ -241,7 +241,7 @@ export default function MasonryFeed({
         {mobileCols.map((col, colIdx) => (
           <div
             key={colIdx}
-            className="flex-1 flex flex-col gap-2"
+            className="flex-1 min-w-0 flex flex-col gap-2"
             style={{ marginTop: colIdx % 2 === 1 ? "2.5rem" : 0 }}
           >
             {col.map((item, i) => (
@@ -260,7 +260,7 @@ export default function MasonryFeed({
 
       {/* Desktop: 4-column */}
       <motion.div
-        className="hidden md:flex gap-4 items-start"
+        className="hidden md:flex gap-4 items-start overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
@@ -269,7 +269,7 @@ export default function MasonryFeed({
         {desktopCols.map((col, colIdx) => (
           <div
             key={colIdx}
-            className="flex-1 flex flex-col gap-4"
+            className="flex-1 min-w-0 flex flex-col gap-4"
             style={{ marginTop: colIdx % 2 === 1 ? "2.5rem" : 0 }}
           >
             {col.map((item, i) => (

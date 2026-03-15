@@ -162,9 +162,7 @@ export default function ProductDetailPage(props: {
                   {productAccount.verified && (
                     <BadgeCheck
                       size={13}
-                      className="text-accent flex-shrink-0"
-                      fill="currentColor"
-                      strokeWidth={0}
+                      className="text-accent fill-accent stroke-background flex-shrink-0"
                     />
                   )}
                 </div>

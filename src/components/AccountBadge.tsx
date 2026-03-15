@@ -25,7 +25,7 @@ export default function AccountBadge({
   return (
     <Link
       href={`/u/${account.username}`}
-      className={`flex items-center gap-1.5 min-w-0 group/account ${className}`}
+      className={`flex items-center gap-1.5 min-w-0 overflow-hidden group/account ${className}`}
       onClick={(e) => e.stopPropagation()}
     >
       {showAvatar && (
@@ -40,14 +40,14 @@ export default function AccountBadge({
       >
         {account.displayName}
       </span>
-      {account.verified && (
+      {/* {account.verified && (
         <BadgeCheck
           size={checkSize}
           className="text-accent flex-shrink-0"
           fill="currentColor"
           strokeWidth={0}
         />
-      )}
+      )} */}
     </Link>
   );
 }

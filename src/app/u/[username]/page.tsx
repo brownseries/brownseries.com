@@ -52,9 +52,7 @@ export default function BusinessProfilePage(props: {
             {account.verified && (
               <BadgeCheck
                 size={18}
-                className="text-accent"
-                fill="currentColor"
-                strokeWidth={0}
+                className="text-accent fill-accent stroke-background"
               />
             )}
           </div>

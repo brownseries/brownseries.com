@@ -24,8 +24,8 @@ export const BUSINESS_ACCOUNTS: UserProfile[] = [
   },
   {
     id: "zahra-curates",
-    username: "zahra_curates",
-    displayName: "Zahra Ahmed",
+    username: "afna.rimzi",
+    displayName: "Afna Rimzi",
     avatar: "🧕",
     accountType: "business",
     bio: "Modest fashion curator. Minimalist Eid looks & everyday elegance.",
@@ -133,8 +133,8 @@ export const ACCOUNTS = {
 
 export const CURRENT_USER: UserProfile = {
   id: "current-user",
-  username: "adam.john",
-  displayName: "Adam John",
+  username: "afna.rimzi",
+  displayName: "Afna Rimzi",
   avatar: "👤",
   accountType: "personal",
   bio: "Fashion enthusiast. Earth tones only.",
