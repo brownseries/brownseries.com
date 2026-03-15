@@ -3,21 +3,27 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useCallback, useRef } from "react";
-import { Heart, Bookmark, Flame, Star, Zap, Users } from "lucide-react";
+import { Heart, Bookmark, Users } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import AccountBadgeComponent from "@/components/AccountBadge";
+import { ACCOUNTS } from "@/data/accounts";
+import type { AccountBadge } from "@/types";
 
-const AVATARS = [
-  { name: "Amira S.", avatar: "🧕" },
-  { name: "Layla K.", avatar: "👩" },
-  { name: "Noor H.", avatar: "👩‍🦱" },
-  { name: "Fatima R.", avatar: "🧕" },
-  { name: "Zara M.", avatar: "👩‍🦰" },
-  { name: "Hana B.", avatar: "👩" },
-  { name: "Yasmin D.", avatar: "🧕" },
-  { name: "Sara A.", avatar: "👩‍🦱" },
-];
+interface FeedItemData {
+  id: number;
+  image: string;
+  title: string;
+  subtitle: string;
+  saves: number;
+  likes: number;
+  tags: string[];
+  href: string;
+  aspect: "tall" | "short";
+  hot: boolean;
+  account: AccountBadge;
+}
 
-export const FEED_ITEMS = [
+export const FEED_ITEMS: FeedItemData[] = [
   {
     id: 1,
     image: "/hero_eid_collection.png",
@@ -27,8 +33,9 @@ export const FEED_ITEMS = [
     likes: 3420,
     tags: ["#EidLooks", "#FestiveFashion"],
     href: "/shop/eid-collections",
-    aspect: "tall" as const,
+    aspect: "tall",
     hot: true,
+    account: ACCOUNTS.zahra,
   },
   {
     id: 2,
@@ -39,8 +46,9 @@ export const FEED_ITEMS = [
     likes: 1540,
     tags: ["#WinterKnits", "#QuietLuxury"],
     href: "/shop/cozy-looks",
-    aspect: "short" as const,
+    aspect: "short",
     hot: false,
+    account: ACCOUNTS.noor,
   },
   {
     id: 3,
@@ -51,8 +59,9 @@ export const FEED_ITEMS = [
     likes: 2780,
     tags: ["#EarthTone", "#Modest"],
     href: "/shop/classic-style",
-    aspect: "short" as const,
+    aspect: "short",
     hot: false,
+    account: ACCOUNTS.brownSeries,
   },
   {
     id: 4,
@@ -63,8 +72,9 @@ export const FEED_ITEMS = [
     likes: 1120,
     tags: ["#Accessories", "#LayeredLooks"],
     href: "/shop/timeless-accessory",
-    aspect: "tall" as const,
+    aspect: "tall",
     hot: true,
+    account: ACCOUNTS.sara,
   },
   {
     id: 5,
@@ -75,8 +85,9 @@ export const FEED_ITEMS = [
     likes: 3100,
     tags: ["#Essentials", "#EarthTone"],
     href: "/shop/classic-style",
-    aspect: "tall" as const,
+    aspect: "tall",
     hot: false,
+    account: ACCOUNTS.brownSeries,
   },
   {
     id: 6,
@@ -87,8 +98,9 @@ export const FEED_ITEMS = [
     likes: 890,
     tags: ["#Bottoms", "#Modest"],
     href: "/shop/1",
-    aspect: "short" as const,
+    aspect: "short",
     hot: false,
+    account: ACCOUNTS.earth,
   },
   {
     id: 7,
@@ -99,8 +111,9 @@ export const FEED_ITEMS = [
     likes: 670,
     tags: ["#Bags", "#Accessories"],
     href: "/shop/2",
-    aspect: "short" as const,
+    aspect: "short",
     hot: false,
+    account: ACCOUNTS.sara,
   },
   {
     id: 8,
@@ -111,48 +124,12 @@ export const FEED_ITEMS = [
     likes: 4150,
     tags: ["#NewIn", "#QuietLuxury"],
     href: "/shop/4",
-    aspect: "tall" as const,
+    aspect: "tall",
     hot: true,
+    account: ACCOUNTS.zahra,
   },
 ];
 
-// Hot Now badge component (inline, replaces separate file dependency)
-function HotBadge({ itemId }: { itemId: number }) {
-  const seed = itemId * 1337;
-  const viewing = 12 + (seed % 48);
-  const type = seed % 3;
-
-  return (
-    <div className="flex items-center gap-1.5 px-2 py-1 bg-black/40 backdrop-blur-md rounded-full border border-white/10 w-fit">
-      <span className="relative flex h-1.5 w-1.5">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
-        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent" />
-      </span>
-      <p className="text-[9px] font-bold text-white uppercase tracking-wider flex items-center gap-1">
-        {type === 0 && (
-          <>
-            <Flame className="w-2.5 h-2.5 text-accent fill-accent" />
-            {viewing} viewing
-          </>
-        )}
-        {type === 1 && (
-          <>
-            <Star className="w-2.5 h-2.5 text-accent fill-accent" />
-            Trending
-          </>
-        )}
-        {type === 2 && (
-          <>
-            <Zap className="w-2.5 h-2.5 text-accent fill-accent" />
-            Low Stock
-          </>
-        )}
-      </p>
-    </div>
-  );
-}
-
-// Skeleton loader for feed cards
 function FeedCardSkeleton({ tall }: { tall: boolean }) {
   return (
     <div className="animate-pulse">
@@ -170,22 +147,13 @@ function FeedCardSkeleton({ tall }: { tall: boolean }) {
   );
 }
 
-function FeedCard({
-  item,
-  index,
-  showAttribution = false,
-}: {
-  item: (typeof FEED_ITEMS)[0];
-  index: number;
-  showAttribution?: boolean;
-}) {
+function FeedCard({ item }: { item: FeedItemData }) {
   const [saved, setSaved] = useState(false);
   const [liked, setLiked] = useState(false);
   const [localLikes, setLocalLikes] = useState(item.likes);
   const [showHeartBurst, setShowHeartBurst] = useState(false);
   const lastTapRef = useRef(0);
 
-  // Double-tap to like
   const handleDoubleTap = useCallback(
     (e: React.MouseEvent | React.TouchEvent) => {
       const now = Date.now();
@@ -193,6 +161,7 @@ function FeedCard({
         e.preventDefault();
         if (!liked) {
           setLiked(true);
+          setLocalLikes((n) => n + 1);
           setShowHeartBurst(true);
           setTimeout(() => setShowHeartBurst(false), 900);
         }
@@ -223,7 +192,6 @@ function FeedCard({
       className="block group active:scale-[0.98] transition-transform"
       onClick={handleDoubleTap}
     >
-      {/* Image */}
       <div
         className={`relative w-full overflow-hidden rounded-2xl bg-surface ${item.aspect === "tall" ? "aspect-[3/4]" : "aspect-square"}`}
       >
@@ -234,8 +202,6 @@ function FeedCard({
           sizes="50vw"
           className="object-cover object-center brightness-90 group-hover:brightness-100 transition-all duration-500"
         />
-
-        {/* Double-tap heart burst animation */}
         <AnimatePresence>
           {showHeartBurst && (
             <motion.div
@@ -254,20 +220,12 @@ function FeedCard({
         </AnimatePresence>
       </div>
 
-      {/* Text content below image */}
+      {/* Content below image */}
       <div className="pt-2 px-0.5">
-        {/* Tags */}
-        <div className="flex flex-wrap gap-1 mb-1">
-          {item.tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-[9px] text-foreground/40 bg-white/5 px-1.5 py-0.5 rounded-full"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-        <h3 className="text-[12px] font-semibold text-warm-white leading-snug">
+        {/* Account attribution */}
+        <AccountBadgeComponent account={item.account} size="sm" />
+
+        <h3 className="text-[12px] font-semibold text-warm-white leading-snug mt-1">
           {item.title}
         </h3>
 
@@ -300,16 +258,6 @@ function FeedCard({
             />
           </button>
         </div>
-        {showAttribution && (
-          <div className="flex items-center gap-1.5 mt-1">
-            <span className="text-[13px]">
-              {AVATARS[item.id % AVATARS.length].avatar}
-            </span>
-            <span className="text-[10px] text-foreground/50">
-              {AVATARS[item.id % AVATARS.length].name}
-            </span>
-          </div>
-        )}
       </div>
     </Link>
   );
@@ -335,11 +283,8 @@ export default function MasonryFeed({
 
   const items = filteredItems.length > 0 ? filteredItems : FEED_ITEMS;
 
-  const distributeItems = (sourceItems: typeof FEED_ITEMS, numCols: number) => {
-    const columns: (typeof FEED_ITEMS)[] = Array.from(
-      { length: numCols },
-      () => [],
-    );
+  const distributeItems = (sourceItems: FeedItemData[], numCols: number) => {
+    const columns: FeedItemData[][] = Array.from({ length: numCols }, () => []);
     sourceItems.forEach((item, index) => {
       columns[index % numCols].push(item);
     });
@@ -371,18 +316,17 @@ export default function MasonryFeed({
 
   return (
     <section className="px-2 md:px-8 pt-4 md:pt-8 pb-4 max-w-7xl mx-auto">
-      {/* Section header */}
       <div className="flex items-center justify-between mb-4 md:mb-6 px-1">
         <div>
           <h2 className="text-2xl md:text-2xl text-warm-white font-bold">
             Discover
           </h2>
           <p className="text-[11px] text-foreground/40 mt-0.5">
-            Personalized picks
+            From creators you&apos;ll love
           </p>
         </div>
         <Link
-          href="/following"
+          href="/search"
           className="flex items-center gap-1.5 text-[11px] text-accent font-medium bg-accent/10 hover:bg-accent/20 border border-accent/20 rounded-full px-3 py-1.5 transition-colors"
         >
           <Users size={13} />
@@ -411,7 +355,7 @@ export default function MasonryFeed({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: colIdx * 0.05 + i * 0.07 }}
               >
-                <FeedCard item={item} index={i} />
+                <FeedCard item={item} />
               </motion.div>
             ))}
           </div>
@@ -439,7 +383,7 @@ export default function MasonryFeed({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: colIdx * 0.05 + i * 0.07 }}
               >
-                <FeedCard item={item} index={i} />
+                <FeedCard item={item} />
               </motion.div>
             ))}
           </div>

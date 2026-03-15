@@ -1,168 +1,197 @@
 "use client";
 
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, Trash2, Plus, Minus, ShoppingBag } from 'lucide-react';
-import { useCartStore } from '@/store/useCartStore';
-import Image from 'next/image';
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Trash2, Plus, Minus, ShoppingBag, BadgeCheck } from "lucide-react";
+import { useCartStore } from "@/store/useCartStore";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function CartDrawer() {
-    const {
-        isOpen,
-        closeCart,
-        items,
-        removeItem,
-        updateQuantity,
-        getTotalPrice
-    } = useCartStore();
+  const {
+    isOpen,
+    closeCart,
+    items,
+    removeItem,
+    updateQuantity,
+    getTotalPrice,
+    getItemsByAccount,
+  } = useCartStore();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) return null;
 
-    // Setup hydration safety for Zustand states
-    const [mounted, setMounted] = useState(false);
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+  const accountGroups = getItemsByAccount();
 
-    if (!mounted) return null;
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeCart}
+            className="fixed inset-0 bg-black/50 z-50 backdrop-blur-sm"
+          />
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed top-0 right-0 h-full w-full sm:w-[400px] bg-white text-stone-900 shadow-2xl z-50 flex flex-col"
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] border-b border-stone-200">
+              <h2 className="text-2xl font-bold flex items-center gap-2">
+                <ShoppingBag size={22} /> Bag
+                <span className="text-sm font-normal text-stone-400">
+                  ({items.length})
+                </span>
+              </h2>
+              <button
+                onClick={closeCart}
+                className="p-2 hover:bg-stone-100 rounded-full transition-colors"
+                aria-label="Close cart"
+              >
+                <X size={20} />
+              </button>
+            </div>
 
-    return (
-        <AnimatePresence>
-            {isOpen && (
-                <>
-                    {/* Backdrop */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={closeCart}
-                        className="fixed inset-0 bg-black/50 z-50 backdrop-blur-sm"
-                    />
-
-                    {/* Drawer */}
-                    <motion.div
-                        initial={{ x: '100%' }}
-                        animate={{ x: 0 }}
-                        exit={{ x: '100%' }}
-                        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                        className="fixed top-0 right-0 h-full w-full sm:w-[400px] bg-white text-stone-900 shadow-2xl z-50 flex flex-col"
-                    >
-                        {/* Header */}
-                        <div className="flex items-center justify-between p-6 pt-[calc(1.5rem+env(safe-area-inset-top))] border-b border-stone-200">
-                            <h2 className="text-2xl font-bold flex items-center gap-2">
-                                <ShoppingBag className="w-6 h-6" />
-                                Your Bag
-                            </h2>
-                            <button
-                                onClick={closeCart}
-                                className="p-3 -mr-1 hover:bg-stone-100 rounded-full transition-colors active:scale-95"
+            {/* Items grouped by account */}
+            <div className="flex-1 overflow-y-auto">
+              {items.length === 0 ? (
+                <div className="flex flex-col items-center justify-center h-full gap-4 text-stone-400">
+                  <ShoppingBag size={48} strokeWidth={1} />
+                  <p className="text-lg">Your bag is empty</p>
+                  <button
+                    onClick={closeCart}
+                    className="text-sm text-stone-900 underline underline-offset-4"
+                  >
+                    Continue browsing
+                  </button>
+                </div>
+              ) : (
+                <div className="divide-y divide-stone-100">
+                  {Array.from(accountGroups.entries()).map(
+                    ([accountId, accountItems]) => {
+                      const acct = accountItems[0]?.account;
+                      return (
+                        <div key={accountId} className="py-4">
+                          {/* Account header */}
+                          {acct && (
+                            <Link
+                              href={`/u/${acct.username}`}
+                              onClick={closeCart}
+                              className="flex items-center gap-2 px-6 pb-3 group"
                             >
-                                <X className="w-5 h-5 text-stone-500" />
-                            </button>
-                        </div>
-
-                        {/* Cart Items */}
-                        <div className="flex-1 overflow-y-auto p-6 space-y-6">
-                            {items.length === 0 ? (
-                                <div className="h-full flex flex-col items-center justify-center text-stone-400 space-y-4">
-                                    <ShoppingBag className="w-16 h-16 opacity-20" />
-                                    <p className="text-lg">Your bag is empty.</p>
+                              <span className="w-6 h-6 rounded-full bg-stone-100 flex items-center justify-center text-xs">
+                                {acct.avatar}
+                              </span>
+                              <span className="text-[13px] font-semibold text-stone-700 group-hover:text-stone-900 transition-colors">
+                                {acct.displayName}
+                              </span>
+                              {acct.verified && (
+                                <BadgeCheck
+                                  size={13}
+                                  className="text-blue-500"
+                                  fill="currentColor"
+                                  strokeWidth={0}
+                                />
+                              )}
+                            </Link>
+                          )}
+                          {/* Items */}
+                          {accountItems.map((item) => (
+                            <div key={item.id} className="flex gap-4 px-6 py-3">
+                              <div className="relative w-20 h-24 rounded-xl overflow-hidden bg-stone-100 flex-shrink-0">
+                                <Image
+                                  src={item.image}
+                                  alt={item.name}
+                                  fill
+                                  className="object-cover"
+                                />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h3 className="text-sm font-medium truncate">
+                                  {item.name}
+                                </h3>
+                                {(item.color || item.size) && (
+                                  <p className="text-xs text-stone-400 mt-0.5">
+                                    {[item.color, item.size]
+                                      .filter(Boolean)
+                                      .join(" · ")}
+                                  </p>
+                                )}
+                                <p className="text-sm font-bold mt-1">
+                                  ₹{item.price}
+                                </p>
+                                <div className="flex items-center justify-between mt-2">
+                                  <div className="flex items-center gap-2 border border-stone-200 rounded-full">
                                     <button
-                                        onClick={closeCart}
-                                        className="px-6 py-2 bg-stone-900 text-white rounded-full hover:bg-stone-800 transition-colors"
+                                      onClick={() =>
+                                        updateQuantity(
+                                          item.id,
+                                          item.quantity - 1,
+                                        )
+                                      }
+                                      className="p-1.5 hover:bg-stone-100 rounded-full transition-colors"
+                                      aria-label="Decrease quantity"
                                     >
-                                        Continue Shopping
+                                      <Minus size={14} />
                                     </button>
-                                </div>
-                            ) : (
-                                items.map((item) => (
-                                    <motion.div
-                                        layout
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, scale: 0.9 }}
-                                        key={`${item.id}-${item.size}-${item.color}`}
-                                        className="flex gap-4 p-4 bg-stone-50 rounded-2xl border border-stone-100"
+                                    <span className="text-sm font-medium w-6 text-center">
+                                      {item.quantity}
+                                    </span>
+                                    <button
+                                      onClick={() =>
+                                        updateQuantity(
+                                          item.id,
+                                          item.quantity + 1,
+                                        )
+                                      }
+                                      className="p-1.5 hover:bg-stone-100 rounded-full transition-colors"
+                                      aria-label="Increase quantity"
                                     >
-                                        {/* Item Image */}
-                                        <div className="relative w-24 h-24 bg-stone-200 rounded-xl overflow-hidden shadow-sm flex-shrink-0">
-                                            {item.image ? (
-                                                <Image
-                                                    src={item.image}
-                                                    alt={item.name}
-                                                    fill
-                                                    className="object-cover"
-                                                />
-                                            ) : (
-                                                <div className="w-full h-full bg-stone-300 animate-pulse" />
-                                            )}
-                                        </div>
-
-                                        {/* Item Details */}
-                                        <div className="flex-1 flex flex-col justify-between">
-                                            <div className="flex justify-between items-start gap-2">
-                                                <div>
-                                                    <h3 className="font-semibold text-stone-800 line-clamp-1">{item.name}</h3>
-                                                    {item.color && <p className="text-sm text-stone-500">Color: {item.color}</p>}
-                                                    {item.size && <p className="text-sm text-stone-500">Size: {item.size}</p>}
-                                                </div>
-                                                <p className="font-bold text-stone-900">${(item.price * item.quantity).toFixed(2)}</p>
-                                            </div>
-
-                                            <div className="flex items-center justify-between mt-4">
-                                                {/* Quantity Controls */}
-                                                <div className="flex items-center bg-white rounded-full border border-stone-200 shadow-sm overflow-hidden">
-                                                    <button
-                                                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                                        className="p-1 px-2 hover:bg-stone-100 transition-colors"
-                                                        disabled={item.quantity <= 1}
-                                                    >
-                                                        <Minus className="w-4 h-4" />
-                                                    </button>
-                                                    <span className="w-8 text-center text-sm font-semibold">
-                                                        {item.quantity}
-                                                    </span>
-                                                    <button
-                                                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                                        className="p-1 px-2 hover:bg-stone-100 transition-colors"
-                                                    >
-                                                        <Plus className="w-4 h-4" />
-                                                    </button>
-                                                </div>
-
-                                                {/* Remove Action */}
-                                                <button
-                                                    onClick={() => removeItem(item.id)}
-                                                    className="p-2 text-red-500 hover:bg-red-50 rounded-full transition-colors"
-                                                    aria-label="Remove item"
-                                                >
-                                                    <Trash2 className="w-4 h-4" />
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                ))
-                            )}
-                        </div>
-
-                        {/* Footer / Checkout */}
-                        {items.length > 0 && (
-                            <div className="p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] bg-stone-50 border-t border-stone-200 shadow-[0_-4px_20px_-10px_rgba(0,0,0,0.1)] z-10">
-                                <div className="flex justify-between mb-4 text-stone-600">
-                                    <span>Subtotal</span>
-                                    <span className="font-semibold text-stone-900">${getTotalPrice().toFixed(2)}</span>
+                                      <Plus size={14} />
+                                    </button>
+                                  </div>
+                                  <button
+                                    onClick={() => removeItem(item.id)}
+                                    className="p-2 text-stone-400 hover:text-red-500 transition-colors"
+                                    aria-label="Remove item"
+                                  >
+                                    <Trash2 size={16} />
+                                  </button>
                                 </div>
-                                <div className="flex justify-between mb-6 text-stone-600">
-                                    <span>Shipping</span>
-                                    <span className="text-sm text-stone-400">Calculated at checkout</span>
-                                </div>
-
-                                <button className="w-full bg-stone-900 text-white py-4 rounded-xl font-bold text-lg hover:bg-stone-800 transition-all active:scale-[0.98] shadow-lg shadow-stone-900/20">
-                                    Checkout Now
-                                </button>
+                              </div>
                             </div>
-                        )}
-                    </motion.div>
-                </>
+                          ))}
+                        </div>
+                      );
+                    },
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Footer */}
+            {items.length > 0 && (
+              <div className="border-t border-stone-200 p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] space-y-4">
+                <div className="flex justify-between text-lg font-bold">
+                  <span>Total</span>
+                  <span>₹{getTotalPrice().toLocaleString()}</span>
+                </div>
+                <button className="w-full bg-stone-900 text-white py-4 rounded-2xl font-medium hover:bg-stone-800 active:scale-[0.98] transition-all">
+                  Checkout
+                </button>
+              </div>
             )}
-        </AnimatePresence>
-    );
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
 }

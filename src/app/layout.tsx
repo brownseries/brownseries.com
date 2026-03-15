@@ -17,8 +17,14 @@ const interHeading = Inter({
 
 export const metadata: Metadata = {
   title: "Brown Series",
-  description: "Contemporary fashion rooted in earth tones and timeless design.",
-  keywords: ["clothing", "fashion", "premium", "brownseries", "earth tones"],
+  description: "Discover, save, and shop fashion from creators you love.",
+  keywords: [
+    "social commerce",
+    "fashion",
+    "marketplace",
+    "brownseries",
+    "creators",
+  ],
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -46,7 +52,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${interBody.variable} ${interHeading.variable} antialiased`}>
+      <body
+        className={`${interBody.variable} ${interHeading.variable} antialiased`}
+      >
         {children}
         <CartDrawer />
       </body>

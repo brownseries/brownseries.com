@@ -5,14 +5,26 @@ import { createPortal } from "react-dom";
 import Image from "next/image";
 import { AnimatePresence } from "framer-motion";
 import StoryViewer from "./StoryViewer";
+import { ACCOUNTS } from "@/data/accounts";
+import type { AccountBadge } from "@/types";
 
-const STORIES = [
+interface StoryData {
+  id: string;
+  label: string;
+  image: string;
+  href: string;
+  active: boolean;
+  account: AccountBadge;
+}
+
+const STORIES: StoryData[] = [
   {
     id: "new-in",
     label: "New In",
     image: "/hero_indian_new_arrivals.png",
     href: "/shop?filter=new",
     active: true,
+    account: ACCOUNTS.zahra,
   },
   {
     id: "eid-2026",
@@ -20,6 +32,7 @@ const STORIES = [
     image: "/hero_eid_collection.png",
     href: "/shop?collection=eid",
     active: true,
+    account: ACCOUNTS.zahra,
   },
   {
     id: "trending",
@@ -27,13 +40,15 @@ const STORIES = [
     image: "/hero_indian_winter.png",
     href: "/search",
     active: false,
+    account: ACCOUNTS.noor,
   },
   {
     id: "bts",
     label: "BTS",
     image: "/hero.png",
-    href: "/about",
+    href: "/coming-soon",
     active: false,
+    account: ACCOUNTS.brownSeries,
   },
   {
     id: "lookbook",
@@ -41,6 +56,7 @@ const STORIES = [
     image: "/hero_indian_essentials.png",
     href: "/search",
     active: false,
+    account: ACCOUNTS.earth,
   },
   {
     id: "lifestyle",
@@ -48,6 +64,7 @@ const STORIES = [
     image: "/hero_indian_accessories.png",
     href: "/search",
     active: false,
+    account: ACCOUNTS.sara,
   },
 ];
 
@@ -95,7 +112,7 @@ export default function StoryStrip() {
                     story.active ? "text-warm-white" : "text-foreground/50"
                   }`}
                 >
-                  {story.label}
+                  {story.account.displayName.split(" ")[0]}
                 </span>
               </button>
             ))}

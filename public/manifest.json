@@ -1,29 +1,29 @@
 {
-    "name": "Brown Series",
-    "short_name": "Brown Series",
-    "description": "Contemporary fashion rooted in earth tones and timeless design.",
-    "theme_color": "#0a0807",
-    "background_color": "#0a0807",
-    "display": "standalone",
-    "orientation": "portrait",
-    "scope": "/",
-    "start_url": "/",
-    "icons": [
-        {
-            "src": "/icon-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "/icon-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-        },
-        {
-            "src": "/apple-icon.png",
-            "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "maskable"
-        }
-    ]
+  "name": "Brown Series",
+  "short_name": "Brown Series",
+  "description": "Discover, save, and shop fashion from creators you love.",
+  "theme_color": "#0a0807",
+  "background_color": "#0a0807",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
 }
